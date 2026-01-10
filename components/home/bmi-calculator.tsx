@@ -124,10 +124,10 @@ export default function BMICalculator() {
               <div className="w-12 h-1 bg-orange-600 rotate-12"></div>
             </div>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-wider mb-2">
+          <h1 className="font-orbitron text-4xl md:text-6xl font-bold tracking-wider mb-2">
             CALCULATE YOUR
           </h1>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-wider">
+          <h2 className="font-orbitron text-4xl md:text-6xl font-bold tracking-wider">
             BMI NOW!!
           </h2>
         </div>

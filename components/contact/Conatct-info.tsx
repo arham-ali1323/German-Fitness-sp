@@ -64,7 +64,7 @@ export default function ContactInfoSection() {
                   <div className="w-6 h-0.5 bg-orange-600"></div>
                   <div className="w-6 h-0.5 bg-orange-600"></div>
                 </div>
-                <h3 className="text-xl font-bold tracking-wider">
+                <h3 className="font-orbitron text-xl font-bold tracking-wider">
                   {item.title}
                 </h3>
               </div>

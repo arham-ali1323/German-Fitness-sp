@@ -109,7 +109,7 @@ export default function GroupWorkout() {
             <div className="w-12 h-1 bg-orange-600"></div>
             <div className="w-12 h-1 bg-orange-600"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-wider mb-4">
+          <h2 className="font-orbitron text-4xl md:text-5xl font-bold tracking-wider mb-4">
             OUR SERVICES
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">

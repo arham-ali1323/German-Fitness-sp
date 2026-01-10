@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function FitnessEvents() {
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
@@ -7,36 +7,37 @@ export default function FitnessEvents() {
   const events = [
     {
       id: 1,
-      number: '01',
-      date: 'AUGUST 24, 2023',
-      title: 'BENCHPRESS HACKATHON',
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop',
-      hasButton: true
+      number: "01",
+      date: "AUGUST 24, 2023",
+      title: "BENCHPRESS HACKATHON",
+      image:
+        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop",
+      hasButton: true,
     },
     {
       id: 2,
-      number: '02',
-      date: 'SEPTEMBER 24, 2023',
-      title: 'PRO BOXING CHAMPIONS LEAGUE',
+      number: "02",
+      date: "SEPTEMBER 24, 2023",
+      title: "PRO BOXING CHAMPIONS LEAGUE",
       image: null,
-      hasButton: false
+      hasButton: false,
     },
     {
       id: 3,
-      number: '03',
-      date: 'NOVEMBER 24, 2023',
-      title: 'DEAD LIFTING PRO STATE LEAGUE',
+      number: "03",
+      date: "NOVEMBER 24, 2023",
+      title: "DEAD LIFTING PRO STATE LEAGUE",
       image: null,
-      hasButton: false
+      hasButton: false,
     },
     {
       id: 4,
-      number: '04',
-      date: 'DECEMBER 24, 2023',
-      title: 'WEIGHTLIFTING COMPETITION',
+      number: "04",
+      date: "DECEMBER 24, 2023",
+      title: "WEIGHTLIFTING COMPETITION",
       image: null,
-      hasButton: false
-    }
+      hasButton: false,
+    },
   ];
 
   return (
@@ -50,9 +51,11 @@ export default function FitnessEvents() {
               <div className="w-12 h-1 bg-orange-600 rotate-12"></div>
               <div className="w-12 h-1 bg-orange-600 rotate-12"></div>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-wider leading-tight mb-8">
-              JOIN TODAY<br />
-              ON LATEST<br />
+            <h1 className="font-orbitron text-5xl md:text-6xl font-bold tracking-wider leading-tight mb-8">
+              JOIN TODAY
+              <br />
+              ON LATEST
+              <br />
               EVENTS
             </h1>
 
@@ -67,14 +70,18 @@ export default function FitnessEvents() {
             {events.map((event, index) => (
               <div
                 key={event.id}
-                className={`border-b border-gray-800 pb-8 pt-8 ${index === 0 ? 'border-t' : ''}`}
+                className={`border-b border-gray-800 pb-8 pt-8 ${
+                  index === 0 ? "border-t" : ""
+                }`}
                 onMouseEnter={() => setHoveredEvent(event.id)}
                 onMouseLeave={() => setHoveredEvent(null)}
               >
                 <div className="flex items-start gap-8">
                   {/* Event Number */}
                   <div className="flex-shrink-0">
-                    <div className="text-gray-500 text-sm font-semibold mb-2">EVENT</div>
+                    <div className="text-gray-500 text-sm font-semibold mb-2">
+                      EVENT
+                    </div>
                     <div className="text-5xl font-bold">{event.number}</div>
                   </div>
 
@@ -88,24 +95,27 @@ export default function FitnessEvents() {
                     <div className="text-gray-400 text-sm mb-3 tracking-wide">
                       {event.date}
                     </div>
-                    <h3 className={`text-2xl md:text-3xl font-bold tracking-wide mb-4 transition-colors duration-300 ${
-                      hoveredEvent === event.id ? 'text-orange-600' : 'text-white'
-                    }`}>
+                    <h3
+                      className={`text-2xl md:text-3xl font-bold tracking-wide mb-4 transition-colors duration-300 ${
+                        hoveredEvent === event.id
+                          ? "text-orange-600"
+                          : "text-white"
+                      }`}
+                    >
                       {event.title}
                     </h3>
-                    
-                   <button
-  className={`border-2 border-orange-600 text-orange-600 font-semibold py-3 px-8 tracking-wide
+
+                    <button
+                      className={`border-2 border-orange-600 text-orange-600 font-semibold py-3 px-8 tracking-wide
   transition-all duration-300
   ${
     hoveredEvent === event.id
       ? "opacity-100 translate-y-0 hover:bg-orange-600 hover:text-white"
       : "opacity-0 translate-y-3 pointer-events-none"
   }`}
->
-  REGISTER NOW
-</button>
-
+                    >
+                      REGISTER NOW
+                    </button>
                   </div>
 
                   {/* Event Image (only for first event) */}
@@ -127,22 +137,22 @@ export default function FitnessEvents() {
         </div>
 
         {/* Scroll to Top Button */}
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed bottom-8 right-8 bg-orange-600 hover:bg-orange-700 text-white p-3 rounded transition-all duration-300 transform hover:scale-110 z-50"
           aria-label="Scroll to top"
         >
-          <svg 
-            className="w-6 h-6" 
-            fill="none" 
-            stroke="currentColor" 
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M5 10l7-7m0 0l7 7m-7-7v18" 
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
             />
           </svg>
         </button>

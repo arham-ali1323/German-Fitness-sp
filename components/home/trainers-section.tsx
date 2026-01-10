@@ -97,10 +97,10 @@ export default function FitnessTrainers() {
 
             {/* HEADING SPACE */}
             <div>
-              <h2 className="text-4xl font-extrabold tracking-widest">
+              <h2 className="text-4xl font-extrabold tracking-widest font-orbitron">
                 MEET OUR
               </h2>
-              <h3 className="text-4xl font-extrabold tracking-widest text-orange-600">
+              <h3 className="text-4xl font-extrabold tracking-widest text-orange-600 font-orbitron">
                 FITNESS TRAINERS
               </h3>
             </div>

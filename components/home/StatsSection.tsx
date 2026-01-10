@@ -39,14 +39,14 @@ export default function StatsSection() {
         <div>
           <div className="relative">
             {/* Background text */}
-            <span className="absolute top-0 left-0 w-full h-full text-[150px] md:text-[200px] font-extrabold text-white/10 uppercase select-none pointer-events-none"
-              style={{ fontFamily: '"Plateia Bold", sans-serif', lineHeight: 1 }}>
+            <span className="font-orbitron absolute top-0 left-0 w-full h-full text-[150px] md:text-[200px] font-extrabold text-white/10 uppercase select-none pointer-events-none"
+             >
               ABOUT
             </span>
 
             {/* Foreground main text */}
-            <h2 className="uppercase font-extrabold text-orange-500 text-5xl md:text-6xl leading-[1.05] tracking-tight relative z-10"
-              style={{ fontFamily: '"Plateia Bold", sans-serif', fontWeight: 700 }}>
+            <h2 className="font-orbitron uppercase font-extrabold text-orange-500 text-5xl md:text-6xl leading-[1.05] tracking-tight relative z-10"
+          >
               We are pushing <br />
               the limit of your <br />
               <span className="text-orange-500">core strength</span>

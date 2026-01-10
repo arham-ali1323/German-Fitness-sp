@@ -14,7 +14,7 @@ const config: Config = {
       fontFamily: {
         bebas: ["Bebas Neue", "cursive"],
         montserrat: ["Montserrat", "sans-serif"],
-     plateia: ['"Plateia Bold"', 'sans-serif'],
+        orbitron: ["var(--font-orbitron)", "sans-serif"],
       },
       colors: {
         dark: {
@@ -67,14 +67,16 @@ const config: Config = {
         "gradient-orange": "linear-gradient(135deg, #ff4500 0%, #ff6a33 100%)",
       },
       animation: {
-        "glow": "glow 2s ease-in-out infinite alternate",
+        glow: "glow 2s ease-in-out infinite alternate",
         "marquee-left": "marqueeLeft 28s linear infinite",
         "marquee-right": "marqueeRight 32s linear infinite",
       },
       keyframes: {
         glow: {
           "0%": { boxShadow: "0 0 5px #ff4500, 0 0 10px #ff4500" },
-          "100%": { boxShadow: "0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500" },
+          "100%": {
+            boxShadow: "0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500",
+          },
         },
         marqueeLeft: {
           "0%": { transform: "translateX(0%)" },

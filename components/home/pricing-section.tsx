@@ -58,7 +58,7 @@ export default function PricingSection() {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
 
   return (
-    <section className="relative py-32 bg-dark overflow-hidden">
+    <section className="font-orbitron relative py-32 bg-dark overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20">
         <motion.div

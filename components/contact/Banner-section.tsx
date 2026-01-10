@@ -17,7 +17,7 @@ export default function ContactHero() {
 
       {/* Content */}
       <div className="relative z-10 text-center">
-        <h1 className="text-white text-4xl md:text-6xl font-bold tracking-widest uppercase">
+        <h1 className="font-orbitron text-white text-4xl md:text-6xl font-bold tracking-widest uppercase">
           Contact Us 2
         </h1>
 

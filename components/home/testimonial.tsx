@@ -65,7 +65,7 @@ export default function TestimonialSection() {
       <div className="relative max-w-7xl mx-auto px-6 py-20">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-bold text-white tracking-widest mb-4">
+          <h2 className="font-orbitron text-5xl md:text-7xl font-bold text-white tracking-widest mb-4">
             CLIENT'S TESTIMONIAL
           </h2>
         </div>

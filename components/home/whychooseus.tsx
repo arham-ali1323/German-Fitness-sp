@@ -13,9 +13,8 @@ export default function WhyChooseUs() {
       {/* Heading */}
       <div className="relative z-10 text-center mb-20">
         <h2
-          className="uppercase text-white text-3xl md:text-5xl font-extrabold tracking-widest"
-          style={{ fontFamily: "Plateia Bold" }}
-        >
+          className=" font-orbitron uppercase text-white text-3xl md:text-5xl font-extrabold tracking-widest"
+         >
           Why Choose Us
         </h2>
       </div>

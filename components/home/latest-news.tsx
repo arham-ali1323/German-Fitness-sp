@@ -81,7 +81,7 @@ export default function LatestNewsSlider() {
   }, []);
 
   return (
-    <section className="relative bg-black py-20 overflow-hidden">
+    <section className="font-orbitron relative bg-black py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-orange-900 opacity-20 blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-900 opacity-10 blur-3xl" />

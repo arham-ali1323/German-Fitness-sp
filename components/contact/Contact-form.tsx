@@ -19,7 +19,7 @@ export default function ContactForm() {
      <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-start">
           {/* Left Side - Text */}
           <div className="space-y-8">
-            <h1 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
+            <h1 className="font-orbitron text-5xl md:text-6xl font-bold uppercase tracking-wider">
               Feel Free To Ask
               <br />
               Us Anything
