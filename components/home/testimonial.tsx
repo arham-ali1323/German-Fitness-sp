@@ -65,10 +65,18 @@ export default function TestimonialSection() {
       <div className="relative max-w-7xl mx-auto px-6 py-20">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-5xl md:text-7xl font-bold text-white tracking-widest mb-4">
-            CLIENT'S TESTIMONIAL
-          </h2>
-        </div>
+  <h2 className="
+    font-orbitron 
+    text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+    font-bold 
+    text-white 
+    tracking-widest 
+    uppercase
+  ">
+    Client&apos;s Testimonial
+  </h2>
+</div>
+
 
         {/* Testimonial Card */}
         <div className="max-w-6xl mx-auto bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg overflow-hidden">

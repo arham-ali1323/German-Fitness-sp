@@ -44,79 +44,79 @@ export default function WhyChooseUs() {
         </div>
 
         {/* RIGHT FEATURES */}
-        <div className="relative grid sm:grid-cols-2">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
            {/* ORANGE CARD */}
-          <div className="relative bg-orange-500 hover:bg-orange-600 p-6 text-black transition-all shadow-lg z-10 aspect-square flex flex-col justify-center">
-            <div className="mb-4">
+          <div className="relative bg-orange-500 hover:bg-orange-600 p-4 md:p-6 text-black transition-all shadow-lg z-10 aspect-square flex flex-col justify-center min-h-[280px] md:min-h-[320px]">
+            <div className="mb-3 md:mb-4">
               <Image
                 src="/icons/dumbbell.svg"
                 alt="Dumbbell"
-                width={48}
-                height={48}
-                className="mx-auto"
+                width={40}
+                height={40}
+                className="mx-auto md:w-12 md:h-12"
               />
             </div>
-            <h4 className="uppercase font-extrabold text-lg tracking-wide mb-3 text-center">
+            <h4 className="uppercase font-extrabold text-base md:text-lg tracking-wide mb-2 md:mb-3 text-center font-orbitron">
               22,000 Square Feet Gym
             </h4>
-            <p className="text-sm leading-relaxed text-center">
+            <p className="text-xs md:text-sm leading-relaxed text-center">
               Take advantage of our spacious gym equipped with a wide range of gym fitness machines so you can achieve maximum results.
             </p>
           </div>
 
             {/* Dark CARD */}
-          <div className="relative bg-zinc-900 hover:bg-zinc-800 p-6 text-white transition-all shadow-lg z-10 aspect-square flex flex-col justify-center">
-            <div className="mb-4">
+          <div className="relative bg-zinc-900 hover:bg-zinc-800 p-4 md:p-6 text-white transition-all shadow-lg z-10 aspect-square flex flex-col justify-center min-h-[280px] md:min-h-[320px]">
+            <div className="mb-3 md:mb-4">
               <Image
                 src="/icons/weight-loss.svg"
                 alt="Gym Building"
-                width={48}
-                height={48}
-                className="mx-auto"
+                width={40}
+                height={40}
+                className="mx-auto md:w-12 md:h-12"
               />
             </div>
-            <h4 className="uppercase font-extrabold text-lg tracking-wide mb-3 text-center">
+            <h4 className="uppercase font-extrabold text-base md:text-lg tracking-wide mb-2 md:mb-3 text-center font-orbitron">
               22,000 Square Feet Gym
             </h4>
-            <p className="text-sm leading-relaxed text-center">
+            <p className="text-xs md:text-sm leading-relaxed text-center">
               Take advantage of our spacious gym equipped with a wide range of gym fitness machines so you can achieve maximum results.
             </p>
           </div>
 
           {/* DARK CARD */}
-            <div className="relative bg-zinc-900 hover:bg-zinc-800 p-6 text-white transition-all  shadow-lg z-10 aspect-square flex flex-col justify-center">
-            <div className="mb-4">
+            <div className="relative bg-zinc-900 hover:bg-zinc-800 p-4 md:p-6 text-white transition-all  shadow-lg z-10 aspect-square flex flex-col justify-center min-h-[280px] md:min-h-[320px]">
+            <div className="mb-3 md:mb-4">
               <Image
                 src="/icons/weight-loss.svg"
                 alt="Weight Loss Programs"
-                width={48}
-                height={48}
-                className="mx-auto"
+                width={40}
+                height={40}
+                className="mx-auto md:w-12 md:h-12"
               />
             </div>
-            <h4 className="uppercase font-extrabold text-lg tracking-wide mb-3 text-center">
+            <h4 className="uppercase font-extrabold text-base md:text-lg tracking-wide mb-2 md:mb-3 text-center font-orbitron">
               Programs for Weight Loss
             </h4>
-            <p className="text-sm text-gray-400 leading-relaxed text-center">
+            <p className="text-xs md:text-sm text-gray-400 leading-relaxed text-center">
              High-priority programs designed by professionals to help you reach your fitness goals.
             </p>
           </div>
 
          {/* ORANGE CARD */}
-          <div className="relative bg-orange-500 hover:bg-orange-600 p-6 text-black transition-all shadow-lg z-10 aspect-square flex flex-col justify-center">
-            <div className="mb-4">
+          <div className="relative bg-orange-500 hover:bg-orange-600 p-4 md:p-6 text-black transition-all shadow-lg z-10 aspect-square flex flex-col justify-center min-h-[280px] md:min-h-[320px]">
+            <div className="mb-3 md:mb-4">
               <Image
                 src="/icons/high-intensity.svg"
                 alt="High Intensity Studios"
-                width={48}
-                height={48}
-                className="mx-auto"
+                width={40}
+                height={40}
+                className="mx-auto md:w-12 md:h-12"
               />
             </div>
-            <h4 className="uppercase font-extrabold text-lg tracking-wide mb-3 text-center">
+            <h4 className="uppercase font-extrabold text-base md:text-lg tracking-wide mb-2 md:mb-3 text-center font-orbitron">
               High Intensity Studios
             </h4>
-            <p className="text-sm leading-relaxed text-center">
+            <p className="text-xs md:text-sm leading-relaxed text-center">
             Studios are designed for high-intensity classes with modern equipment.
             </p>
           </div>

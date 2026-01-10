@@ -105,37 +105,66 @@ export default function PricingSection() {
           </p>
 
           {/* Billing Toggle */}
-          <motion.div
-            className="inline-flex items-center gap-4 bg-dark-100 p-2 rounded-full"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <button
-              onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                billingCycle === 'monthly'
-                  ? 'bg-orange text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBillingCycle('yearly')}
-              className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                billingCycle === 'yearly'
-                  ? 'bg-orange text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              Yearly
-              <span className="ml-2 px-2 py-1 bg-green-400/20 text-green-400 text-xs rounded-full">
-                Save 20%
-              </span>
-            </button>
-          </motion.div>
+    <motion.div
+  className="
+    inline-flex 
+    flex-col sm:flex-row
+    w-full sm:w-auto
+    items-stretch sm:items-center
+    gap-2 sm:gap-4
+    bg-dark-100 
+    p-2 
+    rounded-2xl
+  "
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: true }}
+  transition={{ delay: 0.2 }}
+>
+  <button
+    onClick={() => setBillingCycle('monthly')}
+    className={`
+      flex-1
+      px-6 py-3
+      rounded-xl sm:rounded-full
+      font-semibold
+      text-center
+      transition-all
+      ${
+        billingCycle === 'monthly'
+          ? 'bg-orange text-white'
+          : 'text-gray-400 hover:text-white'
+      }
+    `}
+  >
+    Monthly
+  </button>
+
+  <button
+    onClick={() => setBillingCycle('yearly')}
+    className={`
+      flex-1
+      px-6 py-3
+      rounded-xl sm:rounded-full
+      font-semibold
+      text-center
+      transition-all
+      ${
+        billingCycle === 'yearly'
+          ? 'bg-orange text-white'
+          : 'text-gray-400 hover:text-white'
+      }
+    `}
+  >
+    <span className="flex items-center justify-center gap-2">
+      Yearly
+      <span className="px-2 py-1 bg-green-400/20 text-green-400 text-xs rounded-full whitespace-nowrap">
+        Save 20%
+      </span>
+    </span>
+  </button>
+</motion.div>
+
         </motion.div>
 
         {/* Pricing Cards */}

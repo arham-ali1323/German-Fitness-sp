@@ -34,28 +34,28 @@ export default function StatsSection() {
     <section className="relative bg-black overflow-hidden py-32">
       {/* smoky background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,90,30,0.25),transparent_60%)]" />
-         <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
         {/* LEFT */}
         <div>
           <div className="relative">
             {/* Background text */}
-            <span className="font-orbitron absolute top-0 left-0 w-full h-full text-[150px] md:text-[200px] font-extrabold text-white/10 uppercase select-none pointer-events-none"
-             >
+            <span className="font-orbitron absolute top-0 left-0 w-full h-full text-[150px] md:text-[200px] font-extrabold text-white/10 uppercase select-none pointer-events-none">
               ABOUT
             </span>
 
             {/* Foreground main text */}
-            <h2 className="font-orbitron uppercase font-extrabold text-orange-500 text-5xl md:text-6xl leading-[1.05] tracking-tight relative z-10"
-          >
+            <h2 className="font-orbitron uppercase font-extrabold text-orange-500 text-5xl md:text-6xl leading-[1.05] tracking-tight relative z-10">
               We are pushing <br />
               the limit of your <br />
               <span className="text-orange-500">core strength</span>
             </h2>
           </div>
 
-
           <p className="mt-6 text-gray-400 font-semibold max-w-md">
-            we understand that your lifestyle changes, that’s why we’ve made fitness straightforward and stress free. Join today on a no lock-in contract membership and start achieving your fitness goals. We value flexibility at Jetts, with unlimited 24/7 access.
+            we understand that your lifestyle changes, that’s why we’ve made
+            fitness straightforward and stress free. Join today on a no lock-in
+            contract membership and start achieving your fitness goals. We value
+            flexibility at Jetts, with unlimited 24/7 access.
           </p>
 
           <button className="mt-8 px-8 py-4 border-2 border-orange-500 text-sm font-bold uppercase text-white hover:bg-orange-500 hover:text-black transition shadow-[0_0_20px_rgba(255,90,30,0.4)]">
@@ -66,24 +66,91 @@ export default function StatsSection() {
         {/* RIGHT */}
         <div className="relative">
           {/* STAT CARDS */}
-          <div className="space-y-10 md:absolute md:top-48 md:right-[-60px] md:z-0 mb-[100px]">
+          <div
+            className="
+    space-y-6 
+    sm:space-y-8
+    md:space-y-10
+
+    md:absolute 
+    md:top-40 
+    lg:top-48
+    md:right-[-40px] 
+    lg:right-[-60px]
+
+    md:z-0
+    mb-24
+
+    flex 
+    flex-col
+    items-center
+    md:items-end
+  "
+          >
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="relative bg-zinc-900/80 backdrop-blur rounded-2xl px-10 py-8 w-80 md:w-80 shadow-2xl border border-white/10 hover:border-orange-500/50 transition-all"
+                className="
+        relative 
+        w-full 
+        max-w-xs 
+        sm:max-w-sm
+        md:w-80
+
+        bg-zinc-900/80 
+        backdrop-blur-xl 
+        rounded-2xl 
+
+        px-6 
+        sm:px-8 
+        py-8
+
+        border 
+        border-white/10
+        shadow-[0_20px_50px_rgba(0,0,0,0.6)]
+
+        transition-all 
+        duration-300
+        hover:-translate-y-1
+        hover:border-orange-500/60
+      "
               >
-                <div className="flex items-center justify-end">
-                  <h3 className="text-4xl font-extrabold text-white">
-                    <span>
-                      <span className="absolute top-4 right-4 w-8 h-[3px] bg-orange-500" />
-                      <span className="absolute top-8 right-4 w-6 h-[3px] bg-orange-500" />
-                      <p className="text-sm text-gray-400 uppercase tracking-widest">
-                        Fitness trainee
-                      </p>
-                    </span>
+                {/* Accent Lines */}
+                <span className="absolute top-4 right-4 w-10 h-[3px] bg-orange-500 rounded-full hidden md:block" />
+                <span className="absolute top-7 right-4 w-6 h-[3px] bg-orange-500 rounded-full hidden md:block" />
+
+                {/* Content */}
+                <div
+                  className="
+          flex 
+          flex-col 
+          items-center 
+          md:items-end
+          justify-center
+          text-center
+          md:text-right
+          gap-2
+        "
+                >
+                  {/* Label */}
+                  <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-widest">
+                    Fitness Trainee
+                  </p>
+
+                  {/* Counter */}
+                  <h3
+                    className="
+            font-extrabold 
+            text-white 
+            leading-none
+
+            text-5xl        /* BIG on small screens */
+            sm:text-6xl
+            md:text-4xl     /* Normal on desktop */
+          "
+                  >
                     <Counter target={251} />
                   </h3>
-
                 </div>
               </div>
             ))}
@@ -102,20 +169,20 @@ export default function StatsSection() {
         </div>
       </div>
 
-       {/* BACK STRIP (PARALLAX DEPTH) */}
+      {/* BACK STRIP (PARALLAX DEPTH) */}
       <div className="absolute bottom-28 right-0 w-full bg-zinc-900/80 uppercase font-bold tracking-widest py-8 transform skew-y-6 overflow-hidden z-10">
         <div className="flex animate-marquee-right w-max">
           <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ 
+            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
           </span>
           <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ 
+            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
           </span>
           <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ 
+            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
           </span>
           <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ 
+            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
           </span>
         </div>
       </div>

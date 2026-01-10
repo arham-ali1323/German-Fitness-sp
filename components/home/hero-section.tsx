@@ -4,7 +4,7 @@ import heroBg from "../../public/images/Hero-bg.png";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden pt-[60px] sm:pt-[50px] md:pt-[100px] lg:pt-[120px] xl:pt-[140px] pb-[25px]">
+    <section className="relative min-h-screen overflow-hidden py-[60px] md:py-[300px] lg:py-[400px]">
       {/* BACKGROUND IMAGE */}
       <Image
         src={heroBg}
@@ -20,18 +20,19 @@ export default function Hero() {
         <span
           className="
                       absolute top-6 left-6
-    uppercase font-orbitron font-black
-    text-[3rem] tracking-wide text-white md:pt-16
-    pt-[180px] pl-[0px] md:text-[6rem] xl:text-[8rem]
-  "
-        >
+                      uppercase font-orbitron font-black
+                      text-[3rem] tracking-wide text-white md:pt-6
+                      pt-[180px] pl-[0px] md:text-[6rem] xl:text-[8rem]">
           OBTAIN
         </span>
 
         {/* CENTER TEXT */}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="uppercase font-orbitron leading-none text-white/90">
-            <span className="block text-[6rem] sm:text-[8rem] md:text-[12rem] xl:text-[16rem]">
+            <span
+              className="block text-[4.5rem] md:text-[12rem] xl:text-[16rem] 
+               text-center"
+            >
               FITNESS
             </span>
           </h1>
@@ -40,26 +41,24 @@ export default function Hero() {
         {/* GOAL – bottom right */}
         <span
           className="
-    absolute bottom-6 right-6
-    uppercase font-orbitron font-bold
-    text-[3rem] tracking-wide text-white md:pb-16
-    pb-[180px] pr-[0px] md:text-[6rem] xl:text-[8rem]
-  "
-        >
+                    absolute bottom-6 right-6
+                    uppercase font-orbitron font-bold
+                    text-[3rem] tracking-wide text-white mt-16 md:pb-6
+                    pb-[180px] pr-[0px] md:text-[6rem] xl:text-[8rem]">
           GOAL
         </span>
       </div>
 
       {/* IMAGE (center, above text) */}
-      <div className="relative z-20 transition-transform duration-500 ease-out hover:scale-105">
-        {" "}
+      {/* IMAGE (center, on top of text) */}
+      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
         <Image
           src={heroImage}
           alt="Fitness Man"
           width={820}
           priority
           className="mx-auto"
-        />{" "}
+        />
       </div>
     </section>
   );
