@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 interface BMIResult {
   bmi: string;
@@ -11,11 +11,12 @@ interface BMIResult {
 }
 
 export default function BMICalculator() {
-  const [height, setHeight] = useState('');
-  const [weight, setWeight] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [activityFactor, setActivityFactor] = useState('');
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [activityFactor, setActivityFactor] = useState("");
+  const [detailedActivityFactor, setDetailedActivityFactor] = useState("");
   const [result, setResult] = useState<BMIResult | null>(null);
 
   const calculateBMI = () => {
@@ -24,22 +25,35 @@ export default function BMICalculator() {
     const ageNum = age ? parseFloat(age) : null;
 
     if (!height || !weight) {
-      alert('Please enter height and weight');
+      alert("Please enter height and weight");
       return;
     }
 
-    if (isNaN(heightNum) || heightNum <= 0 || heightNum < 50 || heightNum > 250) {
-      alert('Please enter a valid height between 50 and 250 cm');
+    if (
+      isNaN(heightNum) ||
+      heightNum <= 0 ||
+      heightNum < 50 ||
+      heightNum > 250
+    ) {
+      alert("Please enter a valid height between 50 and 250 cm");
       return;
     }
 
-    if (isNaN(weightNum) || weightNum <= 0 || weightNum < 20 || weightNum > 300) {
-      alert('Please enter a valid weight between 20 and 300 kg');
+    if (
+      isNaN(weightNum) ||
+      weightNum <= 0 ||
+      weightNum < 20 ||
+      weightNum > 300
+    ) {
+      alert("Please enter a valid weight between 20 and 300 kg");
       return;
     }
 
-    if (age && (isNaN(ageNum!) || ageNum! <= 0 || ageNum! < 10 || ageNum! > 120)) {
-      alert('Please enter a valid age between 10 and 120');
+    if (
+      age &&
+      (isNaN(ageNum!) || ageNum! <= 0 || ageNum! < 10 || ageNum! > 120)
+    ) {
+      alert("Please enter a valid age between 10 and 120");
       return;
     }
 
@@ -47,48 +61,53 @@ export default function BMICalculator() {
     const bmiValue = weightNum / (heightInMeters * heightInMeters);
     const bmi = bmiValue.toFixed(1);
 
-    let category = '';
-    let color = '';
+    let category = "";
+    let color = "";
 
     if (bmiValue < 18.5) {
-      category = 'Underweight';
-      color = 'text-blue-400';
+      category = "Underweight";
+      color = "text-blue-400";
     } else if (bmiValue >= 18.5 && bmiValue < 25) {
-      category = 'Normal weight';
-      color = 'text-green-400';
+      category = "Normal weight";
+      color = "text-green-400";
     } else if (bmiValue >= 25 && bmiValue < 30) {
-      category = 'Overweight';
-      color = 'text-yellow-400';
+      category = "Overweight";
+      color = "text-yellow-400";
     } else {
-      category = 'Obese';
-      color = 'text-red-400';
+      category = "Obese";
+      color = "text-red-400";
     }
 
     let bmr = 0;
     if (gender && age && ageNum) {
-      if (gender === 'male') {
+      if (gender === "male") {
         bmr = 10 * weightNum + 6.25 * heightNum - 5 * ageNum + 5;
-      } else if (gender === 'female') {
+      } else if (gender === "female") {
         bmr = 10 * weightNum + 6.25 * heightNum - 5 * ageNum - 161;
       }
     }
 
     const activityMultipliers: Record<string, number> = {
-      sedentary: 1.2,
-      light: 1.375,
-      moderate: 1.55,
-      active: 1.725,
-      veryActive: 1.9
+      little: 1.2,
+      twice: 1.375,
+      three: 1.55,
+      four: 1.725,
+      five: 1.9,
+      six: 2.0,
+      intense: 2.2,
     };
 
-    const tdee = activityFactor && bmr > 0 ? Math.round(bmr * activityMultipliers[activityFactor]) : 0;
+    const tdee =
+      detailedActivityFactor && bmr > 0
+        ? Math.round(bmr * activityMultipliers[detailedActivityFactor])
+        : 0;
 
     setResult({
       bmi,
       category,
       color,
       bmr: Math.round(bmr),
-      tdee
+      tdee,
     });
   };
 
@@ -125,7 +144,7 @@ export default function BMICalculator() {
               placeholder="Height / cm"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
-              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 transition"
+              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white placeholder-white focus:outline-none focus:border-orange-600 transition"
             />
           </div>
 
@@ -139,7 +158,7 @@ export default function BMICalculator() {
               placeholder="Weight / kg"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 transition"
+              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white placeholder-white focus:outline-none focus:border-orange-600 transition"
             />
           </div>
 
@@ -153,7 +172,9 @@ export default function BMICalculator() {
               placeholder="Age of you"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 transition"
+              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 
+               text-white placeholder-white 
+               focus:outline-none focus:border-orange-600 transition"
             />
           </div>
 
@@ -174,66 +195,125 @@ export default function BMICalculator() {
           </div>
         </div>
 
-        {/* Activity Factor */}
-        <div className="mb-8">
-          <label className="block text-orange-600 text-sm font-semibold mb-2 tracking-wider">
-            ACTIVITY FACTOR
-          </label>
-          <select
-            value={activityFactor}
-            onChange={(e) => setActivityFactor(e.target.value)}
-            className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
-          >
-            <option value="">Select an activity factor</option>
-            <option value="sedentary">Sedentary (little to no exercise)</option>
-            <option value="light">Light (exercise 1-3 days/week)</option>
-            <option value="moderate">Moderate (exercise 3-5 days/week)</option>
-            <option value="active">Active (exercise 6-7 days/week)</option>
-            <option value="veryActive">Very Active (intense exercise daily)</option>
-          </select>
-        </div>
+        {/* Activity Factors and Button */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 items-end">
+          {/* Activity Factor */}
+          <div>
+            <label className="block text-orange-600 text-sm font-semibold mb-2 tracking-wider">
+              ACTIVITY FACTOR
+            </label>
+            <select
+              value={activityFactor}
+              onChange={(e) => setActivityFactor(e.target.value)}
+              className="w-full h-[52px] bg-black/50 border border-gray-700 rounded px-4 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer option:bg-black option:hover:bg-orange-600"
+            >
+              <option value="">Select an activity factor</option>
+              <option value="sedentary">
+                Sedentary (little to no exercise)
+              </option>
+              <option value="light">Light (exercise 1-3 days/week)</option>
+              <option value="moderate">
+                Moderate (exercise 3-5 days/week)
+              </option>
+              <option value="active">Active (exercise 6-7 days/week)</option>
+              <option value="veryActive">
+                Very Active (intense exercise daily)
+              </option>
+            </select>
+          </div>
 
-        {/* Calculate Button */}
-        <div className="flex justify-center mb-12">
-          <button
-            onClick={calculateBMI}
-            className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-16 rounded tracking-wider text-lg transition transform hover:scale-105"
-          >
-            CALCULATE BMI
-          </button>
+          {/* Detailed Activity Factor */}
+          <div>
+            <label className="block text-orange-600 text-sm font-semibold mb-2 tracking-wider">
+              SELECT AN ACTIVITY FACTOR
+            </label>
+            <select
+              value={detailedActivityFactor}
+              onChange={(e) => setDetailedActivityFactor(e.target.value)}
+              className="w-full h-[52px] bg-black/50 border border-gray-700 rounded px-4 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
+            >
+              <option value="">Select an activity factor</option>
+              <option value="little">
+                I do little or no exercise (0-1 time a week)
+              </option>
+              <option value="twice">I do some exercise (twice a week)</option>
+              <option value="three">
+                I do some exercise (three times a week)
+              </option>
+              <option value="four">
+                I exercise regularly (4 times a week)
+              </option>
+              <option value="five">
+                I exercise regularly (5 times a week)
+              </option>
+              <option value="six">I exercise regularly (6 times a week)</option>
+              <option value="intense">
+                I exercise every day, and/or I have an intense job
+              </option>
+            </select>
+          </div>
+
+          {/* Calculate Button */}
+          <div>
+            {/* Empty label to match height */}
+            <label className="block text-transparent text-sm mb-2">.</label>
+
+            <button
+              onClick={calculateBMI}
+              className="w-full h-[52px] bg-orange-600 hover:bg-orange-700 text-white font-bold rounded tracking-wider text-lg transition transform hover:scale-105"
+            >
+              CALCULATE BMI
+            </button>
+          </div>
         </div>
 
         {/* Results */}
         {result && (
           <div className="bg-black/50 border border-gray-700 rounded-lg p-8 backdrop-blur">
-            <h3 className="text-2xl font-bold mb-6 text-center">Your Results</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center">
+              Your Results
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center p-6 bg-gray-900/50 rounded-lg">
                 <p className="text-gray-400 mb-2">BMI</p>
-                <p className={`text-5xl font-bold ${result.color}`}>{result.bmi}</p>
-                <p className={`text-xl mt-2 ${result.color}`}>{result.category}</p>
+                <p className={`text-5xl font-bold ${result.color}`}>
+                  {result.bmi}
+                </p>
+                <p className={`text-xl mt-2 ${result.color}`}>
+                  {result.category}
+                </p>
               </div>
-              
+
               {result.bmr > 0 && (
                 <div className="text-center p-6 bg-gray-900/50 rounded-lg">
                   <p className="text-gray-400 mb-2">BMR</p>
-                  <p className="text-5xl font-bold text-orange-600">{result.bmr}</p>
-                  <p className="text-sm mt-2 text-gray-400">calories/day at rest</p>
+                  <p className="text-5xl font-bold text-orange-600">
+                    {result.bmr}
+                  </p>
+                  <p className="text-sm mt-2 text-gray-400">
+                    calories/day at rest
+                  </p>
                 </div>
               )}
-              
+
               {result.tdee > 0 && (
                 <div className="text-center p-6 bg-gray-900/50 rounded-lg">
                   <p className="text-gray-400 mb-2">TDEE</p>
-                  <p className="text-5xl font-bold text-orange-600">{result.tdee}</p>
-                  <p className="text-sm mt-2 text-gray-400">calories/day total</p>
+                  <p className="text-5xl font-bold text-orange-600">
+                    {result.tdee}
+                  </p>
+                  <p className="text-sm mt-2 text-gray-400">
+                    calories/day total
+                  </p>
                 </div>
               )}
             </div>
-            
+
             <div className="mt-6 p-4 bg-gray-900/50 rounded-lg">
               <p className="text-sm text-gray-300 text-center">
-                <span className="font-semibold">BMI Categories:</span> Underweight (&lt;18.5) | Normal (18.5-24.9) | Overweight (25-29.9) | Obese (≥30)
+                <span className="font-semibold">BMI Categories:</span>{" "}
+                Underweight (&lt;18.5) | Normal (18.5-24.9) | Overweight
+                (25-29.9) | Obese (≥30)
               </p>
             </div>
           </div>

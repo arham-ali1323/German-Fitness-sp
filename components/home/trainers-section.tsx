@@ -1,6 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function FitnessTrainers() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide2, setCurrentSlide2] = useState(0);
+  const [currentMobileSlide, setCurrentMobileSlide] = useState(0);
+
   const trainers = [
     {
       id: 1,
@@ -52,6 +58,33 @@ export default function FitnessTrainers() {
     },
   ];
 
+  // Auto carousel for desktop row 1
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % 3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Auto carousel for desktop row 2
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide2((prev) => (prev + 1) % 4);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Auto carousel for mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMobileSlide((prev) => (prev + 1) % 6);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="bg-black text-white py-24">
       <div className="max-w-7xl mx-auto px-4 space-y-20">
@@ -73,28 +106,38 @@ export default function FitnessTrainers() {
             </div>
 
             {/* SLIDER */}
-            <div className="col-span-2 overflow-x-auto flex gap-6 snap-x snap-mandatory scrollbar-hide">
-              {trainers.slice(0, 3).map((trainer) => (
+            <div className="col-span-2 relative overflow-hidden">
+              <div
+                className="flex gap-6 transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {trainers.slice(0, 3).map((trainer) => (
+                  <div
+                    key={trainer.id}
+                    className="min-w-[50%] lg:min-w-[45%] flex-shrink-0"
+                  >
+                    <TrainerCard trainer={trainer} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ROW 2 */}
+          <div className="relative overflow-hidden">
+            <div
+              className="flex gap-6 transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide2 * 33.33}%)` }}
+            >
+              {trainers.slice(2, 6).map((trainer) => (
                 <div
                   key={trainer.id}
-                  className="snap-start min-w-[50%] lg:min-w-[45%]"
+                  className="min-w-[33%] lg:min-w-[30%] flex-shrink-0"
                 >
                   <TrainerCard trainer={trainer} />
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* ROW 2 */}
-          <div className="overflow-x-auto flex gap-6 snap-x snap-mandatory scrollbar-hide">
-            {trainers.slice(2, 6).map((trainer) => (
-              <div
-                key={trainer.id}
-                className="snap-start min-w-[33%] lg:min-w-[30%]"
-              >
-                <TrainerCard trainer={trainer} />
-              </div>
-            ))}
           </div>
         </div>
 
@@ -104,15 +147,20 @@ export default function FitnessTrainers() {
             OUR TRAINERS
           </h2>
 
-          <div className="overflow-x-auto flex gap-4 snap-x snap-mandatory scrollbar-hide">
-            {trainers.map((trainer) => (
-              <div
-                key={trainer.id}
-                className="snap-start min-w-[50%]"
-              >
-                <TrainerCard trainer={trainer} />
-              </div>
-            ))}
+          <div className="relative overflow-hidden">
+            <div
+              className="flex gap-4 transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentMobileSlide * 50}%)` }}
+            >
+              {trainers.map((trainer) => (
+                <div
+                  key={trainer.id}
+                  className="min-w-[50%] flex-shrink-0"
+                >
+                  <TrainerCard trainer={trainer} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
