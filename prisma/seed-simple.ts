@@ -37,59 +37,71 @@ async function main() {
   });
 
   // Create Membership Plans
-  const basicPlan = await prisma.membershipPlan.upsert({
-    where: { name: "Basic" },
-    update: {},
-    create: {
-      name: "Basic",
-      description: "Perfect for beginners",
-      price: 29.99,
-      duration: 30,
-      features: JSON.stringify([
-        "Access to gym equipment",
-        "Locker room access",
-        "Free fitness assessment",
-      ]),
-      isPopular: false,
-    },
+  let basicPlan = await prisma.membershipPlan.findFirst({
+    where: { name: "Basic" }
   });
+  
+  if (!basicPlan) {
+    basicPlan = await prisma.membershipPlan.create({
+      data: {
+        name: "Basic",
+        description: "Perfect for beginners",
+        price: 29.99,
+        duration: 30,
+        features: JSON.stringify([
+          "Access to gym equipment",
+          "Locker room access",
+          "Free fitness assessment",
+        ]),
+        isPopular: false,
+      },
+    });
+  }
 
-  const standardPlan = await prisma.membershipPlan.upsert({
-    where: { name: "Standard" },
-    update: {},
-    create: {
-      name: "Standard",
-      description: "Most popular choice",
-      price: 59.99,
-      duration: 30,
-      features: JSON.stringify([
-        "All Basic features",
-        "Group classes included",
-        "1 personal training session",
-        "Nutrition consultation",
-      ]),
-      isPopular: true,
-    },
+  let standardPlan = await prisma.membershipPlan.findFirst({
+    where: { name: "Standard" }
   });
+  
+  if (!standardPlan) {
+    standardPlan = await prisma.membershipPlan.create({
+      data: {
+        name: "Standard",
+        description: "Most popular choice",
+        price: 59.99,
+        duration: 30,
+        features: JSON.stringify([
+          "All Basic features",
+          "Group classes included",
+          "1 personal training session",
+          "Nutrition consultation",
+        ]),
+        isPopular: true,
+      },
+    });
+  }
 
-  const premiumPlan = await prisma.membershipPlan.upsert({
-    where: { name: "Premium" },
-    update: {},
-    create: {
-      name: "Premium",
-      description: "Ultimate fitness experience",
-      price: 99.99,
-      duration: 30,
-      features: JSON.stringify([
-        "All Standard features",
-        "Unlimited personal training",
-        "Custom meal plans",
-        "Priority class booking",
-        "Sauna & spa access",
-      ]),
-      isPopular: false,
-    },
+  let premiumPlan = await prisma.membershipPlan.findFirst({
+    where: { name: "Premium" }
   });
+  
+  if (!premiumPlan) {
+    premiumPlan = await prisma.membershipPlan.create({
+      data: {
+        name: "Premium",
+        description: "Ultimate fitness experience",
+        price: 99.99,
+        duration: 30,
+        features: JSON.stringify([
+          "All Standard features",
+          "Unlimited personal training",
+          "Custom meal plans",
+          "Priority class booking",
+          "Sauna & spa access",
+        ]),
+        isPopular: false,
+      },
+    });
+  }
 
   console.log("Seeding finished.");
 }
