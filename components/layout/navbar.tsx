@@ -54,7 +54,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex gap-10 text-sm font-semibold uppercase">
-            {[ "Classes", "Services", "Pages", "Blog", "Contact"].map(
+            {[ "Classes", "Services", "About", "Blog", "Contact"].map(
               (item) => (
                 <a
                   key={item}
