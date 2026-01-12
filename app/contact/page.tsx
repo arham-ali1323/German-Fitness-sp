@@ -4,7 +4,7 @@ import GymLocation from '@/components/contact/gym-location';
 import ContactForm from '@/components/contact/Contact-form';
 const Contact = () => {
   return (
-        <div className="">
+        <div>
            <Bannersection />
            <Conatctinfo/>
            <GymLocation/>
