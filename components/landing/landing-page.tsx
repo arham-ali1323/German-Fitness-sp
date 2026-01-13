@@ -15,7 +15,7 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-dark">
+    <div className="bg-dark">
       {/* Header/Navigation */}
       <motion.header
         className="fixed top-0 left-0 right-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-orange/10"

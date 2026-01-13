@@ -63,7 +63,7 @@ export default function ClassTimeTable() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white py-16 px-4 md:px-8">
+    <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8">
