@@ -49,12 +49,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
           {/* Logo */}
           <div className="text-orange-500 font-extrabold text-xl tracking-wide">
-          <Link href="/">  HADKAUR</Link>
+            <Link href="/">  HADKAUR</Link>
           </div>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex gap-10 text-sm font-semibold uppercase">
-            {[ "Classes", "Services", "About", "Blog", "Contact"].map(
+            {["Classes", "Services", "About", "Blog", "Contact"].map(
               (item) => (
                 <a
                   key={item}
@@ -85,16 +85,16 @@ export default function Navbar() {
 
         {/* ================= MOBILE MENU ================= */}
         <div
-          className={`lg:hidden absolute left-0 w-full bg-black/95 backdrop-blur transition-all duration-300 ${
-            open ? "top-20 opacity-100" : "top-14 opacity-0 pointer-events-none"
-          }`}
+          className={`lg:hidden absolute left-0 w-full bg-black/95 backdrop-blur transition-all duration-300 ${open ? "top-20 opacity-100" : "top-14 opacity-0 pointer-events-none"
+            }`}
         >
           <nav className="flex flex-col items-center gap-6 py-8 text-sm font-semibold uppercase">
-            {["Home", "Classes", "Services", "Pages", "Blog", "Contact"].map(
+            {["Classes", "Services", "About", "Blog", "Contact"].map(
+
               (item) => (
                 <a
                   key={item}
-                  href="#"
+                  href={item.toLowerCase()}
                   className="hover:text-orange-500 transition"
                   onClick={() => setOpen(false)}
                 >
