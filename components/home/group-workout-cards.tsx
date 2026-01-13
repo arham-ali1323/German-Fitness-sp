@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 export default function GroupWorkout() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredService, setHoveredService] = useState<number | null>(null);
   const [cardsPerView, setCardsPerView] = useState(3);
 
   const services = [
@@ -12,7 +11,6 @@ export default function GroupWorkout() {
       number: '01',
       title: 'GROUP',
       subtitle: 'WORKOUT',
-      description: 'Join our energetic group classes and train with like-minded individuals. Perfect for motivation and community support.',
       image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=600&fit=crop',
       features: ['Multiple Class Times', 'Expert Instructors', 'Community Support', 'Varied Programs']
     },
@@ -21,7 +19,6 @@ export default function GroupWorkout() {
       number: '02',
       title: 'PERSONAL',
       subtitle: 'TRAINING',
-      description: 'Get one-on-one attention with customized workout plans designed specifically for your fitness goals.',
       image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
       features: ['Customized Plans', 'Individual Attention', 'Flexible Schedule', 'Goal-Oriented']
     },
@@ -30,7 +27,6 @@ export default function GroupWorkout() {
       number: '03',
       title: 'MUSCLE',
       subtitle: 'BUILDING',
-      description: 'Build strength and muscle mass with our specialized programs designed for maximum hypertrophy and performance.',
       image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&h=600&fit=crop',
       features: ['Strength Focus', 'Progressive Overload', 'Nutrition Guidance', 'Body Composition']
     },
@@ -39,7 +35,6 @@ export default function GroupWorkout() {
       number: '04',
       title: 'CARDIO',
       subtitle: 'TRAINING',
-      description: 'Boost your endurance and cardiovascular health with high-energy cardio sessions tailored to your fitness level.',
       image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=800&h=600&fit=crop',
       features: ['Heart Health', 'Fat Burning', 'Endurance Building', 'Energy Boost']
     },
@@ -48,7 +43,6 @@ export default function GroupWorkout() {
       number: '05',
       title: 'FLEXIBILITY',
       subtitle: 'TRAINING',
-      description: 'Improve your range of motion and prevent injuries with our yoga and stretching focused programs.',
       image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop',
       features: ['Injury Prevention', 'Mobility Work', 'Stress Relief', 'Recovery Focus']
     }
@@ -131,19 +125,15 @@ export default function GroupWorkout() {
                   className={`flex-shrink-0 px-2 ${cardsPerView === 1 ? 'w-full' : cardsPerView === 2 ? 'w-1/2' : 'w-1/3'}`}
                 >
                   <div
-                    className="relative h-[250px] overflow-hidden group cursor-pointer border-2 border-gray-800"
-                    onMouseEnter={() => setHoveredService(service.id)}
-                    onMouseLeave={() => setHoveredService(null)}
+                    className="relative h-[250px] overflow-hidden cursor-pointer border-2 border-gray-800"
                   >
                     {/* Background Image */}
                     <div className="absolute inset-0">
                       <img
                         src={service.image}
                         alt={`${service.title} ${service.subtitle}`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700"
                       />
-                      {/* Dark Overlay */}
-                      <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-all duration-500"></div>
                     </div>
 
                     {/* Content */}
@@ -169,57 +159,18 @@ export default function GroupWorkout() {
                         </div>
                       </div>
 
-                      {/* Bottom Section - Shows on Hover */}
-                      <div className={`transition-all duration-500 ${
-                        hoveredService === service.id
-                          ? 'opacity-100 translate-y-0'
-                          : 'opacity-0 translate-y-8'
-                      }`}>
-                        <p className={`text-gray-300 mb-4 ${cardsPerView === 1 ? 'text-xs' : 'text-sm'}`}>
-                          {service.description}
-                        </p>
-
-                        <div className={`flex flex-wrap gap-2 mb-4 ${cardsPerView === 1 ? 'justify-center' : ''}`}>
-                          {service.features.slice(0, 2).map((feature, index) => (
-                            <span
-                              key={index}
-                              className={`bg-orange-600/20 border border-orange-600 text-orange-600 px-3 py-1 font-semibold ${cardsPerView === 1 ? 'text-xs' : 'text-xs'}`}
-                            >
-                              {feature}
-                            </span>
-                          ))}
-                        </div>
-
+                      {/* Bottom Section - Always Visible */}
+                      <div className="transition-all duration-500 opacity-100 translate-y-0">
                         <button className={`bg-orange-600 hover:bg-orange-700 text-white font-bold transition-all duration-300 transform hover:scale-105 ${cardsPerView === 1 ? 'py-2 px-4 text-xs' : 'py-2 px-6 text-sm'}`}>
                           LEARN MORE
                         </button>
                       </div>
                     </div>
-
-                    {/* Hover Border Effect */}
-                    <div className={`absolute inset-0 border-4 border-orange-600 pointer-events-none transition-opacity duration-300 ${
-                      hoveredService === service.id ? 'opacity-100' : 'opacity-0'
-                    }`}></div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-
-        </div>
-
-        {/* Bottom CTA Section */}
-        <div className="mt-16 text-center">
-          <h3 className="text-3xl md:text-4xl font-bold mb-6">
-            READY TO START YOUR FITNESS JOURNEY?
-          </h3>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Choose the training style that fits your lifestyle and goals. Our expert team is ready to help you achieve results.
-          </p>
-          <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 transition-all duration-300 transform hover:scale-105">
-            GET STARTED TODAY
-          </button>
         </div>
       </div>
     </div>
