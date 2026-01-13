@@ -1,5 +1,5 @@
 "use client";
-import logo from "../../public/images/German-Fitness-logo.png";
+import logo from "../../public/images/german fitness.png";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Menu, X } from "lucide-react";
 import {
@@ -45,7 +45,7 @@ export default function Navbar() {
       </div>
 
       {/* ================= MAIN NAV ================= */}
-      <div className="bg-black/80 backdrop-blur">
+      <div className="backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
           {/* Logo */}
           <div className="text-orange-500 font-extrabold text-xl tracking-wide">
@@ -59,7 +59,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex gap-10 text-sm font-semibold uppercase">
+          <nav className="hidden lg:flex gap-10 text-sm text-gray-600 font-bold uppercase">
             {["Classes", "Services", "About", "Blog", "Contact"].map(
               (item) => (
                 <a
@@ -75,7 +75,7 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            <button className="hidden lg:block bg-orange-500 px-6 py-3 text-sm font-bold text-black uppercase hover:bg-orange-400 transition">
+            <button className="hidden lg:block bg-orange-500 px-6 py-3 text-sm font-bold text-white uppercase hover:bg-orange-400 transition">
               Join Us Today
             </button>
 
@@ -109,7 +109,7 @@ export default function Navbar() {
               )
             )}
 
-            <button className="mt-4 bg-orange-500 px-8 py-3 text-black font-bold uppercase">
+            <button className="mt-4 bg-orange-500 px-8 py-3 text-white text-sm font-bold uppercase">
               Join Us Today
             </button>
           </nav>

@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import logo from "../../public/images/german fitness.png";
+import Link from "next/link";
 
 export default function GymFooter() {
   return (
@@ -25,62 +27,17 @@ export default function GymFooter() {
           {/* ===================== Logo and Welcome Section ===================== */}
           <div className="space-y-6 md:col-span-4 px-6 border-r border-gray-800">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 relative">
-                <svg
-                  viewBox="0 0 50 50"
-                  className="w-full h-full text-gray-700"
-                >
-                  <rect
-                    x="10"
-                    y="5"
-                    width="6"
-                    height="40"
-                    fill="currentColor"
-                  />
-                  <rect
-                    x="20"
-                    y="10"
-                    width="6"
-                    height="30"
-                    fill="currentColor"
-                  />
-                  <rect
-                    x="30"
-                    y="5"
-                    width="6"
-                    height="40"
-                    fill="currentColor"
-                  />
-                  <rect
-                    x="5"
-                    y="20"
-                    width="40"
-                    height="6"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <div className="grid grid-cols-3 gap-0.5">
-                    <div className="w-2 h-2 bg-orange-500"></div>
-                    <div className="w-2 h-2 bg-orange-500"></div>
-                    <div className="w-2 h-2 bg-orange-500"></div>
-                    <div className="w-2 h-2 bg-orange-500"></div>
-                    <div className="w-2 h-2 bg-orange-500"></div>
-                    <div className="w-2 h-2 bg-orange-500"></div>
-                  </div>
-                  <span className="text-2xl font-bold tracking-wider">
-                    HADKAUR
-                  </span>
-                </div>
+              <div className="w-50 h-50 relative">
+                <Link href="/">
+                  <img src={logo.src} alt="footer-logo" className="w-full h-full object-contain"/>
+                </Link>
               </div>
             </div>
 
             {/* Welcome Text */}
             <div className="space-y-2 border-b border-gray-800 pb-4">
               <p className="text-gray-400 text-sm leading-relaxed">
-                Welcome to Hadkaur Fitness. We are here to <br />
+                Welcome to German Fitness. We are here to <br />
                 support and guide you.
               </p>
             </div>
@@ -182,14 +139,11 @@ export default function GymFooter() {
             {/* Left - Copyright */}
             <div className="flex items-center gap-6 border-r border-gray-800 pr-6">
               <p className="text-gray-500 text-xs">
-                Copyright 2025{" "}
+                Copyright 2026{" "}
                 <a href="#" className="text-orange-500 hover:underline">
-                  Hadkaur
+                  German Fitness
                 </a>
-                . All rights reserved By{" "}
-                <a href="#" className="text-orange-500 hover:underline">
-                  SquidThemes
-                </a>
+                . All rights reserved 
               </p>
             </div>
 
