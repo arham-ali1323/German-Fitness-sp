@@ -116,7 +116,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-dark p-6">
+    <div className="bg-dark p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div

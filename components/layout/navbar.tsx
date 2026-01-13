@@ -1,5 +1,5 @@
 "use client";
-
+import logo from "../../public/images/German-Fitness-logo.png";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Menu, X } from "lucide-react";
 import {
@@ -49,7 +49,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
           {/* Logo */}
           <div className="text-orange-500 font-extrabold text-xl tracking-wide">
-            <Link href="/">  HADKAUR</Link>
+            <Link href="/"> 
+              <img 
+                src={logo.src} 
+                alt="Gym-logo" 
+                className="h-8 w-auto md:h-[6rem] lg:h-[10rem] transition-all duration-300"
+              /> 
+            </Link>
           </div>
 
           {/* Desktop Nav */}

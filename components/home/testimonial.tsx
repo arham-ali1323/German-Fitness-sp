@@ -46,7 +46,7 @@ export default function TestimonialSection() {
   const current = testimonials[currentIndex];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-orange-900 via-gray-900 to-black overflow-hidden">
+    <section className="relative bg-gradient-to-br from-orange-900 via-gray-900 to-black overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-1/2 h-full">

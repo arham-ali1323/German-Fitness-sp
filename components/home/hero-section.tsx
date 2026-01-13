@@ -4,7 +4,7 @@ import heroBg from "../../public/images/Hero-bg.png";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden py-[60px] md:py-[300px] lg:py-[400px]">
+    <section className="relative overflow-hidden py-[60px] md:py-[300px] lg:py-[400px]">
       {/* BACKGROUND IMAGE */}
       <Image
         src={heroBg}
