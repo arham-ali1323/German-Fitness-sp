@@ -1,17 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
-
-export const prisma =
-  globalForPrisma.prisma ||
-  new PrismaClient({
-    adapter: require("@prisma/adapter-sqlite")(),
-  });
-
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
-
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 /// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
@@ -220,3 +207,6 @@ model ClassSchedule {
 
   @@map("class_schedules")
 }
+
+// Install the following packages for drag-and-drop functionality
+// npm install @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities

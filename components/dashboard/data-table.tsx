@@ -49,7 +49,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis, Tooltip } from "recharts"
 import { toast } from "sonner"
 import { z } from "zod"
 
@@ -59,7 +59,6 @@ import { Button } from "@/components/ui/button"
 import {
   ChartConfig,
   ChartContainer,
-  ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -685,7 +684,7 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
                     tickFormatter={(value) => value.slice(0, 3)}
                     hide
                   />
-                  <ChartTooltip
+                  <Tooltip
                     cursor={false}
                     content={<ChartTooltipContent indicator="dot" />}
                   />

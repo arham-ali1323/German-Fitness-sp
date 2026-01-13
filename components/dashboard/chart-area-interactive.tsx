@@ -255,21 +255,22 @@ export function ChartAreaInteractive() {
                 })
               }}
             />
-            <ChartTooltip
-              cursor={false}
-              defaultIndex={isMobile ? -1 : 10}
-              content={
-                <ChartTooltipContent
-                  labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                    })
-                  }}
-                  indicator="dot"
-                />
-              }
-            />
+            <ChartTooltip>
+              <ChartTooltipContent
+                labelFormatter={(value, payload) => {
+                  const total = payload?.reduce((sum, item) => sum + item.value, 0) || 0;
+                  return (
+                    <div>
+                      <div>{new Date(value).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                      })}</div>
+                      <div className="font-medium">Total: {total}</div>
+                    </div>
+                  );
+                }}
+              />
+            </ChartTooltip>
             <Area
               dataKey="mobile"
               type="natural"
