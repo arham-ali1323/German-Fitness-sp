@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function FitnessTrainers() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentSlide2, setCurrentSlide2] = useState(0);
   const [currentMobileSlide, setCurrentMobileSlide] = useState(0);
+
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
 
   const trainers = [
     {
@@ -58,10 +62,31 @@ export default function FitnessTrainers() {
     },
   ];
 
+  const row1Trainers = [...trainers.slice(0, 3), ...trainers.slice(0, 3)];
+  const row2Trainers = [...trainers.slice(2, 6), ...trainers.slice(2, 6)];
+  const mobileTrainers = [...trainers, ...trainers];
+
   // Auto carousel for desktop row 1
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 3);
+      setCurrentSlide((prev) => {
+        if (prev >= 2) {
+          // Reset to 0 instantly after reaching the duplicate
+          setTimeout(() => {
+            if (row1Ref.current) {
+              row1Ref.current.style.transition = "none";
+              setCurrentSlide(0);
+              setTimeout(() => {
+                if (row1Ref.current)
+                  row1Ref.current.style.transition =
+                    "transform 0.5s ease-in-out";
+              }, 50);
+            }
+          }, 500);
+          return prev + 1;
+        }
+        return prev + 1;
+      });
     }, 3000);
 
     return () => clearInterval(interval);
@@ -70,7 +95,24 @@ export default function FitnessTrainers() {
   // Auto carousel for desktop row 2
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide2((prev) => (prev + 1) % 4);
+      setCurrentSlide2((prev) => {
+        if (prev >= 3) {
+          // Reset to 0 instantly after reaching the duplicate
+          setTimeout(() => {
+            if (row2Ref.current) {
+              row2Ref.current.style.transition = "none";
+              setCurrentSlide2(0);
+              setTimeout(() => {
+                if (row2Ref.current)
+                  row2Ref.current.style.transition =
+                    "transform 0.5s ease-in-out";
+              }, 50);
+            }
+          }, 500);
+          return prev + 1;
+        }
+        return prev + 1;
+      });
     }, 4000);
 
     return () => clearInterval(interval);
@@ -79,7 +121,24 @@ export default function FitnessTrainers() {
   // Auto carousel for mobile
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentMobileSlide((prev) => (prev + 1) % 6);
+      setCurrentMobileSlide((prev) => {
+        if (prev >= 5) {
+          // Reset to 0 instantly after reaching the duplicate
+          setTimeout(() => {
+            if (mobileRef.current) {
+              mobileRef.current.style.transition = "none";
+              setCurrentMobileSlide(0);
+              setTimeout(() => {
+                if (mobileRef.current)
+                  mobileRef.current.style.transition =
+                    "transform 0.5s ease-in-out";
+              }, 50);
+            }
+          }, 500);
+          return prev + 1;
+        }
+        return prev + 1;
+      });
     }, 3500);
 
     return () => clearInterval(interval);
@@ -88,13 +147,10 @@ export default function FitnessTrainers() {
   return (
     <section className="bg-black text-white py-24">
       <div className="max-w-7xl mx-auto px-4 space-y-20">
-
         {/* ===================== DESKTOP ===================== */}
         <div className="hidden md:block space-y-16">
-
           {/* ROW 1 */}
           <div className="grid grid-cols-3 gap-6 items-center">
-
             {/* HEADING SPACE */}
             <div>
               <h2 className="text-4xl font-extrabold tracking-widest font-orbitron">
@@ -108,12 +164,13 @@ export default function FitnessTrainers() {
             {/* SLIDER */}
             <div className="col-span-2 relative overflow-hidden">
               <div
+                ref={row1Ref}
                 className="flex gap-6 transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                style={{ transform: `translateX(-${currentSlide * 50}%)` }}
               >
-                {trainers.slice(0, 3).map((trainer) => (
+                {row1Trainers.map((trainer, index) => (
                   <div
-                    key={trainer.id}
+                    key={`${trainer.id}-${index}`}
                     className="min-w-[50%] lg:min-w-[45%] flex-shrink-0"
                   >
                     <TrainerCard trainer={trainer} />
@@ -126,12 +183,13 @@ export default function FitnessTrainers() {
           {/* ROW 2 */}
           <div className="relative overflow-hidden">
             <div
+              ref={row2Ref}
               className="flex gap-6 transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide2 * 33.33}%)` }}
             >
-              {trainers.slice(2, 6).map((trainer) => (
+              {row2Trainers.map((trainer, index) => (
                 <div
-                  key={trainer.id}
+                  key={`${trainer.id}-${index}`}
                   className="min-w-[33%] lg:min-w-[30%] flex-shrink-0"
                 >
                   <TrainerCard trainer={trainer} />
@@ -149,12 +207,13 @@ export default function FitnessTrainers() {
 
           <div className="relative overflow-hidden">
             <div
+              ref={mobileRef}
               className="flex gap-4 transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentMobileSlide * 50}%)` }}
             >
-              {trainers.map((trainer) => (
+              {mobileTrainers.map((trainer, index) => (
                 <div
-                  key={trainer.id}
+                  key={`${trainer.id}-${index}`}
                   className="min-w-[50%] flex-shrink-0"
                 >
                   <TrainerCard trainer={trainer} />
