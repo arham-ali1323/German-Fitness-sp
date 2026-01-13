@@ -36,7 +36,7 @@ export default function StatsSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,90,30,0.25),transparent_60%)]" />
       <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
         {/* LEFT */}
-        <div>
+        <div className="mb-24">
           <div className="relative">
             {/* Background text */}
             <span className="font-orbitron absolute top-0 left-0 w-full h-full text-[150px] md:text-[200px] font-extrabold text-white/10 uppercase select-none pointer-events-none">
@@ -46,8 +46,8 @@ export default function StatsSection() {
             {/* Foreground main text */}
             <h2 className="font-orbitron uppercase font-extrabold text-orange-500 text-5xl md:text-6xl leading-[1.05] tracking-tight relative z-10">
               We are pushing <br />
-              the limit of your <br />
-              <span className="text-orange-500">core strength</span>
+              the limit  <br />
+              <span className="text-orange-500">of your core strength</span>
             </h2>
           </div>
 
@@ -170,7 +170,7 @@ export default function StatsSection() {
       </div>
 
       {/* BACK STRIP (PARALLAX DEPTH) */}
-      <div className="absolute bottom-28 right-0 w-full bg-zinc-900/80 uppercase font-bold tracking-widest py-8 transform skew-y-6 overflow-hidden z-10">
+      <div className="absolute bottom-28 right-0 w-full bg-gray-900 text-neutral-600 uppercase font-bold tracking-widest py-8 transform skew-y-6 overflow-hidden z-10">
         <div className="flex animate-marquee-right w-max">
           <span className="inline-block">
             Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
