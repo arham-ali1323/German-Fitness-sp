@@ -12,7 +12,7 @@ import TestminialSection from "@/components/home/testimonial";
 import LatestEvents from "@/components/home/latest-events";
 export default function home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div>
       <HeroSection />
       <GroupWorkout />
       <StatsSection />

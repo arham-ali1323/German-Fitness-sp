@@ -1,5 +1,5 @@
 import React from "react";
-import GymAboutSection from "@/components/about/Gym-Abbout";
+import GymAboutSection from "@/components/about/Gym-About";
 import Banner from "@/components/contact/Banner-section";
 import GymFeatures from "@/components/about/Gym-feature";
 import TrainerSection from "@/components/home/trainers-section";
@@ -8,7 +8,7 @@ import SubscribeBanner from "@/components/contact/Subscribe-Banner";
 
 const About = () => {
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black">
       <Banner />
       <GymAboutSection />
       <GymFeatures />
