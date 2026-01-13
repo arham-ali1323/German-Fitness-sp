@@ -1,5 +1,5 @@
 "use client";
-import logo from "../../public/images/german fitness.png";
+import Image from "next/image";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Menu, X } from "lucide-react";
 import {
@@ -50,9 +50,11 @@ export default function Navbar() {
           {/* Logo */}
           <div className="text-orange-500 font-extrabold text-xl tracking-wide">
             <Link href="/"> 
-              <img 
-                src={logo.src} 
+              <Image 
+                src="/images/german fitness.png" 
                 alt="Gym-logo" 
+                width={200}
+                height={200}
                 className="h-8 w-auto md:h-[6rem] lg:h-[10rem] transition-all duration-300"
               /> 
             </Link>
