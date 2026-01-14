@@ -88,8 +88,10 @@ export default function LatestNewsSlider() {
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-bold text-white tracking-widest">
+        <div className="text-center mb-16 relative">
+          <div className="absolute -top-16 left-1/2 -translate-x-1/2 text-gray-800 text-8xl font-extrabold opacity-50 font-orbitron select-none hidden lg:block">BLOG
+          </div>
+          <h2 className="text-5xl md:text-7xl font-bold text-white tracking-widest relative z-10">
             LATEST NEWS
           </h2>
         </div>
