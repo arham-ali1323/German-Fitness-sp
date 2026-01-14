@@ -4,7 +4,7 @@ import heroBg from "../../public/images/Hero-bg.png";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden py-[60px] md:py-[300px] lg:py-[400px]">
+    <section className="relative min-h-screen overflow-hidden py-[60px] md:py-[300px] lg:py-[400px]">
       {/* BACKGROUND IMAGE */}
       <Image
         src={heroBg}
@@ -21,8 +21,8 @@ export default function Hero() {
           className="
                       absolute top-6 left-6
                       uppercase font-orbitron font-black
-                      text-[3rem] tracking-wide text-white md:pt-6
-                      pt-[180px] pl-[0px] md:text-[6rem] xl:text-[8rem]">
+                      text-[3rem] tracking-wide text-white md:pt-6 sm:pt-[180px]
+                      pt-[300px] pl-[0px] md:text-[6rem] xl:text-[8rem]">
           OBTAIN
         </span>
 
@@ -43,8 +43,8 @@ export default function Hero() {
           className="
                     absolute bottom-6 right-6
                     uppercase font-orbitron font-bold
-                    text-[3rem] tracking-wide text-white mt-16 md:pb-6
-                    pb-[180px] pr-[0px] md:text-[6rem] xl:text-[8rem]">
+                    text-[3rem] tracking-wide text-white mt-16 md:pb-6 sm:pb-[180px]
+                    pb-[300px] pr-[0px] md:text-[6rem] xl:text-[8rem]">
           GOAL
         </span>
       </div>

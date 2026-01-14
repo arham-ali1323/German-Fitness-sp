@@ -84,17 +84,7 @@ export default function StatsSection() {
                   </p>
 
                   {/* Counter */}
-                  <h3
-                    className="
-            font-extrabold 
-            text-white 
-            leading-none
-
-            text-5xl        /* BIG on small screens */
-            sm:text-6xl
-            md:text-4xl     /* Normal on desktop */
-          "
-                  >
+                  <h3 className="font-extrabold text-white leading-none text-5xl sm:text-6xl md:text-4xl">
                     <Counter target={251} />
                   </h3>
                 </div>

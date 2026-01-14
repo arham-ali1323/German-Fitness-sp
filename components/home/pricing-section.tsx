@@ -106,16 +106,7 @@ export default function PricingSection() {
 
           {/* Billing Toggle */}
     <motion.div
-  className="
-    inline-flex 
-    flex-col sm:flex-row
-    w-full sm:w-auto
-    items-stretch sm:items-center
-    gap-2 sm:gap-4
-    bg-dark-100 
-    p-2 
-    rounded-2xl
-  "
+  className="inline-flex flex-col sm:flex-row w-full sm:w-auto items-stretch sm:items-center gap-2 sm:gap-4 bg-dark-100 p-2 rounded-2xl"
   initial={{ opacity: 0 }}
   whileInView={{ opacity: 1 }}
   viewport={{ once: true }}
@@ -123,19 +114,11 @@ export default function PricingSection() {
 >
   <button
     onClick={() => setBillingCycle('monthly')}
-    className={`
-      flex-1
-      px-6 py-3
-      rounded-xl sm:rounded-full
-      font-semibold
-      text-center
-      transition-all
-      ${
-        billingCycle === 'monthly'
-          ? 'bg-orange text-white'
-          : 'text-gray-400 hover:text-white'
-      }
-    `}
+    className={`flex-1 px-6 py-3 rounded-xl sm:rounded-full font-semibold text-center transition-all ${
+      billingCycle === 'monthly'
+        ? 'bg-orange text-white'
+        : 'text-gray-400 hover:text-white'
+    }`}
   >
     Monthly
   </button>

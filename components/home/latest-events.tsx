@@ -106,13 +106,11 @@ export default function FitnessEvents() {
                     </h3>
 
                     <button
-                      className={`border-2 border-orange-600 text-orange-600 font-semibold py-3 px-8 tracking-wide
-  transition-all duration-300
-  ${
-    hoveredEvent === event.id
-      ? "opacity-100 translate-y-0 hover:bg-orange-600 hover:text-white"
-      : "opacity-0 translate-y-3 pointer-events-none"
-  }`}
+                      className={`border-2 border-orange-600 text-orange-600 font-semibold py-3 px-8 tracking-wide transition-all duration-300 ${
+                        hoveredEvent === event.id
+                          ? "opacity-100 translate-y-0 hover:bg-orange-600 hover:text-white"
+                          : "opacity-0 translate-y-3 pointer-events-none"
+                      }`}
                     >
                       REGISTER NOW
                     </button>
