@@ -4,6 +4,19 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import athlete from "../../public/images/strength.png";
 
+function NinjaStar({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={`inline-block w-10 h-10 animate-ninja-star ${className}`}
+      fill="currentColor"
+    >
+      <path d="M12 2l2.5 5 5 2.5-5 2.5-2.5 5-2.5-5-5-2.5 5-2.5z" />
+    </svg>
+  );
+}
+
+
 function Counter({ target }: { target: number }) {
   const [count, setCount] = useState(0);
 
@@ -34,7 +47,7 @@ export default function StatsSection() {
     <section className="relative bg-black overflow-hidden py-32">
       {/* smoky background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,90,30,0.25),transparent_60%)]" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid xl:grid-cols-2 gap-20 items-center">
         {/* LEFT */}
         <div className="mb-24">
           <div className="relative">
@@ -66,7 +79,7 @@ export default function StatsSection() {
         {/* RIGHT */}
         <div className="relative">
           {/* STAT CARDS */}
-          <div className="space-y-6 sm:space-y-8 md:space-y-10 md:absolute md:top-40 lg:top-48 md:right-[-40px] lg:right-[-60px] md:z-0 mb-24 flex flex-col items-center md:items-end">
+          <div className="space-y-6 sm:space-y-8 md:space-y-10 md:absolute md:top-40 xl:top-48 md:right-[-40px] xl:right-[-60px] md:z-0 mb-24 flex flex-col items-center md:items-end">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
@@ -105,41 +118,42 @@ export default function StatsSection() {
         </div>
       </div>
 
-      {/* BACK STRIP (PARALLAX DEPTH) */}
-      <div className="absolute bottom-28 right-0 w-full bg-gray-900 text-neutral-600 uppercase font-bold tracking-widest py-8 transform skew-y-6 overflow-hidden z-10">
-        <div className="flex animate-marquee-right w-max">
-          <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
-          </span>
-          <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
-          </span>
-          <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
-          </span>
-          <span className="inline-block">
-            Cardio ✖ Bench Press ✖ Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖
-          </span>
-        </div>
-      </div>
+     {/* BACK STRIP - DIAGONAL AT BOTTOM */}
+<div className="absolute bottom-24 left-0 w-full bg-gray-900 text-neutral-600 uppercase font-bold tracking-widest py-6 transform skew-y-6 overflow-hidden z-10">
+  <div className="flex w-max animate-marquee-right gap-10 whitespace-nowrap">
 
-      {/* FRONT STRIP */}
-      <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-black uppercase font-extrabold tracking-widest py-10 transform -skew-y-1 shadow-[0_0_30px_rgba(255,90,30,0.5)] overflow-hidden z-20">
-        <div className="flex animate-marquee-right w-max text-lg md:text-xl">
-          <span className="mr-10">
-            Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ Cardio ✖ Bench Press ✖
-          </span>
-          <span className="mr-10">
-            Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ Cardio ✖ Bench Press ✖
-          </span>
-          <span className="mr-10">
-            Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ Cardio ✖ Bench Press ✖
-          </span>
-          <span className="mr-10">
-            Dead Lift ✖ Pilates ✖ Dumbbell ✖ Plank ✖ Cardio ✖ Bench Press ✖
-          </span>
-        </div>
+    {[1, 2].map((_, i) => (
+      <div key={i} className="flex gap-10 flex-shrink-0">
+        <span>Dead Lift <NinjaStar className="text-orange-500" /></span>
+        <span>Pilates <NinjaStar className="text-orange-500" /></span>
+        <span>Dumbbell <NinjaStar className="text-orange-500" /></span>
+        <span>Plank <NinjaStar className="text-orange-500" /></span>
+        <span>Cardio <NinjaStar className="text-orange-500" /></span>
+        <span>Bench Press <NinjaStar className="text-orange-500" /></span>
       </div>
+    ))}
+
+  </div>
+</div>
+
+    {/* FRONT STRIP - DIAGONAL AT BOTTOM */}
+<div className="absolute bottom-10 left-0 w-full bg-orange-500 text-black uppercase font-extrabold py-6 transform shadow-[0_0_30px_rgba(255,90,30,0.5)] overflow-hidden z-20">
+  <div className="flex w-max animate-marquee-left gap-10 whitespace-nowrap text-xl">
+
+    {[1, 2].map((_, i) => (
+      <div key={i} className="flex gap-10 flex-shrink-0">
+        <span>Dead Lift <NinjaStar className="text-black" /></span>
+        <span>Pilates <NinjaStar className="text-black" /></span>
+        <span>Dumbbell <NinjaStar className="text-black" /></span>
+        <span>Plank <NinjaStar className="text-black" /></span>
+        <span>Cardio <NinjaStar className="text-black" /></span>
+        <span>Bench Press <NinjaStar className="text-black" /></span>
+      </div>
+    ))}
+
+  </div>
+</div>
+
     </section>
   );
 }
