@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FitGym Management - Complete Gym Management System",
+  title: "German Fitness - Complete Gym Management System",
   description: "Professional gym management system with member tracking, class scheduling, and payment processing",
 };
 
