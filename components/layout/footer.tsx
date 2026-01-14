@@ -30,7 +30,7 @@ export default function GymFooter() {
               <div className="w-50 h-50 relative">
                 <Link href="/">
                   <Image 
-                  src="/images/german fitness.png" 
+                  src="/images/german-and-fitness.png" 
                   alt="footer-logo" 
                   width={200}
                   height={200}

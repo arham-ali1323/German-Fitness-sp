@@ -51,7 +51,7 @@ export default function Navbar() {
           <div className="text-orange-500 font-extrabold text-xl tracking-wide">
             <Link href="/"> 
               <Image 
-                src="/images/german fitness.png" 
+                 src="/images/german-and-fitness.png" 
                 alt="Gym-logo" 
                 width={200}
                 height={200}
