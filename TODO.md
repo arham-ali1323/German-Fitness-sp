@@ -1,7 +1,7 @@
-# BMI Calculator Fixes TODO
+# TODO: Fix NextAuth 500 Error
 
-- [x] Remove import of setup_logger and related logger code
-- [x] Remove goal state, setter, and the goal select input
-- [x] Add TypeScript interface for the result object
-- [x] Enhance input validation for positive numbers and valid ranges
-- [x] Ensure BMR and TDEE are only shown if calculable
+- [ ] Uncomment PrismaAdapter in lib/auth.ts
+- [ ] Run `npx prisma generate` to update Prisma client
+- [ ] Run `npx prisma db push` to apply schema to database
+- [ ] Restart Next.js development server
+- [ ] Test authentication functionality
