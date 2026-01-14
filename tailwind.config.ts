@@ -68,8 +68,9 @@ const config: Config = {
       },
       animation: {
         glow: "glow 2s ease-in-out infinite alternate",
-        "marquee-left": "marqueeLeft 28s linear infinite",
-        "marquee-right": "marqueeRight 32s linear infinite",
+        "marquee-left": "marqueeLeft 15s linear infinite",
+        "marquee-right": "marqueeRight 18s linear infinite",
+        "ninja-star": "ninjaStar 4s ease-in-out infinite",
       },
       keyframes: {
         glow: {
@@ -85,6 +86,28 @@ const config: Config = {
         marqueeRight: {
           "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0%)" },
+        },
+        ninjaStar: {
+          "0%": { 
+            transform: "rotate(0deg) scale(1)",
+            opacity: "0.8"
+          },
+          "25%": { 
+            transform: "rotate(90deg) scale(1.2)",
+            opacity: "1"
+          },
+          "50%": { 
+            transform: "rotate(180deg) scale(1)",
+            opacity: "0.8"
+          },
+          "75%": { 
+            transform: "rotate(270deg) scale(1.2)",
+            opacity: "1"
+          },
+          "100%": { 
+            transform: "rotate(360deg) scale(1)",
+            opacity: "0.8"
+          },
         },
       },
     },
