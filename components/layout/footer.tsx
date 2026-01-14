@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import GymLogo from "../../public/images/german fitness.png";
 
 export default function GymFooter() {
   return (
@@ -31,7 +30,7 @@ export default function GymFooter() {
               <div className="w-50 h-50 relative">
                 <Link href="/">
                   <Image 
-                  src={GymLogo} 
+                  src="/images/german-and-fitness.png" 
                   alt="footer-logo" 
                   width={200}
                   height={200}

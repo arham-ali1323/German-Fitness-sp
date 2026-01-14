@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import GymLogo from "../../public/images/german fitness.png";
 import { Mail, Phone, MapPin, Menu, X } from "lucide-react";
 import {
   FaFacebookF,
@@ -52,7 +51,7 @@ export default function Navbar() {
           <div className="text-orange-500 font-extrabold text-xl tracking-wide">
             <Link href="/"> 
               <Image 
-                src={GymLogo} 
+                 src="/images/german-and-fitness.png" 
                 alt="Gym-logo" 
                 width={200}
                 height={200}
