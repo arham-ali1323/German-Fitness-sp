@@ -172,9 +172,7 @@ export default function BMICalculator() {
               placeholder="Age of you"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 
-               text-white placeholder-white 
-               focus:outline-none focus:border-orange-600 transition"
+              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white placeholder-white focus:outline-none focus:border-orange-600 transition"
             />
           </div>
 

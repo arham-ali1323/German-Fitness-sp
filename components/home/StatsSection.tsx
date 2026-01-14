@@ -66,72 +66,18 @@ export default function StatsSection() {
         {/* RIGHT */}
         <div className="relative">
           {/* STAT CARDS */}
-          <div
-            className="
-    space-y-6 
-    sm:space-y-8
-    md:space-y-10
-
-    md:absolute 
-    md:top-40 
-    lg:top-48
-    md:right-[-40px] 
-    lg:right-[-60px]
-
-    md:z-0
-    mb-24
-
-    flex 
-    flex-col
-    items-center
-    md:items-end
-  "
-          >
+          <div className="space-y-6 sm:space-y-8 md:space-y-10 md:absolute md:top-40 lg:top-48 md:right-[-40px] lg:right-[-60px] md:z-0 mb-24 flex flex-col items-center md:items-end">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="
-        relative 
-        w-full 
-        max-w-xs 
-        sm:max-w-sm
-        md:w-80
-
-        bg-zinc-900/80 
-        backdrop-blur-xl 
-        rounded-2xl 
-
-        px-6 
-        sm:px-8 
-        py-8
-
-        border 
-        border-white/10
-        shadow-[0_20px_50px_rgba(0,0,0,0.6)]
-
-        transition-all 
-        duration-300
-        hover:-translate-y-1
-        hover:border-orange-500/60
-      "
+                className="relative w-full max-w-xs sm:max-w-sm md:w-80 bg-zinc-900/80 backdrop-blur-xl rounded-2xl px-6 sm:px-8 py-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:border-orange-500/60"
               >
                 {/* Accent Lines */}
                 <span className="absolute top-4 right-4 w-10 h-[3px] bg-orange-500 rounded-full hidden md:block" />
                 <span className="absolute top-7 right-4 w-6 h-[3px] bg-orange-500 rounded-full hidden md:block" />
 
                 {/* Content */}
-                <div
-                  className="
-          flex 
-          flex-col 
-          items-center 
-          md:items-end
-          justify-center
-          text-center
-          md:text-right
-          gap-2
-        "
-                >
+                <div className="flex flex-col items-center md:items-end justify-center text-center md:text-right gap-2">
                   {/* Label */}
                   <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-widest">
                     Fitness Trainee

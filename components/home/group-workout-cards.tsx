@@ -134,6 +134,8 @@ export default function GroupWorkout() {
                         alt={`${service.title} ${service.subtitle}`}
                         className="w-full h-full object-cover transition-transform duration-700"
                       />
+                      {/* Dark Overlay */}
+                      <div className="absolute inset-0 bg-black/40"></div>
                     </div>
 
                     {/* Content */}

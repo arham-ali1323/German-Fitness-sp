@@ -115,9 +115,7 @@ export default function ClassTimeTable() {
                 onMouseEnter={() => setHoveredClass(`${time}-${index}`)}
                 onMouseLeave={() => setHoveredClass(null)}
               >
-                <div
-  className="bg-gray-800 p-4 text-center cursor-pointer transition-colors duration-300 w-36 h-24 flex flex-col justify-center items-center hover:bg-[#FF4D24]"
->
+                <div className="bg-gray-800 p-4 text-center cursor-pointer transition-colors duration-300 w-36 h-24 flex flex-col justify-center items-center hover:bg-[#FF4D24]">
 
                   <h3 className="font-bold text-white mb-2 text-sm">
                     {session.class}
