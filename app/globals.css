@@ -55,7 +55,6 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

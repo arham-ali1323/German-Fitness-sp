@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { Sidebar } from "@/components/layout/sidebar";
+import { OrcishSidebar } from "@/components/dashboard/orcish-sidebar";
 
 export default async function DashboardLayout({
   children,
@@ -16,7 +16,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen bg-background">
-      <Sidebar />
+      <OrcishSidebar />
       <main className="flex-1 overflow-y-auto">
         <div className="p-6">
           {children}
