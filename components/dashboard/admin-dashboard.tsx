@@ -22,6 +22,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+import { useDashboardTheme } from './dashboard-theme-provider';
 
 interface DashboardStats {
   totalMembers: number;
@@ -35,6 +36,8 @@ interface DashboardStats {
 }
 
 export default function AdminDashboard() {
+  const { activeColorTheme } = useDashboardTheme();
+  
   const [stats, setStats] = useState<DashboardStats>({
     totalMembers: 2547,
     activeMembers: 2103,
@@ -78,8 +81,8 @@ export default function AdminDashboard() {
       value: stats.totalMembers.toLocaleString(),
       change: `+${stats.memberGrowth}%`,
       icon: Users,
-      color: 'from-orange to-orange-light',
-      bgColor: 'bg-orange/10',
+      color: 'from-primary to-primary-light',
+      bgColor: 'bg-primary-bg',
     },
     {
       title: 'Monthly Revenue',
@@ -125,7 +128,7 @@ export default function AdminDashboard() {
           animate={{ opacity: 1, y: 0 }}
         >
           <h1 className="text-4xl font-black text-white mb-2 uppercase">
-            Admin <span className="text-orange">Dashboard</span>
+            Admin <span style={{ color: activeColorTheme.primary }}>Dashboard</span>
           </h1>
           <p className="text-gray-400">Overview of your gym's performance and metrics.</p>
         </motion.div>
@@ -142,13 +145,13 @@ export default function AdminDashboard() {
                 transition={{ delay: index * 0.1 }}
               >
                 <motion.div
-                  className="relative bg-dark-100 rounded-2xl p-6 border border-orange/10 hover:border-orange/30 transition-all group"
+                  className="relative bg-dark-100 rounded-2xl p-6 border border-primary-border hover:border-primary/30 transition-all group"
                   whileHover={{ y: -5 }}
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-10 rounded-2xl blur-xl -z-10`} />
                   <div className="relative z-10">
                     <div className={`w-14 h-14 ${card.bgColor} rounded-xl flex items-center justify-center mb-4`}>
-                      <Icon className="w-7 h-7 text-orange" />
+                      <Icon className="w-7 h-7" style={{ color: card.icon === Users ? activeColorTheme.primary : undefined }} />
                     </div>
                     <h3 className="text-gray-400 text-sm font-semibold mb-2 uppercase tracking-wider">
                       {card.title}
@@ -173,7 +176,7 @@ export default function AdminDashboard() {
         <div className="grid lg:grid-cols-2 gap-6 mb-8">
           {/* Revenue Chart */}
           <motion.div
-            className="bg-dark-100 rounded-2xl p-6 border border-orange/10"
+            className="bg-dark-100 rounded-2xl p-6 border border-primary-border"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
@@ -184,7 +187,7 @@ export default function AdminDashboard() {
                 <p className="text-gray-400 text-sm">Monthly revenue over the year</p>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-black text-orange">${(stats.totalRevenue / 1000).toFixed(0)}K</p>
+                <p className="text-2xl font-black" style={{ color: activeColorTheme.primary }}>${(stats.totalRevenue / 1000).toFixed(0)}K</p>
                 <p className="text-xs text-gray-500">Total Revenue</p>
               </div>
             </div>
@@ -194,15 +197,15 @@ export default function AdminDashboard() {
                 <XAxis dataKey="month" stroke="#6b7280" />
                 <YAxis stroke="#6b7280" />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #ff4500' }}
+                  contentStyle={{ backgroundColor: '#1a1a1a', border: `1px solid ${activeColorTheme.primary}` }}
                   labelStyle={{ color: '#fff' }}
                 />
                 <Line 
                   type="monotone" 
                   dataKey="revenue" 
-                  stroke="#ff4500" 
+                  stroke={activeColorTheme.primary}
                   strokeWidth={3}
-                  dot={{ fill: '#ff4500' }}
+                  dot={{ fill: activeColorTheme.primary }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -210,7 +213,7 @@ export default function AdminDashboard() {
 
           {/* Members Chart */}
           <motion.div
-            className="bg-dark-100 rounded-2xl p-6 border border-orange/10"
+            className="bg-dark-100 rounded-2xl p-6 border border-primary-border"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
@@ -221,7 +224,7 @@ export default function AdminDashboard() {
                 <p className="text-gray-400 text-sm">New members vs renewals</p>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-black text-orange">{stats.newMembersThisMonth}</p>
+                <p className="text-2xl font-black" style={{ color: activeColorTheme.primary }}>{stats.newMembersThisMonth}</p>
                 <p className="text-xs text-gray-500">This Month</p>
               </div>
             </div>
@@ -231,11 +234,11 @@ export default function AdminDashboard() {
                 <XAxis dataKey="week" stroke="#6b7280" />
                 <YAxis stroke="#6b7280" />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #ff4500' }}
+                  contentStyle={{ backgroundColor: '#1a1a1a', border: `1px solid ${activeColorTheme.primary}` }}
                   labelStyle={{ color: '#fff' }}
                 />
-                <Bar dataKey="newMembers" fill="#ff4500" radius={[8, 8, 0, 0]} />
-                <Bar dataKey="renewals" fill="#ffa500" radius={[8, 8, 0, 0]} />
+                <Bar dataKey="newMembers" fill={activeColorTheme.primary} radius={[8, 8, 0, 0]} />
+                <Bar dataKey="renewals" fill={activeColorTheme.primaryLight} radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </motion.div>
@@ -245,7 +248,7 @@ export default function AdminDashboard() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Recent Activity */}
           <motion.div
-            className="lg:col-span-2 bg-dark-100 rounded-2xl p-6 border border-orange/10"
+            className="lg:col-span-2 bg-dark-100 rounded-2xl p-6 border border-primary-border"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -262,10 +265,10 @@ export default function AdminDashboard() {
                   whileHover={{ x: 5 }}
                 >
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    activity.type === 'member' ? 'bg-orange/10' : 'bg-green-400/10'
+                    activity.type === 'member' ? 'bg-primary-bg' : 'bg-green-400/10'
                   }`}>
                     {activity.type === 'member' ? (
-                      <Users className="w-5 h-5 text-orange" />
+                      <Users className="w-5 h-5" style={{ color: activeColorTheme.primary }} />
                     ) : (
                       <DollarSign className="w-5 h-5 text-green-400" />
                     )}
@@ -282,7 +285,7 @@ export default function AdminDashboard() {
 
           {/* Quick Actions */}
           <motion.div
-            className="bg-dark-100 rounded-2xl p-6 border border-orange/10"
+            className="bg-dark-100 rounded-2xl p-6 border border-primary-border"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -299,15 +302,15 @@ export default function AdminDashboard() {
                 return (
                   <motion.button
                     key={i}
-                    className="w-full flex items-center gap-3 p-4 bg-dark rounded-xl hover:bg-orange/10 border border-transparent hover:border-orange/30 transition-all text-left"
+                    className="w-full flex items-center gap-3 p-4 bg-dark rounded-xl hover:bg-primary-bg border border-transparent hover:border-primary/30 transition-all text-left"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.8 + i * 0.1 }}
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <div className="w-10 h-10 bg-orange/10 rounded-lg flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-orange" />
+                    <div className="w-10 h-10 bg-primary-bg rounded-lg flex items-center justify-center">
+                      <Icon className="w-5 h-5" style={{ color: activeColorTheme.primary }} />
                     </div>
                     <span className="text-white font-semibold">{action.label}</span>
                   </motion.button>

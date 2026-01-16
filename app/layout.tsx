@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Orbitron, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers/session-provider";
+import { ActiveThemeProvider } from "@/components/dashboard/active-theme";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 
@@ -33,13 +34,15 @@ export default function RootLayout({
         className={`${geistMono.variable} ${orbitron.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Providers>
-          <Navbar />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </Providers>
+        <ActiveThemeProvider>
+          <Providers>
+            <Navbar />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </Providers>
+        </ActiveThemeProvider>
       </body>
     </html>
   );

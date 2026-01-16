@@ -152,11 +152,14 @@ export default function FitnessTrainers() {
           {/* ROW 1 */}
           <div className="grid grid-cols-3 gap-6 items-center">
             {/* HEADING SPACE */}
-            <div>
-              <h2 className="text-4xl font-extrabold tracking-widest font-orbitron">
+            <div className="relative">
+              <div className="absolute -top-16 -left-8 text-gray-800 text-8xl font-extrabold opacity-50 font-orbitron transform -rotate-6 select-none hidden lg:block">
+                <span className="text-orange-600">///</span> TEAM
+              </div>
+              <h2 className="text-5xl md:text-6xl font-extrabold tracking-widest font-orbitron relative z-10">
                 MEET OUR
               </h2>
-              <h3 className="text-4xl font-extrabold tracking-widest text-orange-600 font-orbitron">
+              <h3 className="text-5xl md:text-6xl font-extrabold tracking-widest text-orange-600 font-orbitron relative z-10">
                 FITNESS TRAINERS
               </h3>
             </div>
@@ -201,7 +204,7 @@ export default function FitnessTrainers() {
 
         {/* ===================== MOBILE ===================== */}
         <div className="md:hidden">
-          <h2 className="text-3xl font-extrabold text-center mb-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-6 font-orbitron">
             OUR TRAINERS
           </h2>
 

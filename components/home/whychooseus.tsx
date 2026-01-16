@@ -59,8 +59,8 @@ const FeatureCard = ({
       className={`relative w-full h-64 md:h-80 p-6 flex flex-col justify-center text-center transition-all shadow-xl
         ${
           variant === "orange"
-            ? "bg-orange-500 hover:bg-orange-600 text-black"
-            : "bg-zinc-900 hover:bg-zinc-800 text-white"
+            ? "bg-orange-500 hover:bg-black hover:text-orange-500 text-black"
+            : "bg-zinc-900 hover:bg-orange-500 hover:text-black text-white"
         }`}
     >
       <div className="mb-4">
@@ -69,19 +69,16 @@ const FeatureCard = ({
           alt={iconAlt}
           width={48}
           height={48}
-          className="mx-auto"
+          className="mx-auto transition-all duration-300"
+          style={{ filter: variant === 'orange' ? 'brightness(0) invert(0)' : 'brightness(0) invert(1)' }}
         />
       </div>
 
-      <h4 className="uppercase font-orbitron font-extrabold tracking-wide text-base md:text-lg mb-3">
+      <h4 className="uppercase font-orbitron font-extrabold tracking-wide text-base md:text-lg mb-3 transition-colors duration-300">
         {title}
       </h4>
 
-      <p
-        className={`text-sm leading-relaxed ${
-          variant === "dark" ? "text-gray-400" : ""
-        }`}
-      >
+      <p className="text-sm leading-relaxed transition-colors duration-300">
         {description}
       </p>
     </div>

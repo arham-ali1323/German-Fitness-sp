@@ -11,6 +11,13 @@ export default function GymFooter() {
           {/* ===================== Achieve Wellbeing Section ===================== */}
           <div className="flex items-center md:col-span-5 pr-6 border-r border-gray-800">
             <div className="space-y-4">
+              <Link href="/"><Image 
+                  src="/images/German-Fitness.png" 
+                  alt="footer-logo" 
+                  width={200}
+                  height={200}
+                  className="object-contain"
+                /></Link>
               <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-wide">
                 ACHIEVE
                 <br />

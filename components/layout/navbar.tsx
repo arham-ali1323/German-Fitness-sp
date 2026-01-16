@@ -6,7 +6,7 @@ import {
   FaFacebookF,
   FaTwitter,
   FaGooglePlusG,
-  FaRss,
+  FaInstagram,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -16,33 +16,45 @@ export default function Navbar() {
   return (
     <header className="w-full text-white relative z-50">
       {/* ================= TOP BAR ================= */}
-      <div className="bg-gradient-to-r from-orange-900 to-orange-700 text-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-10 flex justify-between items-center">
-          {/* Left */}
-          <div className="flex gap-4 items-center truncate">
-            <span className="flex items-center gap-2">
-              <Mail size={14} /> hadkaurfitness@email.com
-            </span>
+     <div className="bg-gradient-to-r from-orange-900 to-orange-700 text-xs text-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 h-10 flex justify-between items-center">
 
-            <span className="hidden sm:flex items-center gap-2">
-              <Phone size={14} /> +987 654 321 22
-            </span>
+    {/* LEFT */}
+    <div className="flex gap-4 items-center truncate">
+      <Link href="mailto:hadkaurfitness@email.com">
+        <span className="flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-yellow-300 hover:scale-105">
+          <Mail size={14} />
+          hadkaurfitness@email.com
+        </span>
+      </Link>
 
-            <span className="hidden lg:flex items-center gap-2">
-              <MapPin size={14} />
-              17110 116th Ave SE Unit A Renton
-            </span>
-          </div>
+      <Link href="tel:+98765432122">
+        <span className="hidden sm:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
+          <Phone size={14} />
+          +987 654 321 22
+        </span>
+      </Link>
 
-          {/* Right */}
-          <div className="flex gap-3">
-            <FaFacebookF className="hover:text-orange-400 cursor-pointer" />
-            <FaTwitter className="hover:text-orange-400 cursor-pointer" />
-            <FaGooglePlusG className="hover:text-orange-400 cursor-pointer" />
-            <FaRss className="hover:text-orange-400 cursor-pointer" />
-          </div>
-        </div>
-      </div>
+      <Link href="https://www.google.com/maps">
+        <span className="hidden lg:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
+          <MapPin size={14} />
+          17110 116th Ave SE Unit A Renton
+        </span>
+      </Link>
+    </div>
+
+    {/* RIGHT */}
+    <div className="flex gap-4 items-center">
+      <FaFacebookF className="cursor-pointer text-lg transition-all duration-200 hover:text-blue-400 hover:scale-110" />
+      <FaTwitter className="cursor-pointer text-lg transition-all duration-200 hover:text-sky-400 hover:scale-110" />
+      <FaGooglePlusG className="cursor-pointer text-lg transition-all duration-200 hover:text-red-400 hover:scale-110" />
+      <FaInstagram className="cursor-pointer text-lg transition-all duration-200 hover:text-pink-400 hover:scale-110" />
+    </div>
+
+  </div>
+</div>
+
+
 
       {/* ================= MAIN NAV ================= */}
       <div className="backdrop-blur">
@@ -51,7 +63,7 @@ export default function Navbar() {
           <div className="text-orange-500 font-extrabold text-xl tracking-wide">
             <Link href="/"> 
               <Image 
-                 src="/images/german-and-fitness.png" 
+                src="/images/german-and-fitness.png" 
                 alt="Gym-logo" 
                 width={200}
                 height={200}
@@ -64,13 +76,13 @@ export default function Navbar() {
           <nav className="hidden lg:flex gap-10 text-sm text-gray-600 font-bold uppercase">
             {["Classes", "Services", "About", "Blog", "Contact"].map(
               (item) => (
-                <a
+                <Link
                   key={item}
                   href={item.toLowerCase()}
                   className="hover:text-orange-500 transition"
                 >
                   {item}
-                </a>
+                </Link>
               )
             )}
           </nav>
@@ -100,14 +112,14 @@ export default function Navbar() {
             {["Classes", "Services", "About", "Blog", "Contact"].map(
 
               (item) => (
-                <a
+                <Link
                   key={item}
                   href={item.toLowerCase()}
                   className="hover:text-orange-500 transition"
                   onClick={() => setOpen(false)}
                 >
                   {item}
-                </a>
+                </Link>
               )
             )}
 
@@ -120,3 +132,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+
