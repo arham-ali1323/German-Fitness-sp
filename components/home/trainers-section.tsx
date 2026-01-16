@@ -1,66 +1,24 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 export default function FitnessTrainers() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentSlide2, setCurrentSlide2] = useState(0);
   const [currentMobileSlide, setCurrentMobileSlide] = useState(0);
+  const [trainers, setTrainers] = useState<any[]>([]);
 
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
   const mobileRef = useRef<HTMLDivElement>(null);
 
-  const trainers = [
-    {
-      id: 1,
-      name: "Marcus Stone",
-      specialty: "Strength & Conditioning",
-      experience: "12 years",
-      image:
-        "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&h=500&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Alex Rivera",
-      specialty: "HIIT & Performance",
-      experience: "8 years",
-      image:
-        "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Sarah Mitchell",
-      specialty: "Yoga & Flexibility",
-      experience: "10 years",
-      image:
-        "https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=400&h=500&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Jake Wilson",
-      specialty: "CrossFit Training",
-      experience: "9 years",
-      image:
-        "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=400&h=500&fit=crop",
-    },
-    {
-      id: 5,
-      name: "David Chen",
-      specialty: "Boxing & Cardio",
-      experience: "11 years",
-      image:
-        "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=500&fit=crop",
-    },
-    {
-      id: 6,
-      name: "Michael Brooks",
-      specialty: "Bodybuilding",
-      experience: "15 years",
-      image:
-        "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&h=500&fit=crop",
-    },
-  ];
+  useEffect(() => {
+    fetch('/api/trainers')
+      .then(res => res.json())
+      .then(data => setTrainers(data))
+      .catch(err => console.error('Failed to fetch trainers:', err));
+  }, []);
 
   const row1Trainers = [...trainers.slice(0, 3), ...trainers.slice(0, 3)];
   const row2Trainers = [...trainers.slice(2, 6), ...trainers.slice(2, 6)];
@@ -248,9 +206,9 @@ function TrainerCard({ trainer }: any) {
           <p className="text-orange-500 text-sm">{trainer.specialty}</p>
           <p className="text-gray-400 text-xs">{trainer.experience}</p>
 
-          <button className="mt-3 bg-orange-600 hover:bg-orange-700 px-4 py-2 text-sm font-semibold transition">
+          <Link href={`/trainers/${trainer.id}`} className="mt-3 bg-orange-600 hover:bg-orange-700 px-4 py-2 text-sm font-semibold transition inline-block">
             View Profile
-          </button>
+          </Link>
         </div>
       </div>
     </div>

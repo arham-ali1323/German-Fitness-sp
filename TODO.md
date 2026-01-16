@@ -5,3 +5,4 @@
 - [x] Test responsiveness on different screen sizes.
 - [x] Verify all buttons/inputs remain clickable.
 - [x] Ensure no pointer-event or overlay issues.
+z
