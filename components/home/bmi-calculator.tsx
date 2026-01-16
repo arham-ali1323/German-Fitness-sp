@@ -184,7 +184,7 @@ export default function BMICalculator() {
             <select
               value={gender}
               onChange={(e) => setGender(e.target.value)}
-              className="w-full bg-black/50 border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
+              className="w-full h-[52px] bg-black border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
             >
               <option value="">Select a gender</option>
               <option value="male">Male</option>
@@ -203,7 +203,7 @@ export default function BMICalculator() {
             <select
               value={activityFactor}
               onChange={(e) => setActivityFactor(e.target.value)}
-              className="w-full h-[52px] bg-black/50 border border-gray-700 rounded px-4 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer option:bg-black option:hover:bg-orange-600"
+              className="w-full h-[52px] bg-black border border-gray-700 rounded px-4 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
             >
               <option value="">Select an activity factor</option>
               <option value="sedentary">
@@ -223,31 +223,16 @@ export default function BMICalculator() {
           {/* Detailed Activity Factor */}
           <div>
             <label className="block text-orange-600 text-sm font-semibold mb-2 tracking-wider">
-              SELECT AN ACTIVITY FACTOR
+              I want...
             </label>
             <select
               value={detailedActivityFactor}
               onChange={(e) => setDetailedActivityFactor(e.target.value)}
-              className="w-full h-[52px] bg-black/50 border border-gray-700 rounded px-4 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
+              className="w-full h-[52px] bg-black border border-gray-700 rounded px-4 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
             >
-              <option value="">Select an activity factor</option>
-              <option value="little">
-                I do little or no exercise (0-1 time a week)
-              </option>
-              <option value="twice">I do some exercise (twice a week)</option>
-              <option value="three">
-                I do some exercise (three times a week)
-              </option>
-              <option value="four">
-                I exercise regularly (4 times a week)
-              </option>
-              <option value="five">
-                I exercise regularly (5 times a week)
-              </option>
-              <option value="six">I exercise regularly (6 times a week)</option>
-              <option value="intense">
-                I exercise every day, and/or I have an intense job
-              </option>
+              <option value="weightLoss">I want (choose an option)</option>
+              <option value="weightLoss">Weight Loss</option>
+              <option value="weightGain">Weight Gain</option>
             </select>
           </div>
 
