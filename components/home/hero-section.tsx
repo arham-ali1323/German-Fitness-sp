@@ -51,13 +51,13 @@ export default function Hero() {
 
       {/* IMAGE (center, above text) */}
       {/* IMAGE (center, on top of text) */}
-      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center z-20">
         <Image
           src={heroImage}
           alt="Fitness Man"
           width={820}
           priority
-          className="mx-auto"
+          className="mx-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl cursor-pointer"
         />
       </div>
     </section>

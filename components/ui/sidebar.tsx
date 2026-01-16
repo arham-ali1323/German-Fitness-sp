@@ -165,10 +165,10 @@ const Sidebar = React.forwardRef<
   if (isMobile) {
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-        <SheetContent side="left" className="p-0 w-64 bg-gray-900 border-orange-500">
+        <SheetContent side="left" className="p-0 w-64 bg-dark border-primary-border">
           <div
             ref={ref}
-            className={cn("flex h-full flex-col bg-gray-900 text-white border-orange-500", className)}
+            className={cn("flex h-full flex-col bg-dark text-white border-primary-border", className)}
             {...props}
           />
         </SheetContent>
@@ -179,7 +179,7 @@ const Sidebar = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn("flex h-full w-1/5 flex-col bg-gray-900 text-white border-r border-orange-500", className)}
+      className={cn("flex w-1/5 flex-col bg-dark text-white border-r border-primary-border", className)}
       {...props}
     />
   )
@@ -259,7 +259,7 @@ const SidebarMenuButton = React.forwardRef<
     <Comp
       ref={ref}
       className={cn(
-        "flex items-center gap-2 w-full justify-start text-left font-medium transition-colors hover:bg-orange-600 hover:text-white p-2 rounded",
+        "flex items-center gap-2 w-full justify-start text-left font-medium transition-colors hover:bg-primary-bg hover:text-primary p-2 rounded",
         className
       )}
       {...props}
@@ -312,7 +312,7 @@ const SidebarMenuAction = React.forwardRef<
 >(({ className, showOnHover, ...props }, ref) => (
   <button
     ref={ref}
-    className={cn("p-1 hover:bg-orange-600 hover:text-white rounded", className)}
+    className={cn("p-1 hover:bg-primary-bg hover:text-primary rounded", className)}
     {...props}
   />
 ))
@@ -401,7 +401,7 @@ const SidebarTrigger = React.forwardRef<
   return (
     <button
       ref={ref}
-      className={cn("p-2 hover:bg-orange-600 hover:text-white rounded", className)}
+      className={cn("p-2 hover:bg-primary-bg hover:text-primary rounded", className)}
       onClick={(event) => {
         onClick?.(event)
         if (isMobile) {

@@ -43,7 +43,7 @@ export function NavDocuments({
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <a href={item.url}>
+              <a href={item.url} className="flex items-center gap-2">
                 <item.icon />
                 <span>{item.name}</span>
               </a>
@@ -81,9 +81,9 @@ export function NavDocuments({
           </SidebarMenuItem>
         ))}
         <SidebarMenuItem>
-          <SidebarMenuButton className="text-sidebar-foreground/70">
-            <IconDots className="text-sidebar-foreground/70" />
+          <SidebarMenuButton className="text-sidebar-foreground/70 flex items-center gap-2">
             <span>More</span>
+            <IconDots className="text-sidebar-foreground/70" />
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
