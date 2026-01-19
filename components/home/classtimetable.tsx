@@ -80,7 +80,7 @@ export default function ClassTimeTable() {
           
           <div className="max-w-md">
             <p className="text-gray-400 text-sm leading-relaxed">
-              Welcome to Hadfour Fitness! We believe that true wellness encompasses the mind, body & soul.
+              Welcome to German Fitness! We believe that true wellness encompasses the mind, body & soul.
             </p>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function ClassTimeTable() {
         {days.map((day) => (
           <th
             key={day}
-            className="p-4 text-center text-gray-400 font-semibold text-sm tracking-wider"
+            className="p-4 text-center text-white font-semibold text-sm tracking-wider"
           >
             {day}
           </th>
@@ -104,7 +104,7 @@ export default function ClassTimeTable() {
     <tbody>
       {timeSlots.map((time) => (
         <tr key={time} className="border-b border-gray-800">
-          <td className="p-4 text-gray-400 font-medium whitespace-nowrap">
+          <td className="p-4 text-whit font-medium whitespace-nowrap">
             {time}
           </td>
           {schedule[time].map(
@@ -120,7 +120,7 @@ export default function ClassTimeTable() {
                   <h3 className="font-bold text-white mb-2 text-sm">
                     {session.class}
                   </h3>
-                  <p className="text-gray-400 text-xs">{session.trainer}</p>
+                  <p className="text-white text-xs">{session.trainer}</p>
                 </div>
               </td>
             )
