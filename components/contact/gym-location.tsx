@@ -27,50 +27,34 @@ export default function MapWithTable() {
       </div>
 
       {/* OVERLAY SCHEDULE */}
-      <div
-        className="
-          absolute
-          right-6
-          top-1/2
-          -translate-y-1/2
-          w-[320px]
-          bg-black
-          border border-gray-800
-          shadow-2xl
-          z-20
-          hidden md:block
-        "
-      >
-        {schedule.map((item, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => setHoveredDay(i)}
-            onMouseLeave={() => setHoveredDay(null)}
-            className={`flex justify-between px-6 py-4 border-b border-gray-800 transition ${
-              hoveredDay === i ? "bg-orange-500/10" : ""
-            }`}
-          >
-            <span
-              className={`font-semibold tracking-wide ${
-                hoveredDay === i ? "text-orange-500" : "text-white"
-              }`}
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 w-[320px] bg-black border border-gray-800 shadow-2xl z-20 hidden md:block">
+        {schedule.map((item, i) => {
+          const isHovered = hoveredDay === i;
+          return (
+            <div
+              key={i}
+              onMouseEnter={() => setHoveredDay(i)}
+              onMouseLeave={() => setHoveredDay(null)}
+              className="flex justify-between px-6 py-4 border-b border-gray-800 transition hover:bg-orange-500/10"
             >
-              {item.day}
-            </span>
+              <span className={`font-semibold tracking-wide transition-colors ${
+                isHovered ? "text-orange-500" : "text-white"
+              }`}>
+                {item.day}
+              </span>
 
-            <span
-              className={`font-semibold ${
+              <span className={`font-semibold transition-colors ${
                 item.open
-                  ? hoveredDay === i
+                  ? isHovered
                     ? "text-orange-500"
                     : "text-white"
                   : "text-red-500"
-              }`}
-            >
-              {item.hours}
-            </span>
-          </div>
-        ))}
+              }`}>
+                {item.hours}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

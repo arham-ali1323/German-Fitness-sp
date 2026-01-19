@@ -3,33 +3,33 @@ import { getToken } from "next-auth/jwt";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  return handleProxy(request, params.path);
+  return handleProxy(request, await params);
 }
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  return handleProxy(request, params.path);
+  return handleProxy(request, await params);
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  return handleProxy(request, params.path);
+  return handleProxy(request, await params);
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  return handleProxy(request, params.path);
+  return handleProxy(request, await params);
 }
 
-async function handleProxy(request: NextRequest, path: string[]) {
+async function handleProxy(request: NextRequest, params: { path: string[] }) {
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
   const isAdmin = token?.role === "ADMIN";
 
@@ -38,6 +38,6 @@ async function handleProxy(request: NextRequest, path: string[]) {
   }
 
   // If authenticated, proceed to the actual admin route
-  const adminPath = `/admin/${path.join("/")}`;
+  const adminPath = `/admin/${params.path.join("/")}`;
   return NextResponse.rewrite(new URL(adminPath, request.url));
 }
