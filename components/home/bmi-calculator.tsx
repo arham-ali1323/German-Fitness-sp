@@ -8,15 +8,19 @@ interface BMIResult {
   color: string;
   bmr: number;
   tdee: number;
+  recommendedCalories: number;
+  protein: number;
+  fat: number;
+  carbs: number;
 }
 
 export default function BMICalculator() {
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [activityFactor, setActivityFactor] = useState("");
-  const [detailedActivityFactor, setDetailedActivityFactor] = useState("");
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
+  const [activityFactor, setActivityFactor] = useState('');
+  const [goal, setGoal] = useState('');
   const [result, setResult] = useState<BMIResult | null>(null);
 
   const calculateBMI = () => {
@@ -87,28 +91,41 @@ export default function BMICalculator() {
       }
     }
 
-    const activityMultipliers: Record<string, number> = {
-      little: 1.2,
-      twice: 1.375,
-      three: 1.55,
-      four: 1.725,
-      five: 1.9,
-      six: 2.0,
-      intense: 2.2,
-    };
+  const activityMultipliers: Record<string, number> = {
+  sedentary: 1.2,
+  light: 1.375,
+  moderate: 1.55,
+  active: 1.725,
+  veryActive: 1.9
+};
 
-    const tdee =
-      detailedActivityFactor && bmr > 0
-        ? Math.round(bmr * activityMultipliers[detailedActivityFactor])
-        : 0;
+const tdee = activityFactor
+  ? Math.round(bmr * activityMultipliers[activityFactor])
+  : 0;
 
-    setResult({
-      bmi,
-      category,
-      color,
-      bmr: Math.round(bmr),
-      tdee,
-    });
+// Goal calories
+let recommendedCalories = tdee;
+
+if (goal === "lose") recommendedCalories = tdee - 500;
+if (goal === "gain") recommendedCalories = tdee + 300;
+if (goal === "muscle") recommendedCalories = tdee + 400;
+
+// MACROS (simple & realistic)
+const protein = Math.round((recommendedCalories * 0.15) / 4);
+const fat = Math.round((recommendedCalories * 0.25) / 9);
+const carbs = Math.round((recommendedCalories * 0.6) / 4);
+
+setResult({
+  bmi,
+  category,
+  color,
+  bmr: Math.round(bmr),
+  tdee,
+  recommendedCalories,
+  protein,
+  fat,
+  carbs
+});
   };
 
   return (
@@ -226,13 +243,14 @@ export default function BMICalculator() {
               I want...
             </label>
             <select
-              value={detailedActivityFactor}
-              onChange={(e) => setDetailedActivityFactor(e.target.value)}
+              value={goal}
+              onChange={(e) => setGoal(e.target.value)}
               className="w-full h-[52px] bg-black border border-gray-700 rounded px-4 text-white focus:outline-none focus:border-orange-600 transition appearance-none cursor-pointer"
             >
-              <option value="weightLoss">I want (choose an option)</option>
-              <option value="weightLoss">Weight Loss</option>
-              <option value="weightGain">Weight Gain</option>
+              <option value="">I want (choose an option)</option>
+              <option value="lose">Weight Loss</option>
+              <option value="gain">Weight Gain</option>
+              <option value="muscle">Build Muscle</option>
             </select>
           </div>
 
@@ -252,55 +270,73 @@ export default function BMICalculator() {
 
         {/* Results */}
         {result && (
-          <div className="bg-black/50 border border-gray-700 rounded-lg p-8 backdrop-blur">
-            <h3 className="text-2xl font-bold mb-6 text-center">
-              Your Results
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center p-6 bg-gray-900/50 rounded-lg">
-                <p className="text-gray-400 mb-2">BMI</p>
-                <p className={`text-5xl font-bold ${result.color}`}>
-                  {result.bmi}
-                </p>
-                <p className={`text-xl mt-2 ${result.color}`}>
-                  {result.category}
-                </p>
-              </div>
+  <div className="mt-10 bg-gradient-to-b from-black to-zinc-900 border border-zinc-800 rounded-xl p-8 space-y-6">
 
-              {result.bmr > 0 && (
-                <div className="text-center p-6 bg-gray-900/50 rounded-lg">
-                  <p className="text-gray-400 mb-2">BMR</p>
-                  <p className="text-5xl font-bold text-orange-600">
-                    {result.bmr}
-                  </p>
-                  <p className="text-sm mt-2 text-gray-400">
-                    calories/day at rest
-                  </p>
-                </div>
-              )}
+    {/* RESULT */}
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 bg-orange-600 flex items-center justify-center rounded">
+        📊
+      </div>
+      <h3 className="text-xl font-bold tracking-widest">RESULT</h3>
+    </div>
 
-              {result.tdee > 0 && (
-                <div className="text-center p-6 bg-gray-900/50 rounded-lg">
-                  <p className="text-gray-400 mb-2">TDEE</p>
-                  <p className="text-5xl font-bold text-orange-600">
-                    {result.tdee}
-                  </p>
-                  <p className="text-sm mt-2 text-gray-400">
-                    calories/day total
-                  </p>
-                </div>
-              )}
-            </div>
+    <p className="text-gray-300 leading-relaxed">
+      Based on the data you gave us, your BMI is{" "}
+      <span className={`font-bold ${result.color}`}>
+        {result.bmi}
+      </span>
+      , the total energy expended for someone your stature is{" "}
+      <span className="text-orange-500 font-bold">
+        {result.bmr} Kcal
+      </span>{" "}
+      (BMR), this is the calories your body needs per day just to survive.
+      Taking into account your physical activity, you will need{" "}
+      <span className="text-orange-500 font-bold">
+        {result.tdee} Kcal
+      </span>{" "}
+      (TDEE) per day to maintain your weight.
+    </p>
 
-            <div className="mt-6 p-4 bg-gray-900/50 rounded-lg">
-              <p className="text-sm text-gray-300 text-center">
-                <span className="font-semibold">BMI Categories:</span>{" "}
-                Underweight (&lt;18.5) | Normal (18.5-24.9) | Overweight
-                (25-29.9) | Obese (≥30)
-              </p>
-            </div>
-          </div>
-        )}
+    <p className="text-white font-semibold">
+      ➜ To achieve your goal we recommend{" "}
+      <span className="text-orange-500 font-bold">
+        {result.recommendedCalories} Kcal
+      </span>{" "}
+      per day.
+    </p>
+
+    <hr className="border-zinc-800" />
+
+    {/* FOOD */}
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 bg-orange-600 flex items-center justify-center rounded">
+        🍎
+      </div>
+      <h3 className="text-xl font-bold tracking-widest">FOOD</h3>
+    </div>
+
+    <p className="text-gray-300">
+      We recommend{" "}
+      <span className="text-orange-500 font-bold">
+        {result.protein} g
+      </span>{" "}
+      of protein,{" "}
+      <span className="text-orange-500 font-bold">
+        {result.fat} g
+      </span>{" "}
+      of fat, and{" "}
+      <span className="text-orange-500 font-bold">
+        {result.carbs} g
+      </span>{" "}
+      of carbohydrates.
+    </p>
+
+    <p className="text-gray-400 text-sm">
+      Aim for a ratio of 1/3 saturated fat (meat, milk, etc.) and 2/3
+      unsaturated fat (fish, avocado, coconut milk).
+    </p>
+  </div>
+)}
       </div>
     </div>
   );
