@@ -164,21 +164,6 @@ export default function TestimonialSection() {
           </button>
         </div>
       </div>
-      
-      {/* Scroll to Top Button */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-gray-900 hover:bg-orange-500 border border-gray-700 flex items-center justify-center transition group"
-      >
-        <svg 
-          className="w-5 h-5 text-gray-400 group-hover:text-white transition" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-      </button>
     </section>
   );
 }

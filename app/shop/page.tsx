@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import shopData from '../../data/shop-data.json';
+import ScrollToTopWaterFill from '@/components/ui/back-to-top';
 
 export default function GymShop() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -527,6 +528,7 @@ export default function GymShop() {
           </div>
         </div>
       )}
+      <ScrollToTopWaterFill />
     </div>
   );
 }

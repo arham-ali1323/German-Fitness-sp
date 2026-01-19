@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 interface BMIResult {
   bmi: string;
@@ -129,6 +130,7 @@ setResult({
   };
 
   return (
+    <>
     <div className="bg-gradient-to-br from-gray-900 via-red-900/20 to-black text-white p-4 md:p-8 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900 to-black" />
       <div className="max-w-6xl mx-auto relative z-10">
@@ -339,5 +341,7 @@ setResult({
 )}
       </div>
     </div>
+    <ScrollToTopWaterFill />
+    </>
   );
 }
