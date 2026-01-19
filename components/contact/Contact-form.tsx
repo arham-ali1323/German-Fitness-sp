@@ -36,7 +36,7 @@ export default function ContactForm() {
 
           {/* Right Side - Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
               <input
                 type="text"
                 placeholder="Your full name"
@@ -75,9 +75,9 @@ export default function ContactForm() {
 
             <button
               type="submit"
-              className="bg-gray-800 text-white px-8 py-4 rounded-md border-l-4 border-orange-500 hover:bg-gray-700 transition font-medium"
+              className="relative overflow-hidden text-white text-xl px-8 py-4 border-none font-medium bg-orange-600 transition focus:outline-none focus:ring-2 focus:ring-white before:absolute before:inset-0 before:bg-white before:-translate-x-full before:transition-transform before:duration-500 hover:before:translate-x-0 hover:text-gray-900 group"
             >
-              GET STARTED TODAY +
+              <span className="relative z-10">GET STARTED TODAY +</span>
             </button>
           </form>
         </div>
