@@ -29,8 +29,7 @@ const SubscribeBanner = () => {
   before:-translate-x-full
   before:transition-transform before:duration-500
   hover:before:translate-x-0
-
-  hover:text-black
+  hover:text-orange-600 
 "
         >
           <span className="relative z-10">Subscribe Now +</span>
