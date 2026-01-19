@@ -10,13 +10,17 @@ export default function BMICalculator() {
   const [gender, setGender] = useState('');
   const [activityFactor, setActivityFactor] = useState('');
   const [goal, setGoal] = useState('');
-  const [result, setResult] = useState<{
-    bmi: number;
-    category: string;
-    color: string;
-    bmr: number;
-    tdee: number;
-  } | null>(null);
+const [result, setResult] = useState<{
+  bmi: number;
+  category: string;
+  color: string;
+  bmr: number;
+  tdee: number;
+  recommendedCalories: number;
+  protein: number;
+  fat: number;
+  carbs: number;
+} | null>(null);
 
   const calculateBMI = () => {
     if (!height || !weight) {
@@ -53,24 +57,41 @@ export default function BMICalculator() {
         bmr = 10 * weightInKg + 6.25 * parseFloat(height) - 5 * parseFloat(age) - 161;
       }
     }
+const activityMultipliers: Record<string, number> = {
+  sedentary: 1.2,
+  light: 1.375,
+  moderate: 1.55,
+  active: 1.725,
+  veryActive: 1.9
+};
 
-    const activityMultipliers = {
-      sedentary: 1.2,
-      light: 1.375,
-      moderate: 1.55,
-      active: 1.725,
-      veryActive: 1.9
-    };
+const tdee = activityFactor
+  ? Math.round(bmr * activityMultipliers[activityFactor])
+  : 0;
 
-    const tdee = activityFactor ? Math.round(bmr * activityMultipliers[activityFactor]) : 0;
+// Goal calories
+let recommendedCalories = tdee;
 
-    setResult({
-      bmi,
-      category,
-      color,
-      bmr: Math.round(bmr),
-      tdee
-    });
+if (goal === "lose") recommendedCalories = tdee - 500;
+if (goal === "gain") recommendedCalories = tdee + 300;
+if (goal === "muscle") recommendedCalories = tdee + 400;
+
+// MACROS (simple & realistic)
+const protein = Math.round((recommendedCalories * 0.15) / 4);
+const fat = Math.round((recommendedCalories * 0.25) / 9);
+const carbs = Math.round((recommendedCalories * 0.6) / 4);
+
+setResult({
+  bmi,
+  category,
+  color,
+  bmr: Math.round(bmr),
+  tdee,
+  recommendedCalories,
+  protein,
+  fat,
+  carbs
+});
   };
 
   return (
@@ -206,34 +227,75 @@ export default function BMICalculator() {
             </div>
 
             {/* Results */}
-            {result && (
-              <div className="mt-8 bg-gray-900 border border-gray-800 rounded-lg p-6">
-                <h3 className="text-2xl font-bold mb-4">Your Results</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-black rounded">
-                    <p className="text-gray-400 text-sm mb-2">BMI</p>
-                    <p className={`text-4xl font-bold ${result.color}`}>{result.bmi}</p>
-                    <p className={`text-sm mt-1 ${result.color}`}>{result.category}</p>
-                  </div>
-                  
-                  {result.bmr > 0 && (
-                    <div className="text-center p-4 bg-black rounded">
-                      <p className="text-gray-400 text-sm mb-2">BMR</p>
-                      <p className="text-4xl font-bold text-orange-600">{result.bmr}</p>
-                      <p className="text-xs mt-1 text-gray-400">calories/day</p>
-                    </div>
-                  )}
-                  
-                  {result.tdee > 0 && (
-                    <div className="text-center p-4 bg-black rounded">
-                      <p className="text-gray-400 text-sm mb-2">TDEE</p>
-                      <p className="text-4xl font-bold text-orange-600">{result.tdee}</p>
-                      <p className="text-xs mt-1 text-gray-400">calories/day</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+           {result && (
+  <div className="mt-10 bg-gradient-to-b from-black to-zinc-900 border border-zinc-800 rounded-xl p-8 space-y-6">
+
+    {/* RESULT */}
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 bg-orange-600 flex items-center justify-center rounded">
+        📊
+      </div>
+      <h3 className="text-xl font-bold tracking-widest">RESULT</h3>
+    </div>
+
+    <p className="text-gray-300 leading-relaxed">
+      Based on the data you gave us, your BMI is{" "}
+      <span className={`font-bold ${result.color}`}>
+        {result.bmi}
+      </span>
+      , the total energy expended for someone your stature is{" "}
+      <span className="text-orange-500 font-bold">
+        {result.bmr} Kcal
+      </span>{" "}
+      (BMR), this is the calories your body needs per day just to survive.
+      Taking into account your physical activity, you will need{" "}
+      <span className="text-orange-500 font-bold">
+        {result.tdee} Kcal
+      </span>{" "}
+      (TDEE) per day to maintain your weight.
+    </p>
+
+    <p className="text-white font-semibold">
+      ➜ To achieve your goal we recommend{" "}
+      <span className="text-orange-500 font-bold">
+        {result.recommendedCalories} Kcal
+      </span>{" "}
+      per day.
+    </p>
+
+    <hr className="border-zinc-800" />
+
+    {/* FOOD */}
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 bg-orange-600 flex items-center justify-center rounded">
+        🍎
+      </div>
+      <h3 className="text-xl font-bold tracking-widest">FOOD</h3>
+    </div>
+
+    <p className="text-gray-300">
+      We recommend{" "}
+      <span className="text-orange-500 font-bold">
+        {result.protein} g
+      </span>{" "}
+      of protein,{" "}
+      <span className="text-orange-500 font-bold">
+        {result.fat} g
+      </span>{" "}
+      of fat, and{" "}
+      <span className="text-orange-500 font-bold">
+        {result.carbs} g
+      </span>{" "}
+      of carbohydrates.
+    </p>
+
+    <p className="text-gray-400 text-sm">
+      Aim for a ratio of 1/3 saturated fat (meat, milk, etc.) and 2/3
+      unsaturated fat (fish, avocado, coconut milk).
+    </p>
+  </div>
+)}
+
           </div>
 
           {/* Right Side - Image */}
