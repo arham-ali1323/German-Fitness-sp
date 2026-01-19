@@ -82,7 +82,7 @@ export default function Navbar() {
                 alt="Gym-logo"
                 width={200}
                 height={200}
-                className="h-8 w-auto md:h-[6rem] lg:h-[10rem] transition-all duration-300"
+                className="h-20 w-auto md:h-[6rem] lg:h-[10rem] transition-all duration-300"
               />
             </Link>
           </div>
