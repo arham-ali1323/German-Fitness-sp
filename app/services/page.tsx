@@ -3,6 +3,7 @@ import Banner from "@/components/contact/Banner-section";
 import ClassesGridSection from "@/components/services/Classes-Grid";
 import TrainerSection from "@/components/home/trainers-section";
 import TestimonialSection from "@/components/home/testimonial";
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 const Services = () => {
   return (
@@ -12,6 +13,7 @@ const Services = () => {
       <ClassesGridSection />
       <TrainerSection />
       <TestimonialSection />
+      <ScrollToTopWaterFill />
     </div>
   );
 };

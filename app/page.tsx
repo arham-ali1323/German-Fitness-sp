@@ -10,6 +10,7 @@ import LatestNews from "@/components/home/latest-news";
 import ClassTimeTable from "@/components/home/classtimetable";
 import TestminialSection from "@/components/home/testimonial";
 import LatestEvents from "@/components/home/latest-events";
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 export default function home() {
   return (
     <div>
@@ -24,6 +25,7 @@ export default function home() {
       <PricingSection />
       <LatestEvents />
       <LatestNews />
+      <ScrollToTopWaterFill />
     </div>
   );
 }

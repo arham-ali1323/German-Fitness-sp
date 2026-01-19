@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dumbbell, Eye, EyeOff } from "lucide-react";
 import React, { useState } from 'react';
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -80,6 +81,7 @@ export default function LoginPage() {
           </div>
         </CardContent>
       </Card>
+      <ScrollToTopWaterFill />
     </div>
   );
 }

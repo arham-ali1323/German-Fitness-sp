@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from 'react';
-import BannerSection from '@/components/contact/Banner-section';
-import trainersData from '@/data/trainers.json';
+import { useState } from "react";
+import BannerSection from "@/components/contact/Banner-section";
+import trainersData from "@/data/trainers.json";
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 export default function TeamGridPage() {
   const [hoveredMember, setHoveredMember] = useState<number | null>(null);
-
   return (
     <div className="min-h-screen bg-black text-white">
-      <BannerSection/>
+      <BannerSection />
 
       {/* Team Grid */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
@@ -28,7 +28,7 @@ export default function TeamGridPage() {
                   alt={trainer.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                
+
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
 
@@ -40,13 +40,15 @@ export default function TeamGridPage() {
                   <p className="text-orange-600 font-semibold mb-2">
                     {trainer.specialty}
                   </p>
-                  
+
                   {/* Additional Info - Shows on Hover */}
-                  <div className={`transition-all duration-300 ${
-                    hoveredMember === trainer.id 
-                      ? 'opacity-100 translate-y-0 max-h-40' 
-                      : 'opacity-0 translate-y-4 max-h-0'
-                  }`}>
+                  <div
+                    className={`transition-all duration-300 ${
+                      hoveredMember === trainer.id
+                        ? "opacity-100 translate-y-0 max-h-40"
+                        : "opacity-0 translate-y-4 max-h-0"
+                    }`}
+                  >
                     <p className="text-gray-300 text-sm mb-3">
                       {trainer.experience}
                     </p>
@@ -57,12 +59,16 @@ export default function TeamGridPage() {
                 </div>
 
                 {/* Corner Accent */}
-                <div className={`absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-orange-600 transition-opacity duration-300 ${
-                  hoveredMember === trainer.id ? 'opacity-100' : 'opacity-0'
-                }`}></div>
-                <div className={`absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-orange-600 transition-opacity duration-300 ${
-                  hoveredMember === trainer.id ? 'opacity-100' : 'opacity-0'
-                }`}></div>
+                <div
+                  className={`absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-orange-600 transition-opacity duration-300 ${
+                    hoveredMember === trainer.id ? "opacity-100" : "opacity-0"
+                  }`}
+                ></div>
+                <div
+                  className={`absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-orange-600 transition-opacity duration-300 ${
+                    hoveredMember === trainer.id ? "opacity-100" : "opacity-0"
+                  }`}
+                ></div>
               </div>
             </div>
           ))}
@@ -76,26 +82,7 @@ export default function TeamGridPage() {
         </div>
       </div>
 
-      {/* Back to Top Button */}
-      <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 bg-orange-600 hover:bg-orange-700 text-white p-3 rounded transition-all duration-300 transform hover:scale-110 z-50"
-        aria-label="Scroll to top"
-      >
-        <svg 
-          className="w-6 h-6" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M5 10l7-7m0 0l7 7m-7-7v18" 
-          />
-        </svg>
-      </button>
+      <ScrollToTopWaterFill />
     </div>
   );
 }

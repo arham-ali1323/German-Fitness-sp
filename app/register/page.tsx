@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dumbbell, Eye, EyeOff } from "lucide-react";
 import React, { useState } from 'react';
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -157,6 +158,7 @@ export default function RegisterPage() {
           </div>
         </CardContent>
       </Card>
+      <ScrollToTopWaterFill />
     </div>
   );
 }

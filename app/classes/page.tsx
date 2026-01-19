@@ -3,6 +3,7 @@ import ClassesSection from "@/components/classes/Classes-Section";
 import TrainerSection from "@/components/home/trainers-section";
 import TestimonialSection from "@/components/home/testimonial";
 import ClassTimeTable from "@/components/classes/ClassTimetable";
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 const CardioWorkoutPage = () => {
   return (
@@ -12,6 +13,7 @@ const CardioWorkoutPage = () => {
       <TrainerSection />
       <TestimonialSection />
       <ClassTimeTable/>
+      <ScrollToTopWaterFill />
     </div>
   );
 };

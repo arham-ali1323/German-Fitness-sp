@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 interface Trainer {
   id: number;
@@ -93,12 +94,22 @@ export default function TrainerProfilePage() {
   const certifications = trainer.detailedCertifications;
 
   return (
-    <div className="min-h-screen bg-black text-white py-16 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          {/* Left Column - Profile Card */}
-          <div className="lg:col-span-2">
-            <div className="bg-gradient-to-b from-gray-900 to-black border border-gray-800">
+    <section>
+      <div className="min-h-screen bg-black text-white py-16 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            {/* Left Column - Profile Card */}
+            <div className="lg:col-span-2">
+              <div className="bg-gradient-to-b from-gray-900 to-black border border-gray-800">
+                {/* Profile Image */}
+                <div className="relative">
+                  <img
+                    src={trainer.image}
+                    alt={trainer.name}
+                    className="w-full h-96 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                </div>
               {/* Profile Image */}
               <div className="relative">
                 <img
@@ -272,6 +283,8 @@ export default function TrainerProfilePage() {
           </div>
         </div>
       </div>
+    <ScrollToTopWaterFill />
     </div>
-  );
+</section>
+)
 }

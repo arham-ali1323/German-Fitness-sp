@@ -5,6 +5,7 @@ import GymFeatures from "@/components/about/Gym-feature";
 import TrainerSection from "@/components/home/trainers-section";
 import TestimonialSection from "@/components/home/testimonial";
 import SubscribeBanner from "@/components/contact/Subscribe-Banner";
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 const About = () => {
   return (
@@ -15,6 +16,7 @@ const About = () => {
       <TrainerSection />
       <TestimonialSection />
       <SubscribeBanner />
+      <ScrollToTopWaterFill />
     </div>
   );
 };

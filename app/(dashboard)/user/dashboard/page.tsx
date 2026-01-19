@@ -12,6 +12,7 @@ import {
   Dumbbell
 } from "lucide-react";
 import Link from "next/link";
+import ScrollToTopWaterFill from "@/components/ui/back-to-top";
 
 export default function UserDashboard() {
   // Mock data - in real app, this would come from API
@@ -36,13 +37,71 @@ export default function UserDashboard() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Welcome back!</h1>
-        <p className="text-muted-foreground">Here's an overview of your fitness journey.</p>
-      </div>
+    <>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold">Welcome back!</h1>
+          <p className="text-muted-foreground">Here's an overview of your fitness journey.</p>
+        </div>
 
-      {/* Stats Grid */}
+        {/* Stats Grid */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Workouts</CardTitle>
+              <Dumbbell className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalWorkouts}</div>
+              <p className="text-xs text-muted-foreground">
+                +{stats.thisMonth} this month
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Calories Burned</CardTitle>
+              <Activity className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.caloriesBurned}</div>
+              <p className="text-xs text-muted-foreground">
+                This month
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Membership</CardTitle>
+              <CreditCard className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center space-x-2">
+                <Badge variant={stats.activeMembership ? "default" : "secondary"}>
+                  {stats.activeMembership ? "Active" : "Inactive"}
+                </Badge>
+                <span className="text-sm text-muted-foreground">
+                  {stats.membershipDays} days left
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Next Payment</CardTitle>
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.nextPayment}</div>
+              <p className="text-xs text-muted-foreground">
+                Membership renewal
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -188,5 +247,7 @@ export default function UserDashboard() {
         </CardContent>
       </Card>
     </div>
+    <ScrollToTopWaterFill />
+    </>
   );
 }

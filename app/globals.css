@@ -151,3 +151,17 @@ h1, h2, h3, h4, h5, h6 {
     transform: rotateY(180deg);
   }
 }
+
+/* Waves */
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-wave {
+  animation: wave 4s linear infinite;
+}

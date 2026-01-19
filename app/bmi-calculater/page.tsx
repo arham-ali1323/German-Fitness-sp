@@ -2,6 +2,7 @@
 import Bannersection from  '@/components/contact/Banner-section';
 import SubscribeBanner from '@/components/contact/Subscribe-Banner';
 import { useState } from 'react';
+import ScrollToTopWaterFill from '@/components/ui/back-to-top';
 
 export default function BMICalculator() {
   const [height, setHeight] = useState('');
@@ -316,6 +317,7 @@ setResult({
       </div>
     </div>
     <SubscribeBanner/>
+    <ScrollToTopWaterFill />
      </div>
 
   );
