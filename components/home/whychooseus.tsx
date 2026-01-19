@@ -100,14 +100,17 @@ export default function WhyChooseUs() {
 
       {/* Heading */}
       <header className="relative z-10 text-center mb-20">
-        <h2 className="font-orbitron uppercase text-white text-3xl md:text-5xl font-extrabold tracking-widest">
+        <span className="absolute inset-0 flex items-center justify-center text-[8rem] md:text-[12rem] font-bold text-white/5 font-orbitron uppercase tracking-widest">
+          Feature
+        </span>
+        <h2 className="font-orbitron uppercase text-white text-3xl md:text-5xl font-extrabold tracking-widest relative z-10">
           Why Choose Us
         </h2>
       </header>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.2fr_1fr] items-center">
         {/* LEFT IMAGE */}
-        <div className="relative hidden lg:block rounded-lg overflow-hidden shadow-2xl">
+        <div className="relative hidden lg:block rounded-lg overflow-hidden shadow-2xl h-[672px]">
           <Image
             src={whyChooseUsImage}
             alt="Gym Training Session"
