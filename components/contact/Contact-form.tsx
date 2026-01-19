@@ -81,26 +81,7 @@ export default function ContactForm() {
             </button>
           </form>
         </div>
-<SubscribeBanner/>
-      {/* REUSABLE INPUT STYLE */}
-      <style jsx>{`
-        .contact-input {
-          width: 100%;
-          background: #111827;
-          border: 1px solid #1f2937;
-          border-radius: 0.375rem;
-          padding: 1rem 1.5rem;
-          color: #d1d5db;
-          transition: border-color 0.2s ease;
-        }
-        .contact-input::placeholder {
-          color: #6b7280;
-        }
-        .contact-input:focus {
-          outline: none;
-          border-color: #f97316;
-        }
-      `}</style>
-    </section>
+        <SubscribeBanner/>
+      </section>
   );
 }

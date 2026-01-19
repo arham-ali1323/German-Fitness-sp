@@ -40,14 +40,14 @@ export default function Navbar() {
           {/* LEFT */}
           <div className="flex gap-4 items-center truncate">
             <Link href="mailto:hadkaurfitness@email.com">
-              <span className="flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-yellow-300 hover:scale-105">
+              <span className="hidden lg:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
                 <Mail size={14} />
                 hadkaurfitness@email.com
               </span>
             </Link>
 
             <Link href="tel:+98765432122">
-              <span className="hidden sm:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
+              <span className="hidden lg:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
                 <Phone size={14} />
                 +987 654 321 22
               </span>
