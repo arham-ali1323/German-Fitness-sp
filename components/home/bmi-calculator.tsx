@@ -104,7 +104,6 @@ const tdee = activityFactor
   ? Math.round(bmr * activityMultipliers[activityFactor])
   : 0;
 
-// Goal calories
 let recommendedCalories = tdee;
 
 if (goal === "lose") recommendedCalories = tdee - 500;
