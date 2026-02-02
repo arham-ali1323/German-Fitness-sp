@@ -21,6 +21,30 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "German Fitness - Complete Gym Management System",
   description: "Professional gym management system with member tracking, class scheduling, and payment processing",
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon.png", sizes: "64x64", type: "image/png" },
+      { url: "/favicon.png", sizes: "128x128", type: "image/png" },
+      { url: "/favicon.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.png", sizes: "256x256", type: "image/png" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/favicon.png", sizes: "57x57", type: "image/png" },
+      { url: "/favicon.png", sizes: "60x60", type: "image/png" },
+      { url: "/favicon.png", sizes: "72x72", type: "image/png" },
+      { url: "/favicon.png", sizes: "76x76", type: "image/png" },
+      { url: "/favicon.png", sizes: "114x114", type: "image/png" },
+      { url: "/favicon.png", sizes: "120x120", type: "image/png" },
+      { url: "/favicon.png", sizes: "144x144", type: "image/png" },
+      { url: "/favicon.png", sizes: "152x152", type: "image/png" },
+      { url: "/favicon.png", sizes: "180x180", type: "image/png" },
+      { url: "/favicon.png", sizes: "192x192", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
