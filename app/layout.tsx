@@ -21,9 +21,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "German Fitness - Complete Gym Management System",
   description: "Professional gym management system with member tracking, class scheduling, and payment processing",
+  themeColor: "#000000",
   icons: {
     icon: [
-      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon.png", sizes: "64x64", type: "image/png" },
@@ -32,6 +32,7 @@ export const metadata: Metadata = {
       { url: "/favicon.png", sizes: "256x256", type: "image/png" },
       { url: "/favicon.png", sizes: "512x512", type: "image/png" },
     ],
+    shortcut: "/favicon.png",
     apple: [
       { url: "/favicon.png", sizes: "57x57", type: "image/png" },
       { url: "/favicon.png", sizes: "60x60", type: "image/png" },
@@ -45,6 +46,7 @@ export const metadata: Metadata = {
       { url: "/favicon.png", sizes: "192x192", type: "image/png" },
     ],
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
