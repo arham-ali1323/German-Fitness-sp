@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   themeColor: "#000000",
   icons: {
     icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon.png", sizes: "64x64", type: "image/png" },
       { url: "/favicon.png", sizes: "128x128", type: "image/png" },
       { url: "/favicon.png", sizes: "192x192", type: "image/png" },
