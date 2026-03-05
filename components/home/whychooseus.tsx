@@ -56,11 +56,11 @@ const FeatureCard = ({
 }: FeatureCardProps) => {
   return (
     <div
-      className={`relative w-full h-64 md:h-80 p-6 flex flex-col justify-center text-center transition-all shadow-xl
+      className={`group relative w-full h-64 md:h-80 p-6 flex flex-col justify-center text-center transition-all duration-300 shadow-xl
         ${
           variant === "orange"
-            ? "bg-orange-500 hover:bg-black hover:text-orange-500 text-black"
-            : "bg-zinc-900 hover:bg-orange-500 hover:text-black text-white"
+            ? "bg-orange-500 hover:bg-black text-black hover:text-white"
+            : "bg-zinc-900 hover:bg-orange-500 text-white hover:text-black"
         }`}
     >
       <div className="mb-4">
@@ -69,21 +69,28 @@ const FeatureCard = ({
           alt={iconAlt}
           width={48}
           height={48}
-          className="mx-auto transition-all duration-300"
-          style={{ filter: variant === 'orange' ? 'brightness(0) invert(0)' : 'brightness(0) invert(1)' }}
+          className={`mx-auto transition-all duration-300 
+            ${
+              variant === "orange"
+                ? "brightness-0 group-hover:invert group-hover:brightness-0 group-hover:invert-1" 
+                /* Start Black -> Hover White */
+                : "invert brightness-0 invert-1 group-hover:invert-0 group-hover:brightness-0" 
+                /* Start White -> Hover Black */
+            }`}
         />
       </div>
 
-      <h4 className="uppercase font-orbitron font-extrabold tracking-wide text-base md:text-lg mb-3 transition-colors duration-300">
+      <h4 className="uppercase font-orbitron font-extrabold tracking-wide text-base md:text-lg mb-3">
         {title}
       </h4>
 
-      <p className="text-sm leading-relaxed transition-colors duration-300">
+      <p className="text-sm leading-relaxed opacity-90">
         {description}
       </p>
     </div>
   );
 };
+
 
 export default function WhyChooseUs() {
   const handlePlayVideo = () => {

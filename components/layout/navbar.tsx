@@ -38,28 +38,32 @@ export default function Navbar() {
       <div className="bg-gradient-to-r from-orange-900 to-orange-700 text-xs text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-10 flex justify-between items-center">
           {/* LEFT */}
-          <div className="flex gap-4 items-center truncate">
-            <Link href="mailto:hadkaurfitness@email.com">
-              <span className="hidden lg:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
-                <Mail size={14} />
-                hadkaurfitness@email.com
-              </span>
-            </Link>
+          <div className="flex flex-wrap gap-6 items-center"> 
+  {/* Email */}
+  <Link href="mailto:germanfitness@email.com" className="group">
+    <span className="flex items-center gap-2 cursor-pointer transition-all duration-300 text-gray-400 group-hover:text-orange-500 group-hover:translate-x-1">
+      <Mail size={16} className="text-orange-500" />
+      <span className="text-sm font-medium">germanfitness@email.com</span>
+    </span>
+  </Link>
 
-            <Link href="tel:+98765432122">
-              <span className="hidden lg:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
-                <Phone size={14} />
-                +987 654 321 22
-              </span>
-            </Link>
+  {/* Phone */}
+  <Link href="tel:+923001234567" className="group">
+    <span className="flex items-center gap-2 cursor-pointer transition-all duration-300 text-gray-400 group-hover:text-orange-500 group-hover:translate-x-1">
+      <Phone size={16} className="text-orange-500" />
+      <span className="text-sm font-medium">+92 300 1234567</span>
+    </span>
+  </Link>
 
-            <Link href="https://www.google.com/maps">
-              <span className="hidden lg:flex items-center gap-2 cursor-pointer transition-all duration-200 hover:text-orange-300 hover:scale-105">
-                <MapPin size={14} />
-                17110 116th Ave SE Unit A Renton
-              </span>
-            </Link>
-          </div>
+  {/* Address */}
+  <Link href="https://google.com" className="group">
+    <span className="flex items-center gap-2 cursor-pointer transition-all duration-300 text-gray-400 group-hover:text-orange-500 group-hover:translate-x-1">
+      <MapPin size={16} className="text-orange-500" />
+      <span className="text-sm font-medium">68-A, Main Fateh Sher Road, Sahiwal</span>
+    </span>
+  </Link>
+</div>
+
 
           {/* RIGHT */}
           <div className="flex gap-4 items-center">

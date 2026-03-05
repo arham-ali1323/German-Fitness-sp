@@ -27,35 +27,38 @@ export default function MapWithTable() {
       </div>
 
       {/* OVERLAY SCHEDULE */}
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 w-[320px] bg-black border border-gray-800 shadow-2xl z-20 hidden md:block">
-        {schedule.map((item, i) => {
-          const isHovered = hoveredDay === i;
-          return (
-            <div
-              key={i}
-              onMouseEnter={() => setHoveredDay(i)}
-              onMouseLeave={() => setHoveredDay(null)}
-              className="flex justify-between px-6 py-4 border-b border-gray-800 transition hover:bg-orange-500/10"
-            >
-              <span className={`font-semibold tracking-wide transition-colors ${
-                isHovered ? "text-orange-500" : "text-white"
-              }`}>
-                {item.day}
-              </span>
+     <div className="absolute right-6 top-1/2 -translate-y-1/2 w-[320px] bg-black border border-gray-800 shadow-2xl z-20 hidden md:block">
+  {schedule.map((item, i) => {
+    const isHovered = hoveredDay === i;
+    return (
+      <div
+        key={i}
+        onMouseEnter={() => setHoveredDay(i)}
+        onMouseLeave={() => setHoveredDay(null)}
+        className="flex justify-between px-6 py-4 border-b border-gray-800 cursor-default hover:bg-orange-500"
+      >
+        <span className={`font-semibold tracking-wide ${
+          isHovered ? "text-black" : "text-white"
+        }`}>
+          {item.day}
+        </span>
 
-              <span className={`font-semibold transition-colors ${
-                item.open
-                  ? isHovered
-                    ? "text-orange-500"
-                    : "text-white"
-                  : "text-red-500"
-              }`}>
-                {item.hours}
-              </span>
-            </div>
-          );
-        })}
+        <span className={`font-semibold ${
+          item.open
+            ? isHovered
+              ? "text-black" // Solid black on orange background
+              : "text-white"
+            : isHovered 
+              ? "text-black" // Keeps red from being unreadable on orange
+              : "text-red-500"
+        }`}>
+          {item.hours}
+        </span>
       </div>
+    );
+  })}
+</div>
+
     </section>
   );
 }

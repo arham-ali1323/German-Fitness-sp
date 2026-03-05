@@ -19,20 +19,19 @@ export default function ContactForm() {
       {/* MAIN CONTACT */}
      <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-start">
           {/* Left Side - Text */}
-          <div className="space-y-8">
-            <h1 className="font-orbitron text-5xl md:text-6xl font-bold uppercase tracking-wider">
-              Feel Free To Ask
-              <br />
-              Us Anything
-            </h1>
-            <p className="text-gray-400 leading-relaxed max-w-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              <br />
-              Suspendisse interdum nulla eu posuere scelerisque.
-              <br />
-              Donec sagittis adipiscing elit.
-            </p>
-          </div>
+    <div className="space-y-8">
+  <h1 className="font-orbitron text-5xl md:text-6xl font-bold uppercase tracking-wider">
+    Feel Free To Ask
+    <br />
+    Us Anything
+  </h1>
+  <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-lg">
+    Have a question about our <span className="text-orange font-medium">specialized programs</span> or elite facilities? 
+    Our expert team is ready to guide you. Reach out today and take the first step toward your 
+    ultimate fitness transformation.
+  </p>
+</div>
+
 
           {/* Right Side - Form */}
           <form onSubmit={handleSubmit} className="space-y-6">

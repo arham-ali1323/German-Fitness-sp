@@ -47,13 +47,14 @@ export default function GymFooter() {
               </div>
             </div>
 
-            {/* Welcome Text */}
-            <div className="space-y-2 border-b border-gray-800 pb-4">
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Welcome to German Fitness. We are here to <br />
-                support and guide you.
-              </p>
-            </div>
+       {/* Welcome Text */}
+<div className="space-y-2 border-b border-gray-800 pb-4">
+  <p className="text-gray-400 text-sm leading-relaxed">
+    Welcome to <span className="text-orange font-medium">German Fitness</span>. 
+    Professional coaching and premium facilities dedicated to your ultimate transformation.
+  </p>
+</div>
+
 
             {/* Contact Info */}
             <div className="space-y-3">
@@ -74,7 +75,7 @@ export default function GymFooter() {
                   VISIT OUR LOCATION
                 </p>
                 <address className="text-md text-gray-300">
-                  1780 16th Ave SE Unit A Renton, WA 98055-5525
+                  68-A, Main Fateh Sher Road, Fateh Sher Colony, Sahiwal, 57000, Pakistan
                 </address>
               </div>
             </div>
@@ -156,7 +157,16 @@ export default function GymFooter() {
                 <a href="#" className="text-orange-500 hover:underline">
                   German Fitness
                 </a>
-                . All rights reserved 
+                . All rights reserved.{" "}
+                <span className="ml-1 italic">
+                  Designed by{" "}
+                  <a
+                    href="https://arham-pro-portfolio.vercel.app/"
+                    className="text-white hover:text-orange-500 transition-colors"
+                  >
+                    Arham Ali
+                  </a>
+                </span>
               </p>
             </div>
 

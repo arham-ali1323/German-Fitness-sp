@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "German Fitness - Complete Gym Management System",
+  title: "German Fitness & Sports | Best Gym In Sahiwal - Complete Gym Management System",
   description: "Professional gym management system with member tracking, class scheduling, and payment processing",
   themeColor: "#FF6B35",
   icons: {
