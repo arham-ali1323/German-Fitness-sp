@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useDashboardMode } from "@/components/dashboard/dashboard-mode-provider";
 import { ChevronUp, ChevronDown, Search, Filter } from 'lucide-react';
 
-type SortField = 'id' | 'name' | 'email' | 'role' | 'status' | 'joinDate';
+type SortField = 'id' | 'name' | 'email' | 'role' | 'status' | 'joinDate' | 'lastLogin';
 type SortOrder = 'asc' | 'desc';
 
 interface TableData {
