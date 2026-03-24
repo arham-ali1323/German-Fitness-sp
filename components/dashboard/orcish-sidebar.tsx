@@ -74,6 +74,7 @@ const navigation = [
   { name: "Table", href: "/dashboard/table", icon: Table2, children: [
     { name: "Table", href: "/dashboard/table/basic" },
     { name: "Datatable", href: "/dashboard/table/datatable" },
+    { name: "CRUD", href: "/dashboard/table/crud" },
   ] },
 
 ] satisfies NavItem[];
