@@ -5,41 +5,35 @@ export default function FitnessEvents() {
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
 
   const events = [
-    {
-      id: 1,
-      number: "01",
-      date: "AUGUST 24, 2023",
-      title: "BENCHPRESS HACKATHON",
-      image:
-        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop",
-      hasButton: true,
-    },
-    {
-      id: 2,
-      number: "02",
-      date: "SEPTEMBER 24, 2023",
-      title: "PRO BOXING CHAMPIONS LEAGUE",
-      image: null,
-      hasButton: false,
-    },
-    {
-      id: 3,
-      number: "03",
-      date: "NOVEMBER 24, 2023",
-      title: "DEAD LIFTING PRO STATE LEAGUE",
-      image: null,
-      hasButton: false,
-    },
-    {
-      id: 4,
-      number: "04",
-      date: "DECEMBER 24, 2023",
-      title: "WEIGHTLIFTING COMPETITION",
-      image: null,
-      hasButton: false,
-    },
-  ];
-
+  {
+    id: 1,
+    number: "01",
+    date: "AUGUST 24, 2023",
+    title: "BENCHPRESS HACKATHON",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400",
+  },
+  {
+    id: 2,
+    number: "02",
+    date: "SEPTEMBER 24, 2023",
+    title: "PRO BOXING CHAMPIONS LEAGUE",
+    image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=400",
+  },
+  {
+    id: 3,
+    number: "03",
+    date: "NOVEMBER 24, 2023",
+    title: "DEAD LIFTING PRO STATE LEAGUE",
+    image: "https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=400",
+  },
+  {
+    id: 4,
+    number: "04",
+    date: "DECEMBER 24, 2023",
+    title: "WEIGHTLIFTING COMPETITION",
+    image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400",
+  },
+];
   return (
     <div className="bg-black text-white py-16 px-4 md:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">

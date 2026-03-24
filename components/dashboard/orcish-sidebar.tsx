@@ -4,290 +4,309 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { StatusBadge } from "@/components/ui/status-badge";
-import { 
-  LayoutDashboard, 
-  LifeBuoy, 
-  BarChart3, 
-  FolderKanban, 
-  Users, 
-  Database, 
-  FileText, 
-  PenTool, 
-  MoreHorizontal,
-  Settings, 
-  HelpCircle,
-  Plus,
+import { useDashboardMode } from "@/components/dashboard/dashboard-mode-provider";
+import {
+  Menu,
   X,
-  Menu
+  ChevronDown,
+  ChevronRight,
+  LayoutDashboard,
+  Dumbbell,
+  Apple,
+  Flag,
+  CalendarDays,
+  BarChart3,
+  UserCircle2,
+  ShieldCheck,
+  Footprints,
+  FileText,
+  Table2,
+  Boxes,
+  Layers3,
+  Sparkles,
+  Crown,
 } from "lucide-react";
 
+type NavItem = {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  children?: { name: string; href: string }[];
+};
+
 const navigation = [
+  { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
   {
-    title: "Main Navigation",
-    items: [
-      {
-        name: "Dashboard",
-        href: "/dashboard",
-        icon: LayoutDashboard,
-      },
-      {
-        name: "Lifecycle",
-        href: "/dashboard/lifecycle",
-        icon: LifeBuoy,
-      },
-      {
-        name: "Analytics",
-        href: "/dashboard/analytics",
-        icon: BarChart3,
-      },
-      {
-        name: "Projects",
-        href: "/dashboard/projects",
-        icon: FolderKanban,
-      },
-      {
-        name: "Team",
-        href: "/dashboard/team",
-        icon: Users,
-      },
-    ]
+    name: "Workout",
+    href: "/user/workouts",
+    icon: Dumbbell,
+    children: [
+      { name: "Workout Filter", href: "/user/workouts/filter" },
+      { name: "Workout Top Filter", href: "/user/workouts/top-filter" },
+      { name: "Body Workout", href: "/user/workouts/body-workout" },
+      { name: "Create Workout", href: "/user/workouts/create" },
+      { name: "Workout Summary", href: "/user/workouts/summary" },
+    ],
   },
   {
-    title: "Documents",
-    items: [
-      {
-        name: "Data Library",
-        href: "/dashboard/data-library",
-        icon: Database,
-      },
-      {
-        name: "Reports",
-        href: "/dashboard/reports",
-        icon: FileText,
-      },
-      {
-        name: "Word Assistant",
-        href: "/dashboard/word-assistant",
-        icon: PenTool,
-      },
-      {
-        name: "More",
-        href: "/dashboard/more",
-        icon: MoreHorizontal,
-      },
-    ]
+    name: "Diet Plan",
+    href: "/user/diet-plan",
+    icon: Apple,
+    children: [
+      { name: "Diet Menu", href: "/user/diet-plan/menu" },
+      { name: "Diet Details", href: "/user/diet-plan/details" },
+    ],
   },
-  {
-    title: "Other",
-    items: [
-      {
-        name: "Settings",
-        href: "/dashboard/settings",
-        icon: Settings,
-      },
-      {
-        name: "Get Help",
-        href: "/dashboard/help",
-        icon: HelpCircle,
-      },
-    ]
-  },
-];
+  { name: "Goals", href: "/user/goals", icon: Flag },
+  { name: "My Schedule", href: "/user/schedule", icon: CalendarDays },
+  { name: "Progress", href: "/user/progress", icon: BarChart3 },
+  { name: "Profile", href: "/user/profile", icon: UserCircle2 },
+  { name: "Authentication", href: "/dashboard/authentication", icon: ShieldCheck, children: [
+    { name: "Sign In", href: "/dashboard/authentication/signin" },
+    { name: "Sign Up", href: "/dashboard/authentication/signup" },
+    { name: "Forgot Password", href: "/dashboard/authentication/forgot-password" },
+    { name: "Reset Password", href: "/dashboard/authentication/reset-password" },
+    { name: "Verify Email", href: "/dashboard/authentication/verify-email" },
+    { name: "Verify Pin", href: "/dashboard/authentication/verify-pin" },
+  ] },
+  { name: "Step", href: "/dashboard/step", icon: Footprints },
+  { name: "Form", href: "/dashboard/form", icon: FileText, children: [
+    { name: "Form Element", href: "/dashboard/form/element" },
+    { name: "Checkbox & Radio", href: "/dashboard/form/checkbox-radio" },
+    { name: "Datepicker", href: "/dashboard/form/datepicker" },
+    { name: "Basic Form", href: "/dashboard/form/basic" },
+    { name: "Validation", href: "/dashboard/form/validation" },
+  ] },
+  { name: "Table", href: "/dashboard/table", icon: Table2, children: [
+    { name: "Table", href: "/dashboard/table/basic" },
+    { name: "Datatable", href: "/dashboard/table/datatable" },
+  ] },
+
+] satisfies NavItem[];
 
 export function OrcishSidebar() {
   const pathname = usePathname();
-  const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const { isDark } = useDashboardMode();
   const [isMobile, setIsMobile] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [focusedIndex, setFocusedIndex] = React.useState(-1);
-  const sidebarRef = React.useRef<HTMLDivElement>(null);
-
-  const allNavItems = navigation.flatMap(section => section.items);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [openMenus, setOpenMenus] = React.useState<Record<string, boolean>>({
+    Workout: true,
+    "Diet Plan": true,
+    Table: true,
+    Form: true,
+    Authentication: true,
+  });
 
   React.useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (mobile) {
-        setIsCollapsed(true);
         setIsMobileMenuOpen(false);
       }
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMobileMenuOpen) {
-        toggleMobileMenu();
-      }
-      
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        if (isMobile) {
-          toggleMobileMenu();
-        } else {
-          setIsCollapsed(!isCollapsed);
-        }
-      }
-      
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const direction = e.key === 'ArrowDown' ? 1 : -1;
-        const newIndex = Math.max(0, Math.min(allNavItems.length - 1, focusedIndex + direction));
-        setFocusedIndex(newIndex);
-      }
-      
-      if (e.key === 'Enter' && focusedIndex >= 0) {
-        const item = allNavItems[focusedIndex];
-        if (item) {
-          window.location.href = item.href;
-        }
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isMobileMenuOpen, isCollapsed, focusedIndex]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    setFocusedIndex(-1);
+  };
+
+  const isExpanded = isMobile ? isMobileMenuOpen : isHovered;
+  const toggleMenu = (name: string) => {
+    setOpenMenus((prev) => {
+      const newMenus = { ...prev };
+      // Close all other menus
+      Object.keys(newMenus).forEach(key => {
+        if (key !== name) {
+          newMenus[key] = false;
+        }
+      });
+      // Toggle the clicked menu
+      newMenus[name] = !prev[name];
+      return newMenus;
+    });
   };
 
   return (
     <>
-      {/* Mobile Overlay */}
       {isMobile && isMobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300"
+        <div
+          className="fixed inset-0 z-40 bg-black/40"
           onClick={toggleMobileMenu}
         />
       )}
-      
-      {/* Sidebar */}
-      <div className={`flex h-full flex-col bg-gray-50 border-r border-gray-200 transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'} ${
-        isMobile ? (isMobileMenuOpen ? 'fixed left-0 top-0 z-50' : 'fixed -left-full') : ''
-      }`}>
-      {/* Header */}
-      <div className="flex h-16 items-center justify-between px-6 border-b border-gray-200">
-        {!isCollapsed && (
-          <h1 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-            Orcish Dashboard
-            <StatusBadge status="success" variant="subtle" size="sm" icon={false}>
-              Pro
-            </StatusBadge>
-          </h1>
+
+      <aside
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
+        className={cn(
+          "h-screen shrink-0 border-r transition-all duration-300",
+          isExpanded ? "w-64" : "w-20",
+          isDark ? "border-slate-800 bg-black" : "border-slate-200 bg-white",
+          "flex flex-col px-4 py-5",
+          isMobile
+            ? isMobileMenuOpen
+              ? "fixed left-0 top-0 z-50"
+              : "fixed -left-full top-0 z-50"
+            : "relative"
         )}
-        <button
-          onClick={() => {
-            if (isMobile) {
-              toggleMobileMenu();
-            } else {
-              setIsCollapsed(!isCollapsed);
-            }
-          }}
-          className="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-          aria-label={isMobile ? (isMobileMenuOpen ? 'Close menu' : 'Open menu') : (isCollapsed ? 'Expand sidebar' : 'Collapse sidebar')}
-        >
-          {isMobile ? (
-            isMobileMenuOpen ? <X className="h-4 w-4 text-gray-600" /> : <Menu className="h-4 w-4 text-gray-600" />
-          ) : (
-            <MoreHorizontal className="h-4 w-4 text-gray-600" />
-          )}
-        </button>
-      </div>
-      
-      {/* Quick Create Button */}
-      {!isCollapsed && (
-        <div className="px-4 pt-4">
-          <Button className="w-full bg-gray-700 hover:bg-gray-800 text-white transition-all duration-200 hover:scale-105">
-            <Plus className="mr-2 h-4 w-4" />
-            Quick Create
-          </Button>
-        </div>
-      )}
-      
-      {/* Navigation */}
-      <nav className="flex-1 space-y-6 px-4 py-6 overflow-y-auto">
-        {navigation.map((section) => (
-          <div key={section.title}>
-            {!isCollapsed && (
-              <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                {section.title}
-              </h3>
+      >
+        <div className="mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-2 overflow-hidden">
+            <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-orange-500 to-orange-500" />
+            {isExpanded && (
+              <span
+                className={cn(
+                  "text-xl font-semibold whitespace-nowrap",
+                  isDark ? "text-slate-100" : "text-slate-700"
+                )}
+              >
+                German Fitness
+              </span>
             )}
-            <div className="space-y-1">
-              {section.items.map((item, itemIndex) => {
-                const isActive = pathname === item.href;
-                const globalIndex = navigation.slice(0, navigation.indexOf(section)).reduce((acc, s) => acc + s.items.length, 0) + itemIndex;
-                const isFocused = focusedIndex === globalIndex;
-                
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
+          </div>
+          {(isMobile || isExpanded) && (
+            <button
+              onClick={toggleMobileMenu}
+              className={cn(
+                "rounded-md p-2",
+                isDark
+                  ? "text-slate-400 hover:bg-slate-900"
+                  : "text-slate-500 hover:bg-slate-100"
+              )}
+              aria-label="Close menu"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+
+        <nav className="space-y-1 flex-1 overflow-y-auto scrollbar-thin scrollbar-orange">
+          {navigation.map((item) => {
+            const isActive =
+              item.href === "/dashboard"
+                ? pathname === "/dashboard" || pathname === "/user/dashboard"
+                : pathname?.startsWith(item.href) ||
+                  item.children?.some((child) => pathname?.startsWith(child.href));
+            const isMenuOpen = Boolean(openMenus[item.name]);
+
+            return (
+              <div key={item.name}>
+                {item.children && isExpanded ? (
+                  <button
+                    type="button"
+                    title={!isExpanded ? item.name : undefined}
+                    onClick={() => toggleMenu(item.name)}
                     className={cn(
-                      "flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+                      "w-full flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                      "justify-start",
                       isActive
-                        ? "bg-gray-200 text-gray-900 shadow-sm"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-                      isFocused && "ring-2 ring-primary ring-offset-2"
+                        ? "bg-orange-500 text-white"
+                        : isDark
+                          ? "text-slate-300 hover:bg-slate-900"
+                          : "text-slate-600 hover:bg-slate-100"
                     )}
-                    title={isCollapsed ? item.name : undefined}
-                    aria-label={`${item.name} ${isActive ? '(current page)' : ''}`}
-                    tabIndex={isCollapsed ? -1 : 0}
-                    onFocus={() => setFocusedIndex(globalIndex)}
-                    onBlur={() => setFocusedIndex(-1)}
                   >
                     <item.icon className="h-4 w-4" />
-                    {!isCollapsed && <span className="ml-3">{item.name}</span>}
-                    {isActive && !isCollapsed && (
-                      <span className="ml-auto w-2 h-2 bg-primary rounded-full" aria-hidden="true" />
+                    <span className="ml-3 whitespace-nowrap">{item.name}</span>
+                    {isMenuOpen ? (
+                      <ChevronDown className="ml-auto h-4 w-4" />
+                    ) : (
+                      <ChevronRight className="ml-auto h-4 w-4" />
                     )}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    title={!isExpanded ? item.name : undefined}
+                    className={cn(
+                      "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                      isExpanded ? "justify-start" : "justify-center",
+                      isActive
+                        ? "bg-orange-500 text-white"
+                        : isDark
+                          ? "text-slate-300 hover:bg-slate-900"
+                          : "text-slate-600 hover:bg-slate-100"
+                    )}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {isExpanded && <span className="ml-3 whitespace-nowrap">{item.name}</span>}
+                    {isExpanded && !item.children && <ChevronRight className="ml-auto h-4 w-4 opacity-70" />}
                   </Link>
-                );
-              })}
-            </div>
+                )}
+
+                {item.children && isExpanded && isMenuOpen && (
+                  <div className="mt-1 ml-8 space-y-1">
+                    {item.children.map((child) => {
+                      const isChildActive = pathname?.startsWith(child.href);
+                      return (
+                        <Link
+                          key={child.name}
+                          href={child.href}
+                          className={cn(
+                            "block rounded-md px-2 py-1.5 text-xs transition-colors",
+                            isChildActive
+                              ? "text-orange-500 font-medium"
+                              : isDark
+                                ? "text-slate-400 hover:text-slate-200"
+                                : "text-slate-500 hover:text-slate-700"
+                          )}
+                        >
+                          {child.name}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </nav>
+
+        <div
+          className={cn(
+            "mt-auto rounded-2xl p-4 text-center",
+            isDark ? "bg-slate-900" : "bg-orange-50"
+          )}
+        >
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-sm">
+            <Crown className="h-6 w-6 text-orange-500" />
           </div>
-        ))}
-      </nav>
-      
-      {/* User Profile Section */}
-      {!isCollapsed && (
-        <div className="border-t border-gray-200 p-4">
-          <div className="flex items-center space-x-3">
-            <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
-              <span className="text-sm font-medium text-gray-700">S</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
-                shadcn
+          {isExpanded && (
+            <>
+              <p className={cn("text-sm font-semibold", isDark ? "text-slate-100" : "text-slate-700")}>
+                Premium Membership
               </p>
-              <p className="text-xs text-gray-500 truncate">
-                m@example.com
+              <p className={cn("mt-1 text-xs", isDark ? "text-slate-400" : "text-slate-500")}>
+                Monitor progress and achieve goals faster
               </p>
-            </div>
-          </div>
+              <button className="mt-3 w-full rounded-lg bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600">
+                Upgrade
+              </button>
+            </>
+          )}
         </div>
+      </aside>
+
+      {isMobile && !isMobileMenuOpen && (
+        <button
+          onClick={toggleMobileMenu}
+          className={cn(
+            "fixed left-4 top-4 z-30 rounded-lg border p-2 shadow-sm",
+            isDark
+              ? "border-slate-700 bg-slate-900"
+              : "border-slate-200 bg-white"
+          )}
+          aria-label="Open navigation menu"
+        >
+          <Menu className={cn("h-5 w-5", isDark ? "text-slate-300" : "text-slate-600")} />
+        </button>
       )}
-    </div>
-    
-    {/* Mobile Menu Button */}
-    {isMobile && (
-      <button
-        onClick={toggleMobileMenu}
-        className="fixed top-4 left-4 z-30 p-3 bg-gray-50 border border-gray-200 rounded-lg shadow-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        aria-label="Open navigation menu"
-      >
-        <Menu className="w-5 h-5 text-gray-600" />
-      </button>
-    )}
     </>
   );
 }

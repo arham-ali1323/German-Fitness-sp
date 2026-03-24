@@ -130,7 +130,7 @@ export default function AdminDashboard() {
       value: stats.todayAttendance.toString(),
       change: '82%',
       icon: Activity,
-      color: 'from-blue-400 to-cyan-500',
+      color: 'from-blue-400 to-orange-500',
       bgColor: 'bg-blue-400/10',
     },
     {

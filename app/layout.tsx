@@ -3,8 +3,7 @@ import { Orbitron, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers/session-provider";
 import { ActiveThemeProvider } from "@/components/dashboard/active-theme";
-import Navbar from "@/components/layout/navbar";
-import Footer from "@/components/layout/footer";
+import ConditionalSiteChrome from "@/components/layout/conditional-site-chrome";
 
 
 export const orbitron = Orbitron({
@@ -55,11 +54,7 @@ export default function RootLayout({
       >
         <ActiveThemeProvider>
           <Providers>
-            <Navbar />
-            <main>
-              {children}
-            </main>
-            <Footer />
+            <ConditionalSiteChrome>{children}</ConditionalSiteChrome>
           </Providers>
         </ActiveThemeProvider>
       </body>
