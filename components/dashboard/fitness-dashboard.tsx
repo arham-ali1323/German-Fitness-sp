@@ -152,42 +152,42 @@ const FitnessDashboard = () => {
 
   const popularWorkouts = [
     {
-      title: 'Rapid Lower Body',
-      level: 'Beginner',
-      duration: '30 min',
-      image: '/api/placeholder/300/200',
+      title: 'Strength Training',
+      level: 'Intermediate',
+      duration: '45 min',
+      image: '/api/placeholder/gym-strength.jpg',
       color: 'from-blue-500 to-purple-600'
     },
     {
-      title: 'Piriformis Stretch',
-      level: 'Beginner',
-      duration: '20 sec',
-      image: '/api/placeholder/300/200',
+      title: 'HIIT Cardio',
+      level: 'Advanced',
+      duration: '30 min',
+      image: '/api/placeholder/gym-hiit.jpg',
       color: 'from-green-500 to-orange-600'
     },
     {
-      title: 'Core Strength',
-      level: 'Intermediate',
-      duration: '15 min',
-      image: '/api/placeholder/300/200',
+      title: 'CrossFit',
+      level: 'Expert',
+      duration: '60 min',
+      image: '/api/placeholder/gym-crossfit.jpg',
       color: 'from-orange-500 to-red-600'
     },
   ];
 
   const categories = [
-    { name: 'Boxing', icon: '🥊' },
+    { name: 'Weight Lifting', icon: '🏋️' },
     { name: 'Cardio', icon: '🏃' },
-    { name: 'Gym', icon: '🏋️' },
-    { name: 'Stretch', icon: '🧘' },
-    { name: 'Upper Body', icon: '💪' },
+    { name: 'CrossFit', icon: '💪' },
     { name: 'Yoga', icon: '🧘‍♀️' },
+    { name: 'Boxing', icon: '🥊' },
+    { name: 'Swimming', icon: '🏊' },
   ];
 
   const bestExercises = [
-    { name: 'Sumo Squat', duration: '45 sec', image: '/api/placeholder/100/100' },
-    { name: 'Front Lunge', duration: '30 sec', image: '/api/placeholder/100/100' },
-    { name: 'Leg Abduction', duration: '60 sec', image: '/api/placeholder/100/100' },
-    { name: 'Arm circles', duration: '30 sec', image: '/api/placeholder/100/100' },
+    { name: 'Bench Press', duration: '45 sec', image: '/api/placeholder/gym-bench.jpg' },
+    { name: 'Deadlifts', duration: '60 sec', image: '/api/placeholder/gym-deadlift.jpg' },
+    { name: 'Squats', duration: '50 sec', image: '/api/placeholder/gym-squat.jpg' },
+    { name: 'Pull-ups', duration: '30 sec', image: '/api/placeholder/gym-pullup.jpg' },
   ];
 
   const renderMetricCard = (metric, index) => {
@@ -256,59 +256,19 @@ const FitnessDashboard = () => {
   };
 
   return (
-    <div className={cn("min-h-screen", isDark ? "bg-black" : "bg-slate-100")}>
-      {/* Header */}
-      <header className={cn("shadow-sm border-b", isDark ? "bg-slate-950 border-slate-800" : "bg-white border-slate-200")}>
-        <div className="px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex-1 max-w-xl">
-              <div className="relative">
-                <Search className={cn("absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5", isDark ? "text-slate-400" : "text-slate-500")} />
-                <input
-                  type="text"
-                  placeholder="Search Here"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className={cn(
-                    "w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-                    isDark
-                      ? "bg-slate-900 text-slate-100 placeholder:text-slate-500 border-slate-800"
-                      : "bg-white text-slate-900 placeholder:text-slate-400 border-slate-300"
-                  )}
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-4 ml-6">
-              <button className={cn("p-2 rounded-lg transition-colors", isDark ? "hover:bg-slate-900" : "hover:bg-slate-100")}>
-                <Bell className={cn("w-5 h-5", isDark ? "text-slate-300" : "text-slate-600")} />
-              </button>
-              <button 
-                onClick={() => setShowThemeSettings(true)}
-                className={cn("p-2 rounded-lg transition-colors", isDark ? "hover:bg-slate-900" : "hover:bg-slate-100")}
-              >
-                <Settings className={cn("w-5 h-5", isDark ? "text-slate-300" : "text-slate-600")} />
-              </button>
-              <button
-                onClick={toggleMode}
-                className={cn("p-2 rounded-lg transition-colors", isDark ? "hover:bg-slate-900" : "hover:bg-slate-100")}
-                aria-label="Toggle dashboard theme"
-              >
-                {isDark ? (
-                  <Sun className="w-5 h-5 text-slate-200" />
-                ) : (
-                  <Moon className="w-5 h-5 text-slate-700" />
-                )}
-              </button>
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-semibold">JD</span>
-              </div>
-            </div>
-          </div>
+    <div className="min-h-screen p-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className={cn("text-3xl font-bold mb-2", isDark ? "text-slate-100" : "text-slate-900")}>
+            Fitness Dashboard
+          </h1>
+          <p className={cn("text-lg", isDark ? "text-slate-400" : "text-slate-600")}>
+            Track your fitness journey and progress
+          </p>
         </div>
-      </header>
 
-      <main className="p-6">
-        {/* Key Metrics */}
+        {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {keyMetrics.map((metric, index) => renderMetricCard(metric, index))}
         </div>
@@ -454,7 +414,7 @@ const FitnessDashboard = () => {
                 <div className={`h-40 bg-gradient-to-r ${workout.color} flex items-center justify-center`}>
                   <Dumbbell className="w-16 h-16 text-white" />
                 </div>
-                <div className="p-4">
+                <div>
                   <h4 className={cn("font-semibold mb-1", isDark ? "text-slate-100" : "text-slate-900")}>{workout.title}</h4>
                   <div className="flex items-center justify-between">
                     <span className={cn("text-sm", isDark ? "text-slate-400" : "text-slate-500")}>{workout.level}</span>
@@ -480,12 +440,12 @@ const FitnessDashboard = () => {
           >
             <div className="h-64 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
               <div className="text-center text-white">
-                <Users className="w-24 h-24 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">Full Body Toning Workout</h3>
-                <p className="mb-6">Complete workout routine for overall fitness</p>
+                <Dumbbell className="w-24 h-24 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Gym Workout Pro</h3>
+                <p className="mb-6">Advanced strength training program</p>
                 <button className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 mx-auto">
                   <Play className="w-5 h-5" />
-                  Start Training
+                  Start Workout
                 </button>
               </div>
             </div>
@@ -560,7 +520,6 @@ const FitnessDashboard = () => {
             ))}
           </div>
         </div>
-      </main>
 
       {/* Theme Settings Modal */}
       {showThemeSettings && (
@@ -700,6 +659,7 @@ const FitnessDashboard = () => {
         </div>
       )}
 
+      </div>
     </div>
   );
 };

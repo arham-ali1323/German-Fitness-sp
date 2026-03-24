@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/components/providers/session-provider";
 import { ActiveThemeProvider } from "@/components/dashboard/active-theme";
 import ConditionalSiteChrome from "@/components/layout/conditional-site-chrome";
+import LayoutWrapper from "@/components/layout/layout-wrapper";
 
 
 export const orbitron = Orbitron({
@@ -20,7 +21,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "German Fitness & Sports | Best Gym In Sahiwal - Complete Gym Management System",
   description: "Professional gym management system with member tracking, class scheduling, and payment processing",
-  themeColor: "#FF6B35",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -41,6 +41,10 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+export const viewport = {
+  themeColor: "#FF6B35",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,7 +58,9 @@ export default function RootLayout({
       >
         <ActiveThemeProvider>
           <Providers>
-            <ConditionalSiteChrome>{children}</ConditionalSiteChrome>
+            <LayoutWrapper>
+              <ConditionalSiteChrome>{children}</ConditionalSiteChrome>
+            </LayoutWrapper>
           </Providers>
         </ActiveThemeProvider>
       </body>

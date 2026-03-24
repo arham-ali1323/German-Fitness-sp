@@ -11,7 +11,7 @@ export default function ConditionalSiteChrome({
 }) {
   const pathname = usePathname();
   const isDashboardRoute =
-    pathname?.startsWith("/dashboard") || pathname?.startsWith("/user/dashboard");
+    pathname?.startsWith("/dashboard") || pathname?.startsWith("/user");
 
   return (
     <>

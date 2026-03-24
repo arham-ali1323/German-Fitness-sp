@@ -126,7 +126,7 @@ const Goals = () => {
   const currentGoals = goals[activeTab as keyof typeof goals] || goals.current;
 
   return (
-    <div className={cn("min-h-screen p-6", isDark ? "bg-black" : "bg-slate-100")}>
+    <div className={cn("min-h-screen p-6 overflow-hidden", isDark ? "bg-black" : "bg-slate-100")}>
       <div className={cn("rounded-2xl p-6 shadow-lg border", isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200")}>
         <div className="mb-6">
           <h1 className={cn("text-2xl font-bold mb-2", isDark ? "text-slate-100" : "text-slate-900")}>

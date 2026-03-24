@@ -5,18 +5,19 @@ import { cn } from "@/lib/utils";
 import { useDashboardMode } from "@/components/dashboard/dashboard-mode-provider";
 import { ChevronUp, ChevronDown, Search, Filter } from 'lucide-react';
 
-type SortField = 'id' | 'name' | 'email' | 'role' | 'status' | 'joinDate' | 'lastLogin' | 'sessions';
+type SortField = 'id' | 'name' | 'email' | 'role' | 'status' | 'joinDate' | 'lastLogin' | 'sessions' | 'avatar';
 type SortOrder = 'asc' | 'desc';
 
 interface TableData {
   id: number;
   name: string;
   email: string;
-  role: 'Admin' | 'Editor' | 'User';
+  role: 'Trainer' | 'Member' | 'Admin';
   status: 'Active' | 'Inactive';
   joinDate: string;
   lastLogin: string;
   sessions: number;
+  avatar: string;
 }
 
 const TableDatatable = () => {
@@ -28,16 +29,16 @@ const TableDatatable = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
 
   const tableData: TableData[] = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active', joinDate: '2023-01-15', lastLogin: '2024-03-24', sessions: 245 },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Active', joinDate: '2023-02-20', lastLogin: '2024-03-23', sessions: 189 },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor', status: 'Inactive', joinDate: '2023-03-10', lastLogin: '2024-03-20', sessions: 156 },
-    { id: 4, name: 'Alice Brown', email: 'alice@example.com', role: 'User', status: 'Active', joinDate: '2023-04-05', lastLogin: '2024-03-24', sessions: 298 },
-    { id: 5, name: 'Charlie Wilson', email: 'charlie@example.com', role: 'Admin', status: 'Active', joinDate: '2023-05-12', lastLogin: '2024-03-22', sessions: 412 },
-    { id: 6, name: 'Diana Lee', email: 'diana@example.com', role: 'Editor', status: 'Active', joinDate: '2023-06-18', lastLogin: '2024-03-24', sessions: 324 },
-    { id: 7, name: 'Edward Davis', email: 'edward@example.com', role: 'User', status: 'Inactive', joinDate: '2023-07-22', lastLogin: '2024-03-15', sessions: 87 },
-    { id: 8, name: 'Fiona Martinez', email: 'fiona@example.com', role: 'Admin', status: 'Active', joinDate: '2023-08-30', lastLogin: '2024-03-24', sessions: 567 },
-    { id: 9, name: 'George Taylor', email: 'george@example.com', role: 'User', status: 'Active', joinDate: '2023-09-14', lastLogin: '2024-03-23', sessions: 234 },
-    { id: 10, name: 'Helen White', email: 'helen@example.com', role: 'Editor', status: 'Active', joinDate: '2023-10-08', lastLogin: '2024-03-21', sessions: 189 },
+    { id: 1, name: 'John Smith', email: 'john@fitnexus.com', role: 'Trainer', status: 'Active', joinDate: '2023-01-15', lastLogin: '2024-03-24', sessions: 1245, avatar: '/api/placeholder/trainer1.jpg' },
+    { id: 2, name: 'Sarah Johnson', email: 'sarah@fitnexus.com', role: 'Member', status: 'Active', joinDate: '2023-02-20', lastLogin: '2024-03-23', sessions: 789, avatar: '/api/placeholder/member1.jpg' },
+    { id: 3, name: 'Mike Wilson', email: 'mike@fitnexus.com', role: 'Member', status: 'Inactive', joinDate: '2023-03-10', lastLogin: '2024-03-20', sessions: 456, avatar: '/api/placeholder/member2.jpg' },
+    { id: 4, name: 'Emma Davis', email: 'emma@fitnexus.com', role: 'Trainer', status: 'Active', joinDate: '2023-04-05', lastLogin: '2024-03-24', sessions: 1890, avatar: '/api/placeholder/trainer2.jpg' },
+    { id: 5, name: 'Tom Brown', email: 'tom@fitnexus.com', role: 'Admin', status: 'Active', joinDate: '2023-05-12', lastLogin: '2024-03-22', sessions: 3412, avatar: '/api/placeholder/admin1.jpg' },
+    { id: 6, name: 'Lisa Martinez', email: 'lisa@fitnexus.com', role: 'Member', status: 'Active', joinDate: '2023-06-18', lastLogin: '2024-03-24', sessions: 1567, avatar: '/api/placeholder/member3.jpg' },
+    { id: 7, name: 'David Lee', email: 'david@fitnexus.com', role: 'Member', status: 'Inactive', joinDate: '2023-07-22', lastLogin: '2024-03-15', sessions: 234, avatar: '/api/placeholder/member4.jpg' },
+    { id: 8, name: 'Anna Taylor', email: 'anna@fitnexus.com', role: 'Trainer', status: 'Active', joinDate: '2023-08-30', lastLogin: '2024-03-24', sessions: 2103, avatar: '/api/placeholder/trainer3.jpg' },
+    { id: 9, name: 'Chris White', email: 'chris@fitnexus.com', role: 'Member', status: 'Active', joinDate: '2023-09-14', lastLogin: '2024-03-23', sessions: 987, avatar: '/api/placeholder/member5.jpg' },
+    { id: 10, name: 'Rachel Green', email: 'rachel@fitnexus.com', role: 'Admin', status: 'Active', joinDate: '2023-10-08', lastLogin: '2024-03-21', sessions: 4567, avatar: '/api/placeholder/admin2.jpg' },
   ];
 
   const filteredAndSortedData = useMemo(() => {
@@ -117,9 +118,9 @@ const TableDatatable = () => {
               )}
             >
               <option value="all">All Roles</option>
+              <option value="Trainer">Trainer</option>
+              <option value="Member">Member</option>
               <option value="Admin">Admin</option>
-              <option value="Editor">Editor</option>
-              <option value="User">User</option>
             </select>
             
             <select
@@ -146,6 +147,11 @@ const TableDatatable = () => {
                 <th className={cn("text-left py-3 px-4 font-semibold text-sm cursor-pointer hover:text-orange-500 transition-colors", isDark ? "text-slate-300" : "text-slate-700")} onClick={() => handleSort('id')}>
                   <div className="flex items-center gap-1">
                     ID <SortIcon field="id" />
+                  </div>
+                </th>
+                <th className={cn("text-left py-3 px-4 font-semibold text-sm cursor-pointer hover:text-orange-500 transition-colors", isDark ? "text-slate-300" : "text-slate-700")} onClick={() => handleSort('avatar')}>
+                  <div className="flex items-center gap-1">
+                    Avatar <SortIcon field="avatar" />
                   </div>
                 </th>
                 <th className={cn("text-left py-3 px-4 font-semibold text-sm cursor-pointer hover:text-orange-500 transition-colors", isDark ? "text-slate-300" : "text-slate-700")} onClick={() => handleSort('name')}>
@@ -189,14 +195,29 @@ const TableDatatable = () => {
               {filteredAndSortedData.map((item) => (
                 <tr key={item.id} className={cn("border-b transition-colors hover:bg-orange-50", isDark ? "border-slate-800 hover:bg-slate-800/50" : "border-slate-100")}>
                   <td className={cn("py-3 px-4 text-sm font-medium", isDark ? "text-slate-100" : "text-slate-900")}>{item.id}</td>
-                  <td className={cn("py-3 px-4 text-sm font-medium", isDark ? "text-slate-100" : "text-slate-900")}>{item.name}</td>
+                  <td className={cn("py-3 px-4", isDark ? "text-slate-100" : "text-slate-900")}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full overflow-hidden">
+                        <img 
+                          src={item.avatar} 
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = `https://picsum.photos/seed/${item.name}/40/40.jpg`;
+                          }}
+                        />
+                      </div>
+                      <span className="font-medium">{item.name}</span>
+                    </div>
+                  </td>
                   <td className={cn("py-3 px-4 text-sm", isDark ? "text-slate-300" : "text-slate-700")}>{item.email}</td>
                   <td className={cn("py-3 px-4 text-sm", isDark ? "text-slate-300" : "text-slate-700")}>
                     <span className={cn(
                       "px-2 py-1 rounded-full text-xs font-medium",
                       item.role === 'Admin' ? "bg-purple-100 text-purple-800" :
-                      item.role === 'Editor' ? "bg-blue-100 text-blue-800" :
-                      "bg-gray-100 text-gray-800"
+                      item.role === 'Trainer' ? "bg-blue-100 text-blue-800" :
+                      "bg-green-100 text-green-800"
                     )}>
                       {item.role}
                     </span>

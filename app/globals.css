@@ -28,6 +28,16 @@
   scrollbar-color: #f97316 transparent;
 }
 
+/* Prevent double scrollbars globally */
+html, body {
+  overflow-x: hidden;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 transparent;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

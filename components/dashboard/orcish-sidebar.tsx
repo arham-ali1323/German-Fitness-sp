@@ -46,6 +46,7 @@ const navigation = [
       { name: "Body Workout", href: "/user/workouts/body-workout" },
       { name: "Create Workout", href: "/user/workouts/create" },
       { name: "Workout Summary", href: "/user/workouts/summary" },
+      { name: "Workout CRUD", href: "/user/workouts/crud" },
     ],
   },
   {
@@ -69,14 +70,7 @@ const navigation = [
     { name: "Verify Email", href: "/dashboard/authentication/verify-email" },
     { name: "Verify Pin", href: "/dashboard/authentication/verify-pin" },
   ] },
-  { name: "Step", href: "/dashboard/step", icon: Footprints },
-  { name: "Form", href: "/dashboard/form", icon: FileText, children: [
-    { name: "Form Element", href: "/dashboard/form/element" },
-    { name: "Checkbox & Radio", href: "/dashboard/form/checkbox-radio" },
-    { name: "Datepicker", href: "/dashboard/form/datepicker" },
-    { name: "Basic Form", href: "/dashboard/form/basic" },
-    { name: "Validation", href: "/dashboard/form/validation" },
-  ] },
+  { name: "Step", href: "/dashboard/onboarding-step", icon: Footprints },
   { name: "Table", href: "/dashboard/table", icon: Table2, children: [
     { name: "Table", href: "/dashboard/table/basic" },
     { name: "Datatable", href: "/dashboard/table/datatable" },
@@ -236,7 +230,6 @@ export function OrcishSidebar() {
                   >
                     <item.icon className="h-4 w-4" />
                     {isExpanded && <span className="ml-3 whitespace-nowrap">{item.name}</span>}
-                    {isExpanded && !item.children && <ChevronRight className="ml-auto h-4 w-4 opacity-70" />}
                   </Link>
                 )}
 

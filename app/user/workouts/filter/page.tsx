@@ -3,277 +3,371 @@
 import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 import { useDashboardMode } from "@/components/dashboard/dashboard-mode-provider";
-import { Dumbbell, Filter, Clock, Target, TrendingUp, Search, Calendar } from 'lucide-react';
+import { 
+  Dumbbell, 
+  Search, 
+  Heart, 
+  Moon, 
+  Bell, 
+  Globe, 
+  User,
+  X,
+  Filter
+} from 'lucide-react';
 
 const WorkoutFilter = () => {
   const { isDark } = useDashboardMode();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedDifficulty, setSelectedDifficulty] = useState('all');
-  const [selectedDuration, setSelectedDuration] = useState('all');
+  
+  // Filter states
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+  const [selectedPrice, setSelectedPrice] = useState<string>('');
+  const [selectedLevel, setSelectedLevel] = useState<string>('');
+  const [selectedDuration, setSelectedDuration] = useState<string>('');
+  const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
+
+  const goals = ['Stretch', 'Legs', 'Yoga', 'Boxing', 'Running', 'Personal', 'Arms', 'Chest'];
+  const prices = ['Free', 'Premium'];
+  const levels = ['Beginner', 'Medium', 'Advanced'];
+  const durations = ['15-20 min', '20-30 min', '30-40 min'];
+  const equipment = ['Kettlebell', 'Dumbbells', 'Yoga mat'];
 
   const workouts = [
     {
       id: 1,
-      name: 'Full Body Strength',
-      category: 'strength',
-      difficulty: 'intermediate',
-      duration: 45,
-      calories: 350,
-      equipment: ['Dumbbells', 'Bench'],
-      image: '/api/placeholder/300/200'
+      title: 'Strength & Conditioning',
+      difficulty: 'Beginner',
+      duration: '20 sec',
+      image: '/api/placeholder/300/200',
+      isFavorite: false
     },
     {
       id: 2,
-      name: 'HIIT Cardio Blast',
-      category: 'cardio',
-      difficulty: 'advanced',
-      duration: 30,
-      calories: 400,
-      equipment: ['None'],
-      image: '/api/placeholder/300/200'
+      title: 'Power Yoga Flow',
+      difficulty: 'Beginner',
+      duration: '20 sec',
+      image: '/api/placeholder/300/200',
+      isFavorite: true
     },
     {
       id: 3,
-      name: 'Yoga Flow',
-      category: 'flexibility',
-      difficulty: 'beginner',
-      duration: 60,
-      calories: 200,
-      equipment: ['Yoga Mat'],
-      image: '/api/placeholder/300/200'
+      title: 'HIIT Cardio Blast',
+      difficulty: 'Medium',
+      duration: '30 sec',
+      image: '/api/placeholder/300/200',
+      isFavorite: false
     },
     {
       id: 4,
-      name: 'Upper Body Pump',
-      category: 'strength',
-      difficulty: 'intermediate',
-      duration: 40,
-      calories: 300,
-      equipment: ['Dumbbells', 'Resistance Bands'],
-      image: '/api/placeholder/300/200'
+      title: 'Core Crusher',
+      difficulty: 'Advanced',
+      duration: '25 sec',
+      image: '/api/placeholder/300/200',
+      isFavorite: false
     },
     {
       id: 5,
-      name: 'Core Crusher',
-      category: 'core',
-      difficulty: 'advanced',
-      duration: 25,
-      calories: 250,
-      equipment: ['Exercise Mat'],
-      image: '/api/placeholder/300/200'
+      title: 'Upper Body Pump',
+      difficulty: 'Medium',
+      duration: '35 sec',
+      image: '/api/placeholder/300/200',
+      isFavorite: true
     },
     {
       id: 6,
-      name: 'Morning Stretch',
-      category: 'flexibility',
-      difficulty: 'beginner',
-      duration: 20,
-      calories: 100,
-      equipment: ['None'],
-      image: '/api/placeholder/300/200'
+      title: 'Morning Stretch',
+      difficulty: 'Beginner',
+      duration: '15 sec',
+      image: '/api/placeholder/300/200',
+      isFavorite: false
     }
   ];
 
-  const filteredWorkouts = workouts.filter(workout => {
-    const matchesSearch = workout.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || workout.category === selectedCategory;
-    const matchesDifficulty = selectedDifficulty === 'all' || workout.difficulty === selectedDifficulty;
-    const matchesDuration = selectedDuration === 'all' || 
-      (selectedDuration === 'short' && workout.duration <= 30) ||
-      (selectedDuration === 'medium' && workout.duration > 30 && workout.duration <= 45) ||
-      (selectedDuration === 'long' && workout.duration > 45);
-    
-    return matchesSearch && matchesCategory && matchesDifficulty && matchesDuration;
-  });
+  const toggleGoal = (goal: string) => {
+    setSelectedGoals(prev => 
+      prev.includes(goal) 
+        ? prev.filter(g => g !== goal)
+        : [...prev, goal]
+    );
+  };
 
-  const categories = ['all', 'strength', 'cardio', 'flexibility', 'core'];
-  const difficulties = ['all', 'beginner', 'intermediate', 'advanced'];
-  const durations = ['all', 'short', 'medium', 'long'];
+  const toggleEquipment = (equip: string) => {
+    setSelectedEquipment(prev => 
+      prev.includes(equip) 
+        ? prev.filter(e => e !== equip)
+        : [...prev, equip]
+    );
+  };
+
+  const toggleFavorite = (id: number) => {
+    // Toggle favorite logic here
+  };
+
+  const resetFilters = () => {
+    setSelectedGoals([]);
+    setSelectedPrice('');
+    setSelectedLevel('');
+    setSelectedDuration('');
+    setSelectedEquipment([]);
+  };
 
   return (
-    <div className={cn("min-h-screen p-6", isDark ? "bg-black" : "bg-slate-100")}>
-      <div className={cn("rounded-2xl p-6 shadow-lg border", isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200")}>
-        <div className="mb-6">
-          <h1 className={cn("text-2xl font-bold mb-2", isDark ? "text-slate-100" : "text-slate-900")}>
-            Workout Filter
-          </h1>
-          <p className={cn("text-sm", isDark ? "text-slate-400" : "text-slate-600")}>
-            Find the perfect workout based on your preferences
-          </p>
-        </div>
+    <div className={cn("min-h-screen flex flex-col overflow-hidden", isDark ? "bg-black" : "bg-gray-50")}>
 
-        {/* Search and Filters */}
-        <div className="mb-6 space-y-4">
-          <div className="relative">
-            <Search className={cn("absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4", isDark ? "text-slate-400" : "text-slate-500")} />
-            <input
-              type="text"
-              placeholder="Search workouts..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className={cn(
-                "w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500",
-                isDark
-                  ? "bg-slate-800 text-slate-100 border-slate-700 placeholder:text-slate-500"
-                  : "bg-white text-slate-900 border-slate-300 placeholder:text-slate-400"
-              )}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label className={cn("block text-sm font-medium mb-2", isDark ? "text-slate-300" : "text-slate-700")}>
-                Category
-              </label>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className={cn(
-                  "w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500",
-                  isDark
-                    ? "bg-slate-800 text-slate-100 border-slate-700"
-                    : "bg-white text-slate-900 border-slate-300"
-                )}
-              >
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>
-                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className={cn("block text-sm font-medium mb-2", isDark ? "text-slate-300" : "text-slate-700")}>
-                Difficulty
-              </label>
-              <select
-                value={selectedDifficulty}
-                onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className={cn(
-                  "w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500",
-                  isDark
-                    ? "bg-slate-800 text-slate-100 border-slate-700"
-                    : "bg-white text-slate-900 border-slate-300"
-                )}
-              >
-                {difficulties.map(diff => (
-                  <option key={diff} value={diff}>
-                    {diff.charAt(0).toUpperCase() + diff.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className={cn("block text-sm font-medium mb-2", isDark ? "text-slate-300" : "text-slate-700")}>
-                Duration
-              </label>
-              <select
-                value={selectedDuration}
-                onChange={(e) => setSelectedDuration(e.target.value)}
-                className={cn(
-                  "w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500",
-                  isDark
-                    ? "bg-slate-800 text-slate-100 border-slate-700"
-                    : "bg-white text-slate-900 border-slate-300"
-                )}
-              >
-                <option value="all">All Durations</option>
-                <option value="short">Short (&le;30min)</option>
-                <option value="medium">Medium (31-45min)</option>
-                <option value="long">Long (&gt;45min)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Results */}
-        <div className="mb-4">
-          <p className={cn("text-sm", isDark ? "text-slate-400" : "text-slate-600")}>
-            Showing {filteredWorkouts.length} of {workouts.length} workouts
-          </p>
-        </div>
-
-        {/* Workout Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredWorkouts.map((workout) => (
-            <div
-              key={workout.id}
-              className={cn(
-                "rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer border",
-                isDark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"
-              )}
-            >
-              <div className="h-40 bg-gradient-to-r from-orange-400 to-orange-600 flex items-center justify-center">
-                <Dumbbell className="w-16 h-16 text-white" />
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <aside className={cn(
+          "w-80 border-r overflow-hidden",
+          isDark ? "bg-slate-900 border-slate-800" : "bg-white border-gray-200"
+        )}>
+          <div className="p-6">
+            {/* Create Personal Training Section */}
+            <div className={cn(
+              "rounded-xl p-4 mb-6",
+              isDark ? "bg-gradient-to-r from-orange-600 to-orange-700" : "bg-gradient-to-r from-orange-500 to-orange-600"
+            )}>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                  <Dumbbell className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold">Create Personal Training</h3>
+                  <p className="text-white/80 text-sm">Build your custom workout</p>
+                </div>
               </div>
-              <div className="p-4">
-                <h3 className={cn("font-semibold mb-2", isDark ? "text-slate-100" : "text-slate-900")}>
-                  {workout.name}
-                </h3>
-                
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <span className={cn(
-                    "px-2 py-1 rounded-full text-xs font-medium",
-                    workout.difficulty === 'beginner' ? "bg-green-100 text-green-800" :
-                    workout.difficulty === 'intermediate' ? "bg-yellow-100 text-yellow-800" :
-                    "bg-red-100 text-red-800"
-                  )}>
-                    {workout.difficulty}
-                  </span>
-                  <span className={cn(
-                    "px-2 py-1 rounded-full text-xs font-medium",
-                    isDark ? "bg-slate-700 text-slate-300" : "bg-slate-100 text-slate-700"
-                  )}>
-                    {workout.category}
-                  </span>
-                </div>
+              <div className="flex gap-2">
+                <div className="w-8 h-8 bg-white/20 rounded"></div>
+                <div className="w-8 h-8 bg-white/20 rounded"></div>
+              </div>
+            </div>
 
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Clock className={cn("w-4 h-4", isDark ? "text-slate-400" : "text-slate-500")} />
-                    <span className={cn(isDark ? "text-slate-300" : "text-slate-700")}>
-                      {workout.duration} minutes
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Target className={cn("w-4 h-4", isDark ? "text-slate-400" : "text-slate-500")} />
-                    <span className={cn(isDark ? "text-slate-300" : "text-slate-700")}>
-                      {workout.calories} calories
-                    </span>
-                  </div>
-                </div>
+            {/* Your Goals Filter */}
+            <div className="mb-6">
+              <h3 className={cn(
+                "font-semibold mb-3",
+                isDark ? "text-white" : "text-gray-900"
+              )}>
+                Your Goals
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {goals.map(goal => (
+                  <button
+                    key={goal}
+                    onClick={() => toggleGoal(goal)}
+                    className={cn(
+                      "px-3 py-1 rounded-full text-sm transition-colors",
+                      selectedGoals.includes(goal)
+                        ? "bg-orange-500 text-white"
+                        : isDark
+                          ? "bg-slate-800 text-gray-300 hover:bg-slate-700"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    )}
+                  >
+                    {goal}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-                <div className="mt-3">
-                  <p className={cn("text-xs mb-2", isDark ? "text-slate-400" : "text-slate-600")}>
-                    Equipment: {workout.equipment.join(', ')}
-                  </p>
-                  <button className={cn(
-                    "w-full py-2 px-4 rounded-lg text-sm font-medium transition-colors",
-                    "bg-orange-500 text-white hover:bg-orange-600"
-                  )}>
-                    Start Workout
+            {/* Price Filter */}
+            <div className="mb-6">
+              <h3 className={cn(
+                "font-semibold mb-3",
+                isDark ? "text-white" : "text-gray-900"
+              )}>
+                Price
+              </h3>
+              <div className="space-y-2">
+                {prices.map(price => (
+                  <label key={price} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="price"
+                      checked={selectedPrice === price}
+                      onChange={() => setSelectedPrice(price)}
+                      className="w-4 h-4 text-orange-500 focus:ring-orange-500"
+                    />
+                    <span className={cn(
+                      "text-sm",
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    )}>
+                      {price}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Level Filter */}
+            <div className="mb-6">
+              <h3 className={cn(
+                "font-semibold mb-3",
+                isDark ? "text-white" : "text-gray-900"
+              )}>
+                Level
+              </h3>
+              <div className="space-y-2">
+                {levels.map(level => (
+                  <label key={level} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="level"
+                      checked={selectedLevel === level}
+                      onChange={() => setSelectedLevel(level)}
+                      className="w-4 h-4 text-orange-500 focus:ring-orange-500"
+                    />
+                    <span className={cn(
+                      "text-sm",
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    )}>
+                      {level}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Duration Filter */}
+            <div className="mb-6">
+              <h3 className={cn(
+                "font-semibold mb-3",
+                isDark ? "text-white" : "text-gray-900"
+              )}>
+                Duration
+              </h3>
+              <div className="space-y-2">
+                {durations.map(duration => (
+                  <label key={duration} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="duration"
+                      checked={selectedDuration === duration}
+                      onChange={() => setSelectedDuration(duration)}
+                      className="w-4 h-4 text-orange-500 focus:ring-orange-500"
+                    />
+                    <span className={cn(
+                      "text-sm",
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    )}>
+                      {duration}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Equipment Filter */}
+            <div className="mb-6">
+              <h3 className={cn(
+                "font-semibold mb-3",
+                isDark ? "text-white" : "text-gray-900"
+              )}>
+                Equipment
+              </h3>
+              <div className="space-y-2">
+                {equipment.map(equip => (
+                  <label key={equip} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedEquipment.includes(equip)}
+                      onChange={() => toggleEquipment(equip)}
+                      className="w-4 h-4 text-orange-500 focus:ring-orange-500"
+                    />
+                    <span className={cn(
+                      "text-sm",
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    )}>
+                      {equip}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={resetFilters}
+                className={cn(
+                  "flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors",
+                  isDark
+                    ? "bg-slate-800 text-gray-300 hover:bg-slate-700"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                )}
+              >
+                Reset
+              </button>
+              <button className={cn(
+                "flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors",
+                "bg-orange-500 text-white hover:bg-orange-600"
+              )}>
+                Apply
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {workouts.map((workout) => (
+              <div
+                key={workout.id}
+                className={cn(
+                  "rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group",
+                  isDark ? "bg-slate-800" : "bg-white"
+                )}
+              >
+                <div className="relative">
+                  <div className="h-48 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+                    <Dumbbell className="w-16 h-16 text-white/80" />
+                  </div>
+                  <button
+                    onClick={() => toggleFavorite(workout.id)}
+                    className={cn(
+                      "absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                      workout.isFavorite
+                        ? "bg-red-500 text-white"
+                        : isDark
+                          ? "bg-slate-900/80 text-gray-400 hover:text-red-400"
+                          : "bg-white/80 text-gray-400 hover:text-red-500"
+                    )}
+                  >
+                    <Heart className={cn("w-4 h-4", workout.isFavorite ? "fill-current" : "")} />
                   </button>
                 </div>
+                
+                <div className="p-4">
+                  <h3 className={cn(
+                    "font-semibold mb-2",
+                    isDark ? "text-white" : "text-gray-900"
+                  )}>
+                    {workout.title}
+                  </h3>
+                  
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className={cn(
+                      "px-2 py-1 rounded-full text-xs font-medium",
+                      workout.difficulty === 'Beginner' ? "bg-green-100 text-green-800" :
+                      workout.difficulty === 'Medium' ? "bg-yellow-100 text-yellow-800" :
+                      "bg-red-100 text-red-800"
+                    )}>
+                      {workout.difficulty}
+                    </span>
+                    <span className={cn(
+                      "text-xs",
+                      isDark ? "text-gray-400" : "text-gray-500"
+                    )}>
+                      • {workout.duration}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredWorkouts.length === 0 && (
-          <div className="text-center py-12">
-            <Filter className={cn("w-12 h-12 mx-auto mb-4", isDark ? "text-slate-600" : "text-slate-400")} />
-            <p className={cn("text-lg font-medium mb-2", isDark ? "text-slate-300" : "text-slate-700")}>
-              No workouts found
-            </p>
-            <p className={cn("text-sm", isDark ? "text-slate-400" : "text-slate-600")}>
-              Try adjusting your filters or search terms
-            </p>
+            ))}
           </div>
-        )}
+        </main>
       </div>
+
     </div>
   );
 };
