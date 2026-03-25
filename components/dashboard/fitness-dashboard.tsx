@@ -8,10 +8,8 @@ import {
   Flame,
   Heart,
   Clock,
-  Users,
   Search,
   Bell,
-  Settings,
   ChevronRight,
   Play,
   Target,
@@ -179,21 +177,21 @@ const FitnessDashboard = () => {
       title: 'Strength Training',
       level: 'Intermediate',
       duration: '45 min',
-      image: '/api/placeholder/gym-strength.jpg',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop&crop=center',
       color: 'from-blue-500 to-purple-600'
     },
     {
       title: 'HIIT Cardio',
       level: 'Advanced',
       duration: '30 min',
-      image: '/api/placeholder/gym-hiit.jpg',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop&crop=center',
       color: 'from-green-500 to-orange-600'
     },
     {
       title: 'CrossFit',
       level: 'Expert',
       duration: '60 min',
-      image: '/api/placeholder/gym-crossfit.jpg',
+      image: 'https://images.unsplash.com/photo-1506629905687-d4230a8338f0?w=400&h=250&fit=crop&crop=center',
       color: 'from-orange-500 to-red-600'
     },
   ];
@@ -208,10 +206,10 @@ const FitnessDashboard = () => {
   ];
 
   const bestExercises = [
-    { name: 'Bench Press', duration: '45 sec', image: '/api/placeholder/gym-bench.jpg' },
-    { name: 'Deadlifts', duration: '60 sec', image: '/api/placeholder/gym-deadlift.jpg' },
-    { name: 'Squats', duration: '50 sec', image: '/api/placeholder/gym-squat.jpg' },
-    { name: 'Pull-ups', duration: '30 sec', image: '/api/placeholder/gym-pullup.jpg' },
+    { name: 'Bench Press', duration: '45 sec', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop&crop=center' },
+    { name: 'Deadlifts', duration: '60 sec', image: 'https://images.unsplash.com/photo-1506629905687-d4230a8338f0?w=100&h=100&fit=crop&crop=center' },
+    { name: 'Squats', duration: '50 sec', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop&crop=center' },
+    { name: 'Pull-ups', duration: '30 sec', image: 'https://images.unsplash.com/photo-1506629905687-d4230a8338f0?w=100&h=100&fit=crop&crop=center' },
   ];
 
   const renderMetricCard = (metric, index) => {
@@ -486,10 +484,21 @@ const FitnessDashboard = () => {
                   isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
                 )}
               >
-                <div className={`h-40 bg-gradient-to-r ${workout.color} flex items-center justify-center`}>
-                  <Dumbbell className="w-16 h-16 text-white" />
+                <div className={`h-40 relative overflow-hidden`}>
+                  <img 
+                    src={workout.image} 
+                    alt={workout.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <h4 className="font-bold text-lg mb-1">{workout.title}</h4>
+                      <p className="text-sm opacity-90">{workout.level}</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
+                <div className="p-4">
                   <h4 className={cn("font-semibold mb-1", isDark ? "text-slate-100" : "text-slate-900")}>{workout.title}</h4>
                   <div className="flex items-center justify-between">
                     <span className={cn("text-sm", isDark ? "text-slate-400" : "text-slate-500")}>{workout.level}</span>
@@ -584,8 +593,12 @@ const FitnessDashboard = () => {
                   isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
                 )}
               >
-                <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center", isDark ? "bg-slate-800" : "bg-slate-200")}>
-                  <Activity className={cn("w-6 h-6", isDark ? "text-slate-400" : "text-slate-600")} />
+                <div className={cn("w-12 h-12 rounded-lg overflow-hidden flex-shrink-0", isDark ? "bg-slate-800" : "bg-slate-200")}>
+                  <img 
+                    src={exercise.image} 
+                    alt={exercise.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h4 className={cn("font-medium", isDark ? "text-slate-100" : "text-slate-900")}>{exercise.name}</h4>

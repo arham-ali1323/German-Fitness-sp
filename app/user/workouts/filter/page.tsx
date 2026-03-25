@@ -38,7 +38,7 @@ const WorkoutFilter = () => {
       title: 'Strength & Conditioning',
       difficulty: 'Beginner',
       duration: '20 sec',
-      image: '/api/placeholder/300/200',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop&crop=center',
       isFavorite: false
     },
     {
@@ -46,7 +46,7 @@ const WorkoutFilter = () => {
       title: 'Power Yoga Flow',
       difficulty: 'Beginner',
       duration: '20 sec',
-      image: '/api/placeholder/300/200',
+      image: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=300&h=200&fit=crop&crop=center',
       isFavorite: true
     },
     {
@@ -54,7 +54,7 @@ const WorkoutFilter = () => {
       title: 'HIIT Cardio Blast',
       difficulty: 'Medium',
       duration: '30 sec',
-      image: '/api/placeholder/300/200',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop&crop=center',
       isFavorite: false
     },
     {
@@ -62,7 +62,7 @@ const WorkoutFilter = () => {
       title: 'Core Crusher',
       difficulty: 'Advanced',
       duration: '25 sec',
-      image: '/api/placeholder/300/200',
+      image: 'https://images.unsplash.com/photo-1506629905687-d4230a8338f0?w=300&h=200&fit=crop&crop=center',
       isFavorite: false
     },
     {
@@ -70,7 +70,7 @@ const WorkoutFilter = () => {
       title: 'Upper Body Pump',
       difficulty: 'Medium',
       duration: '35 sec',
-      image: '/api/placeholder/300/200',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop&crop=center',
       isFavorite: true
     },
     {
@@ -78,7 +78,7 @@ const WorkoutFilter = () => {
       title: 'Morning Stretch',
       difficulty: 'Beginner',
       duration: '15 sec',
-      image: '/api/placeholder/300/200',
+      image: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=300&h=200&fit=crop&crop=center',
       isFavorite: false
     }
   ];
@@ -319,9 +319,12 @@ const WorkoutFilter = () => {
                 )}
               >
                 <div className="relative">
-                  <div className="h-48 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
-                    <Dumbbell className="w-16 h-16 text-white/80" />
-                  </div>
+                  <img 
+                    src={workout.image} 
+                    alt={workout.title}
+                    className="h-48 w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   <button
                     onClick={() => toggleFavorite(workout.id)}
                     className={cn(

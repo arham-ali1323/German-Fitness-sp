@@ -153,7 +153,13 @@ export function OrcishSidebar() {
       >
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-2 overflow-hidden">
-            <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-orange-500 to-orange-500" />
+            <div className="h-8 w-8 rounded-xl overflow-hidden bg-orange-500">
+              <img 
+                src="/images/German Fitness without logo.png" 
+                alt="German Fitness Logo" 
+                className="h-full w-full object-cover"
+              />
+            </div>
             {isExpanded && (
               <span
                 className={cn(
