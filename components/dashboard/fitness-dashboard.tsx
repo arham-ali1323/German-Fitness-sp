@@ -600,15 +600,15 @@ const FitnessDashboard = () => {
       {showNotifications && (
         <div className="fixed inset-0 z-50" onClick={() => setShowNotifications(false)}>
           <div 
-            className="absolute top-20 right-6 w-80 max-h-96 overflow-y-auto rounded-2xl shadow-2xl border p-4"
+            className={cn(
+              "absolute top-20 right-6 w-80 max-h-96 overflow-y-auto rounded-2xl shadow-2xl border p-4",
+              isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+            )}
             onClick={(e) => e.stopPropagation()}
             style={{
               scrollbarWidth: 'thin',
               scrollbarColor: '#f97316 transparent'
             }}
-            className={cn(
-              isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-            )}
           >
             <style jsx>{`
               div::-webkit-scrollbar {
