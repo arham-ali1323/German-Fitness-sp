@@ -260,12 +260,59 @@ const FitnessDashboard = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className={cn("text-3xl font-bold mb-2", isDark ? "text-slate-100" : "text-slate-900")}>
-            Fitness Dashboard
-          </h1>
-          <p className={cn("text-lg", isDark ? "text-slate-400" : "text-slate-600")}>
-            Track your fitness journey and progress
-          </p>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className={cn("text-4xl font-bold mb-2", isDark ? "text-slate-100" : "text-slate-900")}>
+                Fitness Dashboard
+              </h1>
+              <p className={cn("text-lg", isDark ? "text-slate-400" : "text-slate-600")}>
+                Track your fitness journey and progress
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className={cn(
+                "relative",
+                isDark ? "bg-slate-800" : "bg-white"
+              )}>
+                <Search className={cn("absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5", isDark ? "text-slate-400" : "text-slate-500")} />
+                <input
+                  type="text"
+                  placeholder="Search workouts..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={cn(
+                    "pl-10 pr-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500",
+                    isDark ? "bg-slate-900 text-slate-100 border-slate-700" : "bg-white text-slate-900 border-slate-300"
+                  )}
+                />
+              </div>
+              <button
+                onClick={toggleMode}
+                className={cn(
+                  "p-2 rounded-lg transition-colors",
+                  isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
+                )}
+                title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              >
+                {isDark ? (
+                  <Sun className="w-5 h-5 text-yellow-500" />
+                ) : (
+                  <Moon className="w-5 h-5 text-slate-600" />
+                )}
+              </button>
+              <button className={cn(
+                "p-2 rounded-lg transition-colors relative",
+                isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
+              )}>
+                <Bell className={cn("w-5 h-5", isDark ? "text-slate-400" : "text-slate-600")} />
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+              </button>
+            </div>
+          </div>
+          <div className={cn(
+            "h-1 rounded-full",
+            isDark ? "bg-gradient-to-r from-orange-500 to-red-500" : "bg-gradient-to-r from-blue-500 to-purple-600"
+          )}></div>
         </div>
 
         {/* Metrics Grid */}
