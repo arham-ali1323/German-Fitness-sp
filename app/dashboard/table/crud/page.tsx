@@ -206,7 +206,7 @@ export default function CRUDPage() {
               <Button
                 variant="outline"
                 onClick={handleCancel}
-                className="border-red-500 text-red-500 hover:bg-red-100"
+                className="border-red-500 bg-red-500 text-white hover:bg-red-700 hover:text-white"
               >
                 Cancel
               </Button>
@@ -284,7 +284,7 @@ export default function CRUDPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="border-green-500 text-green-500 hover:bg-green-100"
+                      className="border-green-500 bg-green-500 text-white hover:bg-green-700 hover:text-white"
                       onClick={() => handleEdit(user)}
                     >
                       Edit
@@ -292,7 +292,7 @@ export default function CRUDPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="border-red-500 text-red-500 hover:bg-red-100"
+                      className="border-red-500 bg-red-500 text-white hover:bg-red-700 hover:text-white"
                       onClick={() => handleDelete(user.id)}
                     >
                       Delete
