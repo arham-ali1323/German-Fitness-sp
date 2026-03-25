@@ -45,6 +45,30 @@ const FitnessDashboard = () => {
   const [sidebarMode, setSidebarMode] = useState('Light');
   const [sidebarType, setSidebarType] = useState('Horizontal');
   const [layoutMode, setLayoutMode] = useState('Light');
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [notifications] = useState([
+    {
+      id: 1,
+      title: 'Workout Reminder',
+      message: 'Time for your daily workout!',
+      time: '2 hours ago',
+      read: false
+    },
+    {
+      id: 2,
+      title: 'Goal Achieved',
+      message: 'You reached your weekly step goal!',
+      time: '1 day ago',
+      read: false
+    },
+    {
+      id: 3,
+      title: 'New Workout Plan',
+      message: 'Check out the new HIIT routine',
+      time: '3 days ago',
+      read: true
+    }
+  ]);
 
   // Activity data for bar chart
   const activityData = [
@@ -300,10 +324,14 @@ const FitnessDashboard = () => {
                   <Moon className="w-5 h-5 text-slate-600" />
                 )}
               </button>
-              <button className={cn(
-                "p-2 rounded-lg transition-colors relative",
-                isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
-              )}>
+              <button
+                onClick={() => setShowNotifications(!showNotifications)}
+                className={cn(
+                  "p-2 rounded-lg transition-colors relative",
+                  isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
+                )}
+                title="Notifications"
+              >
                 <Bell className={cn("w-5 h-5", isDark ? "text-slate-400" : "text-slate-600")} />
                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
               </button>
@@ -567,6 +595,93 @@ const FitnessDashboard = () => {
             ))}
           </div>
         </div>
+
+      {/* Notifications Dropdown */}
+      {showNotifications && (
+        <div className="fixed inset-0 z-50" onClick={() => setShowNotifications(false)}>
+          <div 
+            className="absolute top-20 right-6 w-80 max-h-96 overflow-y-auto rounded-2xl shadow-2xl border p-4"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#f97316 transparent'
+            }}
+            className={cn(
+              isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+            )}
+          >
+            <style jsx>{`
+              div::-webkit-scrollbar {
+                width: 6px;
+              }
+              div::-webkit-scrollbar-track {
+                background: transparent;
+              }
+              div::-webkit-scrollbar-thumb {
+                background-color: #f97316;
+                border-radius: 3px;
+              }
+              div::-webkit-scrollbar-thumb:hover {
+                background-color: #ea580c;
+              }
+            `}</style>
+            
+            <div className="flex items-center justify-between mb-4">
+              <h3 className={cn("text-lg font-bold", isDark ? "text-slate-100" : "text-slate-900")}>
+                Notifications
+              </h3>
+              <button
+                onClick={() => setShowNotifications(false)}
+                className={cn(
+                  "p-1 rounded-lg transition-colors",
+                  isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
+                )}
+              >
+                <X className={cn("w-4 h-4", isDark ? "text-slate-400" : "text-slate-600")} />
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              {notifications.map((notification) => (
+                <div
+                  key={notification.id}
+                  className={cn(
+                    "p-3 rounded-lg border cursor-pointer transition-colors",
+                    !notification.read && "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800",
+                    notification.read && isDark ? "border-slate-700" : "border-slate-200",
+                    notification.read && !isDark ? "bg-slate-50" : ""
+                  )}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h4 className={cn("font-medium text-sm mb-1", isDark ? "text-slate-100" : "text-slate-900")}>
+                        {notification.title}
+                      </h4>
+                      <p className={cn("text-xs mb-1", isDark ? "text-slate-400" : "text-slate-600")}>
+                        {notification.message}
+                      </p>
+                      <span className={cn("text-xs", isDark ? "text-slate-500" : "text-slate-500")}>
+                        {notification.time}
+                      </span>
+                    </div>
+                    {!notification.read && (
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-1"></span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {notifications.length === 0 && (
+              <div className="text-center py-8">
+                <p className={cn("text-sm", isDark ? "text-slate-400" : "text-slate-500")}>
+                  No new notifications
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Theme Settings Modal */}
       {showThemeSettings && (
