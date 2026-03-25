@@ -284,7 +284,7 @@ export default function CRUDPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="border-red-500 text-red-500 hover:bg-red-100"
+                      className="border-green-500 text-green-500 hover:bg-green-100"
                       onClick={() => handleEdit(user)}
                     >
                       Edit
