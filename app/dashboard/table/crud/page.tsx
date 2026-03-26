@@ -42,25 +42,8 @@ const page = () => {
     }));
   };
  
-  const addUser = () => {
-    const newId = workoutData.Users.length > 0 ? Math.max(...workoutData.Users.map(e => e.id)) + 1 : 1;
-    setWorkoutData(prev => ({
-      ...prev,
-      Users: [...prev.Users, {
-        id: newId,
-        name: '',
-        sets: 3,
-        reps: 10,
-        rest: 60,
-        totalTime: '3m',
-        notes: ''
-      }]
-    }));
-  };
- 
   const saveWorkout = () => {
     console.log('Saving workout:', workoutData);
-    // Add save logic here
   };
  
   const clearWorkout = () => {
@@ -94,10 +77,6 @@ const page = () => {
       name: `${formData.firstName} ${formData.lastName}`,
       Fname: formData.firstName,
       Lname: formData.lastName,
-      sets: 0,
-      reps: 0,
-      rest: 0,
-      totalTime: '',
       notes: `Email: ${formData.email}, DOB: ${formData.dateOfBirth}, Address: ${formData.address}`
     };
     
