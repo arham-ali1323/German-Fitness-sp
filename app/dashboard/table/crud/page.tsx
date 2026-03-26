@@ -182,6 +182,7 @@ const page = () => {
                     value={workoutData.address || ''}
                     onChange={(e) => handleWorkoutChange('address', e.target.value)}
                     className="p-2 bg-slate-700 border border-slate-600 rounded-md text-white"
+                    placeholder="Enter Your Address"
                   />
                 </div>
                 <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md" onClick={handleSubmit}  >
