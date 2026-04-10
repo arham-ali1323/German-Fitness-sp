@@ -1,4 +1,6 @@
 'use client';  
+import { create } from 'domain';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function ClassTimeTable() {
@@ -136,6 +138,9 @@ export default function ClassTimeTable() {
           <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105">
             BOOK A CLASS NOW
           </button>
+          <Link href="/user/workouts/create" className=" mx-4 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105">
+            Create your Own workout
+          </Link>
         </div>
 
       </div>

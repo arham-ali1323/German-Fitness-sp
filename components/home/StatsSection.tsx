@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import athlete from "../../public/images/strength.png";
+import Link from "next/link";
 
 function NinjaStar({ className = "" }: { className?: string }) {
   return (
@@ -57,10 +58,10 @@ export default function StatsSection() {
             </span>
 
             {/* Foreground main text */}
-            <h2 className="font-orbitron uppercase font-extrabold text-orange-500 text-5xl md:text-6xl leading-[1.05] tracking-tight relative z-10">
+            <h2 className="font-orbitron uppercase font-extrabold text-white text-5xl md:text-6xl leading-[1.05] tracking-tight relative z-10">
               We are pushing <br />
-              the limit  <br />
-              <span className="text-orange-500">of your core strength</span>
+              the limit of your <br />
+              <span className="text-orange-500"> core strength</span>
             </h2>
           </div>
 
@@ -71,9 +72,9 @@ export default function StatsSection() {
             flexibility at Jetts, with unlimited 24/7 access.
           </p>
 
-          <button className="mt-8 px-8 py-4 border-2 border-orange-500 text-sm font-bold uppercase text-white hover:bg-orange-500 hover:text-black transition shadow-[0_0_20px_rgba(255,90,30,0.4)]">
+          <Link href="/dashboard/authentication/signin" className="mt-8 px-8 py-4 border-2 border-orange-500 text-sm font-bold uppercase text-white hover:bg-orange-500 hover:text-black transition shadow-[0_0_20px_rgba(255,90,30,0.4)]">
             Get started today +
-          </button>
+          </Link>
         </div>
 
         {/* RIGHT */}
